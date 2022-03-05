@@ -1,0 +1,94 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$fev2-primary: mat.define-palette(mat.$indigo-palette);
+$fev2-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$fev2-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$fev2-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $fev2-primary,
+      accent: $fev2-accent,
+      warn: $fev2-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($fev2-theme);
+
+/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: "Prompt", sans-serif;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  // // background: #43abd6;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.template-page {
+  // // background-color: gray;
+  margin: 1rem 2rem;
+  display: grid;
+  grid-template: 4rem auto/ auto;
+
+  .template-page-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #a4cbad;
+    color: #02723e;
+    height: 2rem;
+    margin-top: 1rem;
+  }
+
+  // .template-page-body {
+  //   // background-color: blue;
+  //   height: 100%;
+  //   display: grid;
+  //   grid-template: 26rem auto 4rem / auto;
+
+  //   .template-page-body-top-content-static {
+  //     // background-color: red;
+  //     width: 100%;
+  //   }
+
+  //   .template-page-body-top-dynamic {
+  //     // background-color: green;
+  //     width: 100%;
+  //   }
+
+  //   .template-page-body-bot-content {
+  //     // background-color: yellow;
+  //     width: 100%;
+  //   }
+  // }
+}

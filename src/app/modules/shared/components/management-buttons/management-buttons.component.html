@@ -1,0 +1,10 @@
+<section class="management-button">
+  <app-button-shared [button]="managementButtons[0]"></app-button-shared>
+  <section></section>
+  <app-button-shared
+    [button]="managementButtons[1]"
+    (clicked)="clicked($event)"
+  ></app-button-shared>
+  <section></section>
+  <app-button-shared [button]="managementButtons[2]"></app-button-shared>
+</section>

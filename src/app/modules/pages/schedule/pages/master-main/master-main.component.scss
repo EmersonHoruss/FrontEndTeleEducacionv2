@@ -1,0 +1,47 @@
+.selection {
+  // margin-top: 1rem;
+  display: grid;
+  grid-template: auto 0.5rem auto/ 67% 3% 30%;
+  margin-bottom: 1.5rem;
+}
+
+.management {
+  .register {
+    margin-bottom: 1.5rem;
+  }
+  .table {
+    margin-bottom: 1rem;
+  }
+}
+
+.faculty {
+  width: 120px;
+}
+
+.master {
+  width: 800px;
+}
+
+.top {
+  display: grid;
+  grid-template-areas:
+    "faculty-master coordinator" 
+    "curricula-course coordinator";
+
+  .faculty-master {
+    grid-area: faculty-master;
+  }
+  .curricula-course {
+    grid-area: curricula-course;
+  }
+  .coordinator {
+    grid-area: coordinator;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+table{
+  margin-top: 2rem;
+  width: 100%;
+}

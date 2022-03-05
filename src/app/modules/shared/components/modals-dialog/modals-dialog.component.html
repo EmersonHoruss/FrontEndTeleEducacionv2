@@ -1,0 +1,62 @@
+<!-- <div class="header">
+  <h2 mat-dialog-title>{{ data?.title }}</h2>
+  <button mat-icon-button [mat-dialog-close]="false">close</button>
+</div>
+
+<div mat-dialog-content>
+  <p>asdf</p>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button [mat-dialog-close]="false">xd</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">
+    xdd
+  </button>
+</div> -->
+
+<ng-container *ngIf="data.type !== 'load'; else elseTemplate">
+  <section class="outer-container">
+    <section class="icon">
+      <app-icon-shared [icon]="data.iconEntity"></app-icon-shared>
+    </section>
+    <section class="title">{{ data.title }}</section>
+    <section class="description">{{ data.description }}</section>
+    <section class="buttons" *ngIf="data.type === 'load'"></section>
+    <section class="buttons" *ngIf="data.type === 'confirm'">
+      <button mat-raised-button color="primary">Sí</button>
+      <button mat-raised-button color="warn">No</button>
+    </section>
+    <section
+      class="buttons"
+      *ngIf="data.type !== 'load' && data.type !== 'confirm'"
+    >
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="data.type === 'success'"
+        [mat-dialog-close]="false"
+      >
+        Ok
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        *ngIf="data.type === 'error'"
+        [mat-dialog-close]="false"
+      >
+        Ok
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        *ngIf="data.type === 'warning'"
+        [mat-dialog-close]="false"
+      >
+        Ok
+      </button>
+    </section>
+  </section>
+</ng-container>
+
+<!-- JUST LOAD MODAL -->
+<ng-template #elseTemplate> </ng-template>

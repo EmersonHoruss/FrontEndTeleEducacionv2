@@ -1,0 +1,20 @@
+<app-sidenav
+  [sidenavTemplateRef]="navContent"
+  [navWidth]="200"
+  [duration]="0.5"
+></app-sidenav>
+
+<div class="main-container">
+  <!-- placeholder for the header -->
+  <app-header></app-header>
+
+  <!-- placeholder for the pages -->
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+
+  <!-- placeholder for the footer -->
+  <app-footer></app-footer>
+</div>
+
+<ng-template #navContent> <app-menu></app-menu></ng-template>

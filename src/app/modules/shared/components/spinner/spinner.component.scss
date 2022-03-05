@@ -1,0 +1,25 @@
+@keyframes spinner {
+  0% {
+    transform: translate3d(-0%, -0%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-0%, -0%, 0) rotate(360deg);
+  }
+}
+.spin {
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 3px #1c87c9;
+  border-bottom-color: #cfd0d1;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  transform: translate3d(-0%, -0%, 0);
+  will-change: transform;
+}
+
+.container-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

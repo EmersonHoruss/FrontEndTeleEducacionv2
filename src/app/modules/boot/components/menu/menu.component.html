@@ -1,0 +1,17 @@
+<section class="menu">
+  <section class="main-options" >
+    <button
+      type="button"
+      class="btn btn-outline-success"
+      *ngFor="let option of menu.options; index as i"
+      [routerLink]="option.url"
+    >
+      <app-icon [icon]="option.icon" ></app-icon>
+      {{ option.text }}
+    </button>
+  </section>
+
+  <section class="logout-option">
+    <app-logout></app-logout>
+  </section>
+</section>

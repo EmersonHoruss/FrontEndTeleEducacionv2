@@ -1,0 +1,70 @@
+{
+  "Usuario": [
+    {
+      "Codigo": 1,
+      "Nombre": "Jose Ernesto",
+      "Correo": "jernesto@unprg.edu.pe",
+      "Estado": "A",
+      "Icono": "The best football team in the world!",
+      "Vigencia": true,
+      "InicioAcceso": "12/11/21",
+      "FinAcceso": "12/11/22"
+    },
+    {
+      "id": 5,
+      "Codigo": 2,
+      "Nombre": "Jose Ernesto",
+      "Correo": "jernesto@unprg.edu.pe",
+      "Estado": "A",
+      "Icono": "The best football team in the world!",
+      "Vigencia": true,
+      "InicioAcceso": "12/11/21",
+      "FinAcceso": "12/11/22"
+    },
+    {
+      "id": 6,
+      "Codigo": 2,
+      "Nombre": "Jose Ernesto",
+      "Correo": "jernesto@unprg.edu.pe",
+      "Estado": "A",
+      "Icono": "The best football team in the world!",
+      "Vigencia": true,
+      "InicioAcceso": "12/11/21",
+      "FinAcceso": "12/11/22"
+    }
+  ],
+  "Perfil": [
+    {
+      "Codigo": 1,
+      "Tipo": "C",
+      "Estado": "A",
+      "Vigencia": true,
+      "InicioAcceso": "12/11/21",
+      "FinAcceso": "12/11/22",
+      "CodigoUsuario": 1
+    }
+  ],
+  "Sesion": [
+    {
+      "Codigo": 1,
+      "Token": "Axjashdfklquwi-981asdfjñasf-asdfhlqer",
+      "RefreshToken": "ASDFklahsuidfqpaAlqwo-jkhq-1234hfa",
+      "Expiracion": 1000000000,
+      "CodigoPerfil": 1
+    }
+  ],
+  "TipoPerfil": [
+    {
+      "id": 1,
+      "nombre": "TeleEducacion"
+    },
+    {
+      "id": 2,
+      "nombre": "Secretaria Académica"
+    },
+    {
+      "id": 3,
+      "nombre": "Coordinador"
+    }
+  ]
+}

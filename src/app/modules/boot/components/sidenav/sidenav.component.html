@@ -1,0 +1,30 @@
+<!-- side bar main wrapper -->
+<section
+  class="side-nav-bar"
+  [ngClass]="{ 'side-nav-bar-collapsed': !(showSideNav | async) }"
+>
+  <!-- overlay -->
+  <section
+    class="side-nav-bar-overlay"
+    [ngStyle]="{
+      transition:
+        'background-color ' + duration + 's, visibility ' + duration + 's'
+    }"
+    [ngClass]="{ 'side-nav-bar-overlay-collapsed': !(showSideNav | async) }"
+    (click)="onSidebarClose()"
+  ></section>
+
+  <!-- side bar-->
+  <section class="side-nav-bar-menu-container" [ngStyle]="getSideNavBarStyle()">
+    <!-- close button -->
+    <!-- <section>
+      <button class="material-icons side-nav-bar-close" (click)="onSidebarClose()"
+       >Clear</button>
+    </section> -->
+
+    <!-- side bar content -->
+    <section class="side-nav-bar-content-container">
+      <ng-container *ngTemplateOutlet="sidenavTemplateRef"></ng-container>
+    </section>
+  </section>
+</section>

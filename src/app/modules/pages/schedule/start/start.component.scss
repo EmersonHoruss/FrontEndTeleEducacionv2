@@ -1,0 +1,26 @@
+.content {
+  //   background-color: blue;
+  // flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  .item-content {
+    width: 45%;
+    height: 7rem;
+    // background-image: url("../../../../../assets/images/xd.jpg");
+  }
+}
+
+.margin-top-2 {
+  margin-top: 2rem;
+}
+
+.mat-form-field {
+  width: 9rem;
+}
+//   background-color: red;
+// }
+
+// .option:hover{
+//   background-color: blue;
+// }
