@@ -1,70 +1,109 @@
 {
-  "Usuario": [
-    {
-      "Codigo": 1,
-      "Nombre": "Jose Ernesto",
-      "Correo": "jernesto@unprg.edu.pe",
-      "Estado": "A",
-      "Icono": "The best football team in the world!",
-      "Vigencia": true,
-      "InicioAcceso": "12/11/21",
-      "FinAcceso": "12/11/22"
-    },
-    {
-      "id": 5,
-      "Codigo": 2,
-      "Nombre": "Jose Ernesto",
-      "Correo": "jernesto@unprg.edu.pe",
-      "Estado": "A",
-      "Icono": "The best football team in the world!",
-      "Vigencia": true,
-      "InicioAcceso": "12/11/21",
-      "FinAcceso": "12/11/22"
-    },
-    {
-      "id": 6,
-      "Codigo": 2,
-      "Nombre": "Jose Ernesto",
-      "Correo": "jernesto@unprg.edu.pe",
-      "Estado": "A",
-      "Icono": "The best football team in the world!",
-      "Vigencia": true,
-      "InicioAcceso": "12/11/21",
-      "FinAcceso": "12/11/22"
-    }
-  ],
-  "Perfil": [
-    {
-      "Codigo": 1,
-      "Tipo": "C",
-      "Estado": "A",
-      "Vigencia": true,
-      "InicioAcceso": "12/11/21",
-      "FinAcceso": "12/11/22",
-      "CodigoUsuario": 1
-    }
-  ],
-  "Sesion": [
-    {
-      "Codigo": 1,
-      "Token": "Axjashdfklquwi-981asdfjñasf-asdfhlqer",
-      "RefreshToken": "ASDFklahsuidfqpaAlqwo-jkhq-1234hfa",
-      "Expiracion": 1000000000,
-      "CodigoPerfil": 1
-    }
-  ],
-  "TipoPerfil": [
-    {
-      "id": 1,
-      "nombre": "TeleEducacion"
-    },
-    {
-      "id": 2,
-      "nombre": "Secretaria Académica"
-    },
-    {
-      "id": 3,
-      "nombre": "Coordinador"
-    }
-  ]
+    "Usuario": [{
+        "Codigo": 1,
+        "Nombre": "Jose Ernesto",
+        "Correo": "dperalesv@unprg.edu.pe",
+        "Estado": "A",
+        "Icono": "The best football team in the world!",
+        "Vigencia": true,
+        "InicioAcceso": "12/11/21",
+        "FinAcceso": "12/11/22"
+    }],
+    "Perfil": [{
+        "Codigo": 1,
+        "Tipo": "C",
+        "Estado": "A",
+        "Vigencia": true,
+        "InicioAcceso": "12/11/21",
+        "FinAcceso": "12/11/22",
+        "CodigoUsuario": 1
+    }],
+    "Sesion": [{
+        "Codigo": 1,
+        "Token": "Axjashdfklquwi-981asdfjñasf-asdfhlqer",
+        "RefreshToken": "ASDFklahsuidfqpaAlqwo-jkhq-1234hfa",
+        "Expiracion": 1000000000,
+        "CodigoPerfil": 1
+    }],
+    "TipoPerfil": [{
+            "id": 1,
+            "Codigo": 1,
+            "Nombre": "TeleEducacion"
+        },
+        {
+            "id": 2,
+            "Codigo": 2,
+            "Nombre": "Secretaria Académica"
+        },
+        {
+            "id": 3,
+            "Codigo": 3,
+            "Nombre": "Coordinador"
+        }
+    ],
+    "Acceso": [{}],
+    "Facultades": [{
+            "id": 0,
+            "Codigo": 0,
+            "Nombre": "Facultad de Ciencias Físicas y Matemáticas",
+            "Siglas": "FACFYM"
+        },
+        {
+            "id": 1,
+            "Codigo": 1,
+            "Nombre": "Facultad de Ingeniería Mecánica",
+            "Siglas": "FIME"
+        }
+    ],
+    "Maestrias": [{
+            "value": 0,
+            "name": "Ciencias matemáticas aplicadas a la tecnología"
+        },
+        {
+            "value": 1,
+            "name": "Ciencias determinísticas"
+        },
+        {
+            "value": 2,
+            "name": "Ciencias matemáticas aplicadas a la biotecnología"
+        }
+    ],
+    "Matricula": [{
+            "value": 0,
+            "name": "2010-I"
+        },
+        {
+            "value": 1,
+            "name": "2015-II"
+        },
+        {
+            "value": 2,
+            "name": "20220-I"
+        }
+    ],
+    "Cursos": [{
+            "value": 0,
+            "name": "Teoría de tesis I"
+        },
+        {
+            "value": 1,
+            "name": "Teoría de tesis II"
+        },
+        {
+            "value": 2,
+            "name": "Teoría de tesis III"
+        }
+    ],
+    "Columnas_Programar_Maestria": [{
+            "Columna1": "1"
+        },
+        {
+            "value": 1,
+            "name": "Teoría de tesis II"
+        },
+        {
+            "value": 2,
+            "name": "Teoría de tesis III"
+        }
+    ]
 }

@@ -59,4 +59,11 @@
 </ng-container>
 
 <!-- JUST LOAD MODAL -->
-<ng-template #elseTemplate> </ng-template>
+<ng-template #elseTemplate>
+  <section class="outer-container">
+    <section class="icon">
+      <app-icon-shared [icon]="data.iconEntity"></app-icon-shared>
+    </section>
+    <section class="description">{{ data.description }}</section>
+  </section>
+</ng-template>

@@ -11,16 +11,11 @@ buttonGoogle.icon.classCss = IconNames.google;
 
 const selectRol: SelectInterface = JSON.parse(JSON.stringify(DefaultSelect));
 selectRol.label = 'Seleccione Rol';
-const items: Array<RolInterface> = [
-  { id: 1, name: 'TeleEducación' },
-  { id: 2, name: 'Coordinador' },
-  { id: 3, name: 'Secretaria Académica' },
-];
-selectRol.items = items;
-selectRol.viewValue = 'name';
-selectRol.itemValue = 'id';
-selectRol.defaultSelectedValue = 'Ninguno';
-selectRol.enableDefaultSelectedItem = false
+selectRol.viewValue = 'Nombre';
+selectRol.itemValue = 'Codigo';
+selectRol.isAsync = true;
+selectRol.optionsToDisable = [2, 3];
+// selectRol.getHttp
 export const Constants = {
   buttonGoogle,
   selectRol,

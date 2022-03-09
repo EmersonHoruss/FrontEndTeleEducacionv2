@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../../../services/login/login.service';
 import { Observable } from 'rxjs';
+import { SocialLoginService } from '../../../../services/social-login/social-login.service';
 
 @Component({
   selector: 'app-boot',
@@ -8,16 +9,14 @@ import { Observable } from 'rxjs';
   styleUrls: ['./boot.component.scss'],
 })
 export class BootComponent implements OnInit {
-  isAuthenticatedObservable: Observable<boolean> = this.loginService.isLogged();
-  isAuthenticated: boolean = true;
-  constructor(private loginService: LoginService) {
-    // console.log(this.isAuthenticatedObservable);
-  }
+  constructor(
+    private loginService: LoginService,
+    private loginSS: SocialLoginService
+  ) {}
 
   ngOnInit(): void {}
 
-  canAccesAndIsLogged($event: boolean) {
-    // console.log($event,'asdfasdf')
-    this.isAuthenticated = $event;
+  isLogged(): boolean {
+    return this.loginSS.getSesion();
   }
 }

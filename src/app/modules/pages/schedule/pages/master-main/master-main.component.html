@@ -1,119 +1,151 @@
 <section class="template-page">
-  <!-- <app-title-page
-    [titlePage]="constants.titlePage"
-    
-  ></app-title-page> -->
 
-  <section class="template-page-body">
-    <section class="top">
-      <section class="faculty-master">
-        <mat-form-field appearance="fill" class="faculty">
-          <mat-label>Facultad</mat-label>
-          <mat-select
-            [(ngModel)]="selectedFacultad"
-            name="food"
-            [disableOptionCentering]="true"
-          >
-            <mat-option *ngFor="let food of facultades" [value]="food.value">
-              {{ food.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="master">
-          <mat-label>Mención de la Maestría</mat-label>
-          <mat-select
-            [(ngModel)]="selectedMaestria"
-            name="food"
-            [disableOptionCentering]="true"
-          >
-            <mat-option *ngFor="let food of maestrias" [value]="food.value">
-              {{ food.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </section>
-      <section class="curricula-course">
-        <mat-form-field appearance="fill" class="faculty">
-          <mat-label>Currícula</mat-label>
-          <mat-select
-            [(ngModel)]="selectedCurricula"
-            name="food"
-            [disableOptionCentering]="true"
-          >
-            <mat-option *ngFor="let food of curricula" [value]="food.value">
-              {{ food.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill" class="master">
-          <mat-label>Cursos de la Maestría</mat-label>
-          <mat-select
-            [(ngModel)]="selectedCurso"
-            name="food"
-            [disableOptionCentering]="true"
-          >
-            <mat-option *ngFor="let food of cursos" [value]="food.value">
-              {{ food.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </section>
-      <section class="coordinator">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Nombre Coordinador Maestría</mat-label>
-          <input
-            matInput
-            placeholder="Jose Alberto Manzanares Oliva"
-            value="Jose Alberto Manzanares Oliva"
-          />
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Correo Coordinador Maestría</mat-label>
-          <input
-            matInput
-            placeholder="JoseManzanares@unprg.edu.pe"
-            value="JoseManzanares@unprg.edu.pe"
-          />
-        </mat-form-field>
-      </section>
+    <section class="template-page-body">
+        <section class="top-body">
+            <section>
+                <app-select [select]="facultades"></app-select>
+            </section>
+            <section id="top-body-2">
+                <app-select [select]="Maestrias"></app-select>
+            </section>
+            <section id="top-body-3">
+                <app-input [input]="constants.inputLabelCoordinador"></app-input>
+                <app-input [input]="constants.inputCoordinador"></app-input>
+            </section>
+            <section id="top-body-4">
+                <app-select [select]="Matricula"></app-select>
+            </section>
+            <section id="top-body-5">
+                <app-select [select]="Cursos"></app-select>
+            </section>
+            <section id="top-body-6"></section>
+        </section>
+        <section class="bottom-body">
+            <app-table-select-filter></app-table-select-filter>
+        </section>
     </section>
 
-    <section class="bot">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+</section>
 
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-        </ng-container>
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Weight </th>
-          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-        </ng-container>
-      
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+
+<!--
+<section class="template-page">
+
+<section class="template-page-body">
+  <section class="top">
+    <section class="faculty-master">
+      <mat-form-field appearance="fill" class="faculty">
+        <mat-label>Facultad</mat-label>
+        <mat-select
+          [(ngModel)]="selectedFacultad"
+          name="food"
+          [disableOptionCentering]="true"
+        >
+          <mat-option *ngFor="let food of facultades" [value]="food.value">
+            {{ food.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="master">
+        <mat-label>Mención de la Maestría</mat-label>
+        <mat-select
+          [(ngModel)]="selectedMaestria"
+          name="food"
+          [disableOptionCentering]="true"
+        >
+          <mat-option *ngFor="let food of maestrias" [value]="food.value">
+            {{ food.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+    <section class="curricula-course">
+      <mat-form-field appearance="fill" class="faculty">
+        <mat-label>Currícula</mat-label>
+        <mat-select
+          [(ngModel)]="selectedCurricula"
+          name="food"
+          [disableOptionCentering]="true"
+        >
+          <mat-option *ngFor="let food of curricula" [value]="food.value">
+            {{ food.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="master">
+        <mat-label>Cursos de la Maestría</mat-label>
+        <mat-select
+          [(ngModel)]="selectedCurso"
+          name="food"
+          [disableOptionCentering]="true"
+        >
+          <mat-option *ngFor="let food of cursos" [value]="food.value">
+            {{ food.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+    <section class="coordinator">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Nombre Coordinador Maestría</mat-label>
+        <input
+          matInput
+          placeholder="Jose Alberto Manzanares Oliva"
+          value="Jose Alberto Manzanares Oliva"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Correo Coordinador Maestría</mat-label>
+        <input
+          matInput
+          placeholder="JoseManzanares@unprg.edu.pe"
+          value="JoseManzanares@unprg.edu.pe"
+        />
+      </mat-form-field>
     </section>
   </section>
+
+  <section class="bot">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+-->
+<!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" 
+
+Position Column -->
+<!---
+<ng-container matColumnDef="position">
+  <th mat-header-cell *matHeaderCellDef> No. </th>
+  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+</ng-container>
+
+Name Column -->
+<!---
+<ng-container matColumnDef="name">
+  <th mat-header-cell *matHeaderCellDef> Name </th>
+  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+</ng-container>
+
+Weight Column -->
+<!---
+<ng-container matColumnDef="weight">
+  <th mat-header-cell *matHeaderCellDef> Weight </th>
+  <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+</ng-container>
+
+Symbol Column -->
+<!---
+<ng-container matColumnDef="symbol">
+  <th mat-header-cell *matHeaderCellDef> Symbol </th>
+  <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+</ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
 </section>
+</section>
+</section>
+-->

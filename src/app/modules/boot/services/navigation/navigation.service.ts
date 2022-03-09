@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -20,6 +20,7 @@ export class NavigationService {
       this.setShowNav(false);
       // console.log(event);
     });
+    
   }
 
   ngOnInit() {}

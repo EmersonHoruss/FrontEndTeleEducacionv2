@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PreLoginComponent } from './pre-login.component';
+import { TableSelectFilterComponent } from './table-select-filter.component';
 
-describe('PreLoginComponent', () => {
-  let component: PreLoginComponent;
-  let fixture: ComponentFixture<PreLoginComponent>;
+describe('TableSelectFilterComponent', () => {
+  let component: TableSelectFilterComponent;
+  let fixture: ComponentFixture<TableSelectFilterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PreLoginComponent ]
+      declarations: [ TableSelectFilterComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PreLoginComponent);
+    fixture = TestBed.createComponent(TableSelectFilterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

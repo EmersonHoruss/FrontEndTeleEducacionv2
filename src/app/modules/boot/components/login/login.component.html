@@ -1,11 +1,12 @@
-<!-- <button class="btn-social-icon btn-google" (click)="signInWithGoogle()"> -->
 <section class="outer-container">
   <section class="all-container">
     <section class="title">Iniciar Sesión</section>
     <section class="inner-container">
       <section class="select">
-        <app-select ></app-select>
-        <!-- [select]="constants.selectRol"  (selectedValue)="getSelectedValue($event)" -->
+        <app-select
+          [select]="constants.selectRol"
+          (selectedValue)="getSelectedValue($event)"
+        ></app-select>
       </section>
       <section class="button">
         <app-button-shared

@@ -1,20 +1,34 @@
-<app-sidenav
+<!-- <app-sidenav
   [sidenavTemplateRef]="navContent"
   [navWidth]="200"
   [duration]="0.5"
-></app-sidenav>
+></app-sidenav> -->
 
-<div class="main-container">
-  <!-- placeholder for the header -->
-  <app-header></app-header>
+<!-- <div class="main-container"> -->
+<!-- placeholder for the header -->
+<!-- <app-header></app-header> -->
 
-  <!-- placeholder for the pages -->
-  <section>
+<!-- placeholder for the pages -->
+<!-- <section>
     <router-outlet></router-outlet>
-  </section>
+  </section> -->
 
-  <!-- placeholder for the footer -->
-  <app-footer></app-footer>
+<!-- placeholder for the footer -->
+<!-- <app-footer></app-footer>
 </div>
 
-<ng-template #navContent> <app-menu></app-menu></ng-template>
+<ng-template #navContent> <app-menu></app-menu></ng-template> -->
+
+<mat-drawer-container class="example-container" autosize>
+  <!-- Content Navigation -->
+  <mat-drawer #drawer class="example-sidenav" mode="side" [opened]="showFiller">
+    <app-menu></app-menu>
+  </mat-drawer>
+
+  <!-- Content no Navigation -->
+  <div class="example-sidenav-content">
+    <app-header (navBarClicked)="click()"></app-header>
+    <section class="router-outlet"><router-outlet></router-outlet></section>
+    <app-footer></app-footer>
+  </div>
+</mat-drawer-container>

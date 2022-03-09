@@ -15,4 +15,6 @@ export interface SelectInterface {
   defaultSelectedValue: string;
   ngStyle: any;
   optionsToDisable?: Array<any>;
+  isAsync: boolean;
+  getHttp?: any;
 }

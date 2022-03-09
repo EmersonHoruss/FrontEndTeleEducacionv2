@@ -1,5 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DefaultSelect } from 'src/app/modules/shared/constants/default-select';
+import { SelectInterface } from 'src/app/modules/shared/interfaces/select-interface';
 import { ButtonInterface } from '../../../../shared/interfaces/button-interface';
+import { Constants } from './master-main.constants';
 
 @Component({
   selector: 'app-master-main',
@@ -7,45 +11,31 @@ import { ButtonInterface } from '../../../../shared/interfaces/button-interface'
   styleUrls: ['./master-main.component.scss'],
 })
 export class MasterMainComponent implements OnInit {
-  constructor() {}
+  // Facultades: SelectInterface = JSON.parse(JSON.stringify(DefaultSelect));
+  facultades: SelectInterface = Constants.facultades;
+  Maestrias: SelectInterface = JSON.parse(JSON.stringify(DefaultSelect));
+  Matricula: SelectInterface = JSON.parse(JSON.stringify(DefaultSelect));
+  Cursos: SelectInterface = JSON.parse(JSON.stringify(DefaultSelect));
+
+  constructor(private http: HttpClient) {
+    // this.http.get("/api/Facultades").subscribe(e=>{this.Facultades.items=Object.values(e)});
+    // this.Facultades.label = 'Facultad';
+    this.facultades.getHttp = this.http.get('/api/Facultades');
+    console.log(this.facultades)
+    this.http.get('/api/Maestrias').subscribe((e) => {
+      this.Maestrias.items = Object.values(e);
+    });
+    this.Maestrias.label = 'Maestria';
+    this.http.get('/api/Matricula').subscribe((e) => {
+      this.Matricula.items = Object.values(e);
+    });
+    this.Matricula.label = 'Matricula';
+    this.http.get('/api/Cursos').subscribe((e) => {
+      this.Cursos.items = Object.values(e);
+    });
+    this.Cursos.label = 'Curso';
+  }
   ngOnInit(): void {}
 
-  selectedFacultad: string = '';
-  selectedMaestria: string = '';
-  selectedCurricula: string = '';
-  selectedCurso: string = '';
-
-  facultades = [
-    { value: 0, viewValue: 'FACFYM' },
-    { value: 1, viewValue: 'FIME' },
-    { value: 2, viewValue: 'FICSA' },
-  ];
-  maestrias = [
-    {
-      value: 0,
-      viewValue: 'Ciencias matemáticas aplicadas a la tecnología',
-    },
-    { value: 1, viewValue: 'Ciencias determinísticas' },
-    {
-      value: 2,
-      viewValue: 'Ciencias matemáticas aplicadas a la biotecnología',
-    },
-  ];
-  curricula = [
-    { value: 0, viewValue: '2010-I' },
-    { value: 1, viewValue: '2015-II' },
-    { value: 2, viewValue: '20220-I' },
-  ];
-  cursos = [
-    { value: 0, viewValue: 'Teoría de tesis I' },
-    { value: 1, viewValue: 'Teoría de tesis II' },
-    { value: 2, viewValue: 'Teoría de tesis III' },
-  ];
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = [
-    {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-    
-  ];
+  constants = Constants;
 }

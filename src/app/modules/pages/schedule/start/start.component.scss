@@ -7,7 +7,13 @@
   .item-content {
     width: 45%;
     height: 7rem;
+    color: #5252B3;
+    background-color: #5252b369;
     // background-image: url("../../../../../assets/images/xd.jpg");
+  }
+  .item-content:hover{
+    background-color: #5252B3;
+    color: white;
   }
 }
 

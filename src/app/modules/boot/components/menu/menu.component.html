@@ -1,13 +1,12 @@
 <section class="menu">
-  <section class="main-options" >
+  <section class="main-options">
     <button
-      type="button"
-      class="btn btn-outline-success"
+      class="btn btn-outline-primary"
       *ngFor="let option of menu.options; index as i"
       [routerLink]="option.url"
     >
-      <app-icon [icon]="option.icon" ></app-icon>
-      {{ option.text }}
+      <section class="icon"><app-icon [icon]="option.icon"></app-icon></section>
+      <section class="text">{{ option.text }}</section>
     </button>
   </section>
 

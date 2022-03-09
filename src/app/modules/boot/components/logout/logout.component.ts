@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { optionConstant } from './option.constants';
 import { OptionInterface } from '../../interfaces/option-interface';
+import { SocialLoginService } from '../../../../services/social-login/social-login.service';
 
 @Component({
   selector: 'app-logout',
@@ -10,11 +11,11 @@ import { OptionInterface } from '../../interfaces/option-interface';
 export class LogoutComponent implements OnInit {
   option: OptionInterface = optionConstant;
 
-  constructor() {}
+  constructor(private loginSS: SocialLoginService) {}
 
   ngOnInit(): void {}
 
-  logout(){
-    console.log('logOut')
+  logout() {
+    this.loginSS.logOut();
   }
 }

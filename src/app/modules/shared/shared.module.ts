@@ -11,6 +11,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { SharedxdComponent } from './sharedxd/sharedxd.component';
 import { TitlePageComponent } from './components/title-page/title-page.component';
@@ -25,6 +28,9 @@ import { ModalsDialogComponent } from './components/modals-dialog/modals-dialog.
 import { ModalsDialogService } from 'src/app/services/modals-dialog/modals-dialog.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { TestComponent } from './components/test/test.component';
+import { DateComponent } from './components/date/date.component';
+import { TableSelectFilterComponent } from './components/table-select-filter/table-select-filter.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +45,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     PruebaComponent,
     ModalsDialogComponent,
     SpinnerComponent,
+    TestComponent,
+    DateComponent,
+    TableSelectFilterComponent,
   ],
   imports: [
     CommonModule,
@@ -52,16 +61,22 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MatSelectModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     SharedxdComponent,
     TitlePageComponent,
     TableSelectComponent,
+    TableSelectFilterComponent,
     ManagementButtonsComponent,
     IconSharedComponent,
     ButtonSharedComponent,
     InputComponent,
     SelectComponent,
+    TestComponent,
+    DateComponent,
   ],
   providers: [ModalsDialogService, ApiService],
 })

@@ -1,4 +1,15 @@
-.full-width{
-    width: 100%;
-    text-align: left;
+.button-logout {
+  color: rgba(255, 255, 255, 0.596);
+  border: none;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  padding: 0.65rem;
+
+  .icon {
+    margin: 0 0.5rem 0 0.5rem;
+  }
+  .text {
+    margin-right: 0.5rem;
+  } 
 }

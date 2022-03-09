@@ -21,6 +21,7 @@ import { MasterSeeComponent } from './pages/master-see/master-see.component';
 import { MasterRegisterStartComponent } from './pages/master-register-start/master-register-start.component';
 import { MasterRegisterContinueComponent } from './pages/master-register-continue/master-register-continue.component';
 import { ModalsDialogService } from '../../../services/modals-dialog/modals-dialog.service';
+import { NamePageService } from '../../../services/name-page/name-page.service';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,6 @@ import { ModalsDialogService } from '../../../services/modals-dialog/modals-dial
     MatInputModule,
     MatTableModule,
   ],
-  providers: [ModalsDialogService],
+  providers: [ModalsDialogService, NamePageService],
 })
 export class ScheduleModule {}

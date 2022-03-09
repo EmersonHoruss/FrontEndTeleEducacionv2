@@ -5,6 +5,7 @@ import { ModalsDialogService } from '../../../../services/modals-dialog/modals-d
 import { modalsDialog } from 'src/app/modules/shared/constants/modals-dialog';
 import { LoginService } from '../../../../services/login/login.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,30 +13,17 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  @Output() canAccessAndIsLogged: EventEmitter<boolean> =
-    new EventEmitter<boolean>(false);
-
   constants: any = Constants;
   rolUser: any = null;
-  xd = {
-    id: 6,
-    Codigo: 2,
-    Nombre: 'Jose Ernesto',
-    Correo: 'jernesto@unprg.edu.pe',
-    Estado: 'A',
-    Icono: 'The best football team in the world!',
-    Vigencia: true,
-    InicioAcceso: '12/11/21',
-    FinAcceso: '12/11/22',
-  };
+
   constructor(
-    private socialLoginService: SocialLoginService,
+    private loginSS: SocialLoginService,
     private loginService: LoginService,
     private dialogService: ModalsDialogService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {
-    // this.http.post('/api/Usuario', this.xd).subscribe((e) => console.log(e));
-    this.http.get('/api/TipoUsuario')
+    this.constants.selectRol.getHttp = this.http.get('/api/TipoPerfil');
   }
 
   ngOnInit(): void {}
@@ -43,17 +31,18 @@ export class LoginComponent implements OnInit {
   signInWithGoogle(event: boolean) {
     const modalError = modalsDialog.error;
     modalError.description = 'Seleccione un rol para ingresar al sistema.';
+
     !this.rolUser
       ? this.dialogService.successModalDialog(modalsDialog.error)
-      : this.socialLoginService
-          .signInWithGoogle()
-          .then((e) => this.canAccessAndIsLogged.emit(true))
-          .catch((e) => this.canAccessAndIsLogged.emit(false));
+      : this.loginSS.signIn().then((e) => {
+          // saving session
+          this.loginSS.saveSession(this.loginSS.formatSesion(e));
+          // redirecting after logged
+          this.router.navigate(['casa']);
+        });
   }
 
   getSelectedValue(event: string | number) {
     this.rolUser = event;
   }
 }
-
-// this.router.navigate(['mainpage'])

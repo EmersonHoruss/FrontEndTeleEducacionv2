@@ -1,9 +1,5 @@
 <section class="start">
-  <app-login
-    *ngIf="!isAuthenticated; else elseTemplate"
-    (canAccessAndIsLogged)="canAccesAndIsLogged($event)"
-  >
-  </app-login>
+  <app-login *ngIf="!isLogged(); else elseTemplate"> </app-login>
   <ng-template #elseTemplate>
     <app-template></app-template>
   </ng-template>

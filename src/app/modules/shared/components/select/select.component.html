@@ -1,62 +1,24 @@
-<!-- <ng-container *ngIf="select.enableDefaultSelectedItem; else elseTemplate"> -->
-<!-- <mat-form-field appearance="fill"> -->
-<!-- <mat-label>{{ select.label }}</mat-label> -->
-<!-- <mat-select [(value)]="selectedFood" disableOptionCentering="true">
-      <mat-option>{{ select.defaultSelectedValue }}</mat-option>
-      <mat-option *ngFor="let item of select.items"
-        >{{ item[select.selectedShow] }}
-      </mat-option>
-    </mat-select> -->
-<!-- </mat-form-field> -->
-<!-- </ng-container> -->
-
-<!-- <ng-template #elseTemplate> -->
-<!-- <mat-form-field appearance="fill">
-    <mat-label>{{ select.label }}</mat-label>
-    <mat-select
-      disableOptionCentering="true"
-      [(ngModel)]="selectedValue"
-      (valueChange)="setSelectedValue($event)"
-    >
-      <mat-option
-        *ngFor="let item of select.items"
-        [value]="item[select.selectedValue]"
-        >{{ item[select.selectedShow] }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field> -->
-<!-- <mat-form-field appearance="fill">
-  <mat-label>{{ select.label }}</mat-label>
+<mat-form-field appearance="fill" (click)="haveBeenClicked()">
   <mat-select
     disableOptionCentering="select.disableOptionCentering"
     (selectionChange)="selectionChange($event.value)"
   >
     <mat-option
-      *ngFor="let item of select.items"
+      *ngFor="let item of data"
       [value]="item[select.itemValue]"
+      [disabled]="itemToDisable(item[select.itemValue])"
     >
       {{ item[select.viewValue] }}
     </mat-option>
   </mat-select>
-</mat-form-field> -->
-<!-- </ng-template> -->
 
-<mat-form-field appearance="fill">
-  <mat-select
-    disableOptionCentering="select.disableOptionCentering"
-    (selectionChange)="selectionChange($event.value)"
-  >
-    <mat-option *ngFor="let item of data" [value]="item[select.itemValue]">
-      {{ item[select.viewValue] }}
-    </mat-option>
-  </mat-select>
-
-  <mat-label class="loading" *ngIf="data.length === 0">
-    <p>Cargando...</p> <section>
+  <mat-label *ngIf="showLoader()" class="loading">
+    <p>Cargando...</p>
+    <section class="spinner">
       <app-spinner></app-spinner>
     </section>
   </mat-label>
-  <mat-label class="loading" *ngIf="data.length !== 0">
-    Seleccione la ctm
-  </mat-label>
+  <mat-label *ngIf="!showLoader()">{{ select.label }} </mat-label>
 </mat-form-field>
+<!-- {{ testing }} -->
+<!-- <button (click)="openedChange(true)">Click</button> -->
