@@ -9,14 +9,11 @@ import { SocialLoginService } from '../../../../services/social-login/social-log
   styleUrls: ['./boot.component.scss'],
 })
 export class BootComponent implements OnInit {
-  constructor(
-    private loginService: LoginService,
-    private loginSS: SocialLoginService
-  ) {}
+  isLogged: Observable<boolean> = this.loginSS.getIsLogged();
+
+  constructor(private loginSS: SocialLoginService) {
+    this.loginSS.expiration();
+  }
 
   ngOnInit(): void {}
-
-  isLogged(): boolean {
-    return this.loginSS.getSesion();
-  }
 }

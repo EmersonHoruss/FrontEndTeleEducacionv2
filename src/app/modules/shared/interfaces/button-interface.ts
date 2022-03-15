@@ -6,4 +6,5 @@ export interface ButtonInterface {
   url: string;
   style?: any;
   class: string;
+  tooltipText : string;
 }

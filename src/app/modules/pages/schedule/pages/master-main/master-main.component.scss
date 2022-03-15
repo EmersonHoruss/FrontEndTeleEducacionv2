@@ -1,73 +1,90 @@
-.top-body {
+.master-main-page {
+  display: grid;
+  grid-template: 1rem auto/auto;
+}
+
+.title-maste-main-page {
+  height: 1rem;
+  min-height: 1rem;
+}
+
+.body-master-main-page {
+  margin: 1rem;
+  width: 95%;
+  display: grid;
+  grid-template: auto auto auto auto/ 15% 60% 25%;
+  grid-gap: 1rem;
+  :nth-child(n) {
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
-    display: grid;
-    grid-template: auto auto / 15% 60% 25%;
-    grid-gap: 1rem;
-     :nth-child(n) {
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-    }
-     :nth-child(3) {
-        grid-column-start: 3;
-        grid-column-end: 4;
-        grid-row-start: 1;
-        grid-row-end: 3;
-        width: 100%;
-        app-input {
-            width: 100%;
-            height: 50%;
-        }
-    }
-     :nth-child(2),
-     :nth-child(5) {
-        width: 80%;
-    }
+    display: block;
+  }
+  :nth-child(1),
+  :nth-child(2),
+  :nth-child(3),
+  :nth-child(4),
+  :nth-child(5),
+  :nth-child(6) {
+    width: 100%;
+  }
+  :nth-child(7) {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    width: 100%;
+    margin-top: 1rem;
+  }
+  :nth-child(10) {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    width: 100%;
+  }
 }
 
 .selection {
-    margin-top: 1rem;
-    display: grid;
-    grid-template: auto 0.5rem auto/ 67% 3% 30%;
-    margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  display: grid;
+  grid-template: auto 0.5rem auto/ 67% 3% 30%;
+  margin-bottom: 1.5rem;
 }
 
 .management {
-    .register {
-        margin-bottom: 1.5rem;
-    }
-    .table {
-        margin-bottom: 1rem;
-    }
+  .register {
+    margin-bottom: 1.5rem;
+  }
+  .table {
+    margin-bottom: 1rem;
+  }
 }
 
 .faculty {
-    width: 120px;
+  width: 120px;
 }
 
 .master {
-    width: 800px;
+  width: 800px;
 }
 
 .top {
-    display: grid;
-    grid-template-areas: "faculty-master coordinator" "curricula-course coordinator";
-    .faculty-master {
-        grid-area: faculty-master;
-    }
-    .curricula-course {
-        grid-area: curricula-course;
-    }
-    .coordinator {
-        grid-area: coordinator;
-        display: flex;
-        flex-direction: column;
-    }
+  display: grid;
+  grid-template-areas: "faculty-master coordinator" "curricula-course coordinator";
+  .faculty-master {
+    grid-area: faculty-master;
+  }
+  .curricula-course {
+    grid-area: curricula-course;
+  }
+  .coordinator {
+    grid-area: coordinator;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 table {
-    margin-top: 2rem;
-    width: 100%;
+  margin-top: 2rem;
+  width: 100%;
 }

@@ -3,9 +3,7 @@ import { icons } from './icon.constant';
 
 const optionsText: Array<string> = [
   'Casa',
-  'Programar',
-  'Reprogramar',
-  'Dar Seguimiento',
+  'Programaciones',
   'Mantenimiento',
   'Reportes',
   'Configuración',
@@ -14,8 +12,6 @@ const optionsText: Array<string> = [
 const optionsUrl: Array<string> = [
   '/casa',
   '/programar',
-  '/reprogramar',
-  '/dar-seguimiento',
   '/mantenimiento',
   '/reportes',
   '/configuración',

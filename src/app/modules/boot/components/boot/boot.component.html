@@ -1,5 +1,5 @@
 <section class="start">
-  <app-login *ngIf="!isLogged(); else elseTemplate"> </app-login>
+  <app-login *ngIf="!(isLogged | async); else elseTemplate"> </app-login>
   <ng-template #elseTemplate>
     <app-template></app-template>
   </ng-template>

@@ -14,6 +14,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { SharedxdComponent } from './sharedxd/sharedxd.component';
 import { TitlePageComponent } from './components/title-page/title-page.component';
@@ -31,6 +32,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { TestComponent } from './components/test/test.component';
 import { DateComponent } from './components/date/date.component';
 import { TableSelectFilterComponent } from './components/table-select-filter/table-select-filter.component';
+import { DatepickerFromToComponent } from './components/datepicker-from-to/datepicker-from-to.component';
+import { TimeFromToComponent } from './components/time-from-to/time-from-to.component';
+import { WeekDaysComponent } from './components/week-days/week-days.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +52,9 @@ import { TableSelectFilterComponent } from './components/table-select-filter/tab
     TestComponent,
     DateComponent,
     TableSelectFilterComponent,
+    DatepickerFromToComponent,
+    TimeFromToComponent,
+    WeekDaysComponent,
   ],
   imports: [
     CommonModule,
@@ -64,6 +71,7 @@ import { TableSelectFilterComponent } from './components/table-select-filter/tab
     MatPaginatorModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTooltipModule,
   ],
   exports: [
     SharedxdComponent,
@@ -77,6 +85,9 @@ import { TableSelectFilterComponent } from './components/table-select-filter/tab
     SelectComponent,
     TestComponent,
     DateComponent,
+    DatepickerFromToComponent,
+    TimeFromToComponent,
+    WeekDaysComponent,
   ],
   providers: [ModalsDialogService, ApiService],
 })

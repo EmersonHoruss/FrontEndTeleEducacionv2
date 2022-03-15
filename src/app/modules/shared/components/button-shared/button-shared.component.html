@@ -1,6 +1,7 @@
 <!-- For bottons that go other link -->
 <ng-container *ngIf="button.url.length !== 0; else elseTemplate">
   <button
+  [matTooltip]="button.tooltipText"
     mat-flat-button
     color="primary"
     [routerLink]="button.url"
@@ -16,6 +17,7 @@
 <!-- For bottons that dosent go other link -->
 <ng-template #elseTemplate>
   <button
+  [matTooltip]="button.tooltipText"
     mat-flat-button
     color="primary"
     [ngStyle]="button.style"

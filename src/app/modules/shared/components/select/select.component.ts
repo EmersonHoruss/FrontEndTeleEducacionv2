@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class SelectComponent implements OnInit {
   @Input() select: SelectInterface = DefaultSelect;
-  
+  @Input() selectedValueI: string|number = '';
   @Output() selectedValue: EventEmitter<string | number> = new EventEmitter<
     string | number
   >();

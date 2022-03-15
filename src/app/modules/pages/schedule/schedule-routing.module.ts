@@ -9,20 +9,16 @@ import { LiftMainComponent } from './pages/lift-main/lift-main.component';
 import { MasterMainComponent } from './pages/master-main/master-main.component';
 import { MasterUpdateComponent } from './pages/master-update/master-update.component';
 import { MasterSeeComponent } from './pages/master-see/master-see.component';
-import { MasterRegisterStartComponent } from './pages/master-register-start/master-register-start.component';
-import { MasterRegisterContinueComponent } from './pages/master-register-continue/master-register-continue.component';
+import { MasterRegisterComponent } from './pages/master-register/master-register.component';
 
 const routes: Routes = [
   { path: '', component: StartComponent },
   { path: 'maestria', component: MasterMainComponent },
   {
-    path: 'maestria/empezar-registrar',
-    component: MasterRegisterStartComponent,
+    path: 'maestria/registrar',
+    component: MasterRegisterComponent,
   },
-  {
-    path: 'maestria/continuar-registrar',
-    component: MasterRegisterContinueComponent,
-  },
+
   { path: 'maestria/actualizar', component: MasterUpdateComponent },
   { path: 'maestria/ver', component: MasterSeeComponent },
   { path: 'doctorado', component: DoctorateMainComponent },

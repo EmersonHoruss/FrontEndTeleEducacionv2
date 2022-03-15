@@ -18,10 +18,9 @@ import { FormsModule } from '@angular/forms';
 import { MasterMainComponent } from './pages/master-main/master-main.component';
 import { MasterUpdateComponent } from './pages/master-update/master-update.component';
 import { MasterSeeComponent } from './pages/master-see/master-see.component';
-import { MasterRegisterStartComponent } from './pages/master-register-start/master-register-start.component';
-import { MasterRegisterContinueComponent } from './pages/master-register-continue/master-register-continue.component';
 import { ModalsDialogService } from '../../../services/modals-dialog/modals-dialog.service';
 import { NamePageService } from '../../../services/name-page/name-page.service';
+import { MasterRegisterComponent } from './pages/master-register/master-register.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +32,7 @@ import { NamePageService } from '../../../services/name-page/name-page.service';
     LiftMainComponent,
     MasterUpdateComponent,
     MasterSeeComponent,
-    MasterRegisterStartComponent,
-    MasterRegisterContinueComponent,
+    MasterRegisterComponent,
   ],
   imports: [
     CommonModule,

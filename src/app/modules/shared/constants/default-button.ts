@@ -6,5 +6,6 @@ export const DefaultButton: ButtonInterface = {
   url: '',
   icon: DefaultIcon,
   style: {},
-  class: ''
+  class: '',
+  tooltipText : ''
 };

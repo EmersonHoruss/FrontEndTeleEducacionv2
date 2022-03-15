@@ -1,0 +1,65 @@
+.week-days {
+  display: flex;
+
+  .button-week-days {
+    color: blue;
+    // width: 4rem;
+    margin-right: 0.5rem;
+  }
+
+  .outer-week-days {
+    display: flex;
+    align-items: center;
+    height: 59.5px; //height of input angular material
+    background-color: #e8e8f2;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 15rem;
+    border-bottom: thin solid #6a6a6f;
+
+    .inner-week-days {
+      margin-left: 12px; // padding of input angular material
+      .title {
+        margin-bottom: 0.3rem;
+        font-size: 0.8rem;
+        color: #6a6a6f;
+        
+        .disabled {
+          color: #6a6a6f80;
+        }
+      }
+
+      .days {
+        display: flex;
+
+        button {
+          border-radius: 50%;
+          width: 1.5rem;
+          height: 1.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0;
+          color: #6a6a6f;
+          background-color: transparent;
+          border-color: #6a6a6f;
+        }
+
+        button:nth-child(2n) {
+          margin: 0 0.5rem;
+        }
+
+        .selected {
+          background-color: #6a6a6f;
+          border-color: transparent;
+          color: #e2e2f1;
+        }
+
+        .disabled {
+          border-color: #6a6a6f80;
+          color: #6a6a6f80;
+        }
+      }
+    }
+  }
+}

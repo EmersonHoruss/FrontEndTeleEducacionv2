@@ -1,1 +1,11 @@
-<input [type]="input.type" [ngClass]="input.class" [placeholder]="input.placeholder" [disabled]="input.disabled" [(ngModel)]="input.value" />
+<mat-form-field appearance="fill">
+  <mat-label>{{ input.label }}</mat-label>
+  <input
+    matInput
+    [ngClass]="input.class"
+    [placeholder]="input.placeholder"
+    [value]="input.value"
+    [disabled]="input.disabled"
+    [type]="input.type"
+  />
+</mat-form-field>

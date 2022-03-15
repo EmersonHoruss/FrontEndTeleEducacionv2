@@ -15,7 +15,8 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  logout() {
-    this.loginSS.logOut();
+  signOut() {
+    this.loginSS.signOut();
+    this.loginSS.setIsLogged(false);
   }
 }

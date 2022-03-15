@@ -1,0 +1,16 @@
+.container-all {
+  display: flex;
+  justify-content: space-between;
+  .start,
+  .end {
+    display: flex;
+
+    .input {
+      width: 5rem;
+    }
+    .date {
+      width: 10.8rem;
+    }
+  }
+  
+}

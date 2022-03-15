@@ -2,9 +2,10 @@ import { InputInterface } from '../interfaces/input-interface';
 
 export const DefaultInput: InputInterface = {
   type: 'text',
-  class: 'form-control ',
-  placeholder: 'Escribe algo aquí',
+  class: '',
+  placeholder: 'Write something here',
   disabled: true,
+  value: '',
 };
 
 // form-control-sm

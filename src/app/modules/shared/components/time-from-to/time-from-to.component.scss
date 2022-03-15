@@ -1,0 +1,15 @@
+.container-all {
+  display: flex;
+  justify-content: space-between;
+  .start,
+  .end {
+    display: flex;
+
+    .input {
+      width: 5rem;
+    }
+    .time {
+      width: 10.8rem;
+    }
+  }
+}

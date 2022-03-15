@@ -3,6 +3,7 @@ export interface InputInterface {
   class: string;
   placeholder: string;
   ariaLabel?: string;
+  label ?: string;
   ariaDescribedby?: string;
   disabled: boolean;
   value?: string | number;

@@ -5,6 +5,8 @@ export interface SelectInterface {
   viewValue: string;
   // name's attribute that program takes when is selected an item
   itemValue: string;
+  //selected item value
+  selectedValue ?: string | number;
   // list of items
   items: Array<any>;
   // as name says

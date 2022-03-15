@@ -1,0 +1,54 @@
+.all-container {
+  width: 100%;
+  height: 100%;
+  // //   background-color: red;
+  display: grid;
+  grid-template-areas:
+    "topside topside"
+    "leftside rightside"
+    "buttomside buttomside";
+  grid-template-columns: 50% 50%;
+
+  .top-side {
+    // background-color: blue;
+    grid-area: topside;
+  }
+
+  .left-side {
+    // background-color: red;
+    grid-area: leftside;
+    width: 100%;
+    height: 100%;
+    padding: 0 1rem 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .right-side {
+    // background-color: black;
+    grid-area: rightside;
+    width: 100%;
+    height: 100%;
+    padding: 0 2rem 0 1rem;
+
+    .week-days-and-add-button {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .buttom-side {
+    // background-color: green;
+    grid-area: buttomside;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 2rem;
+
+    .buttom-item {
+      width: 12rem;
+    }
+  }
+}

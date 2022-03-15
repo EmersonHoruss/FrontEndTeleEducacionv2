@@ -1,35 +1,80 @@
 import { Injectable } from '@angular/core';
 import { SocialAuthService, GoogleLoginProvider } from 'angularx-social-login';
 import { SesionInterface } from '../../interfaces/sesion-interface';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SocialLoginService {
-  constructor(private authService: SocialAuthService) {}
+  private isLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    this.isLoggedIsSaveInLS()
+  );
+
+  constructor(private authService: SocialAuthService, private router: Router) {}
 
   // MANAGING LOG
+
   signIn(): Promise<any> {
     return this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
-  logOut(): void {
+  signOut(): void {
     this.authService.signOut();
     this.deleteSesion();
+    this.router.navigate(['/iniciar-sesion']);
   }
 
-  // refreshToken(): void {
-  //   this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
-  // }
+  // MANAGIN EXPIRATION
+  expiration() {
+    const timeout: number = this.getTimeout();
+    of(null)
+      .pipe(delay(timeout))
+      .subscribe((expired) => {
+        // console.log('EXPIRED!!');
+        this.signOut();
+        this.setIsLogged(false);
+      });
+  }
 
-  // getSocialAuthService(): SocialAuthService {
-  //   return this.authService;
-  // }
+  getTimeout(): number {
+    // get current time
+    const nowDate: number = Date.now();
 
-  // getStatus(): Observable<any> {
-  //   return this.authService.authState;
-  // }
+    // get expires time
+    const sesionLS: any = localStorage.getItem('sesion');
+    if (!sesionLS) return 0;
+    const expires_at = parseInt(JSON.parse(sesionLS).expires_at);
+
+    // rest expires time less current time
+    const restDates = expires_at - nowDate;
+
+    // return the rest
+    // return restDates < 0 ? 0 : restDates;
+    // console.log(restDates);
+    return restDates;
+  }
+
+  // MANAGIN ISLOGGED
+  isLoggedIsSaveInLS(): boolean {
+    const sesion: any = localStorage.getItem('sesion');
+    return sesion !== null;
+  }
+
+  getIsLogged(): Observable<boolean> {
+    return this.isLogged.asObservable();
+  }
+
+  setIsLogged(isLogged: boolean) {
+    localStorage.setItem('isLogged', isLogged.toString());
+    this.isLogged.next(isLogged);
+  }
+
+  getValueIsLogged(): boolean {
+    return this.isLogged.value;
+  }
 
   // LOCAL STORAGE
   formatSesion(sesion: any): SesionInterface {
@@ -46,6 +91,10 @@ export class SocialLoginService {
 
   saveSession(sesion: SesionInterface) {
     localStorage.setItem('sesion', JSON.stringify(sesion));
+    // this.expiration();
+    // console.log(sesion.expires_in, typeof sesion.expires_in);
+    // console.log(sesion.expires_at, typeof sesion.expires_at);
+    // console.log(new Date(sesion.expires_at).toString());
   }
 
   getSesion() {

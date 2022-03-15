@@ -17,18 +17,7 @@ export const icons: Array<IconInterface> = [
     height,
     fill,
   },
-  {
-    classCss: 'bi bi-calendar-week',
-    width,
-    height,
-    fill,
-  },
-  {
-    classCss: 'bi bi-geo',
-    width,
-    height,
-    fill,
-  },
+ 
   {
     classCss: 'bi bi-wrench',
     width,

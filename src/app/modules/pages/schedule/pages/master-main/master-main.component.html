@@ -1,33 +1,51 @@
-<section class="template-page">
-
-    <section class="template-page-body">
-        <section class="top-body">
-            <section>
-                <app-select [select]="facultades"></app-select>
-            </section>
-            <section id="top-body-2">
-                <app-select [select]="Maestrias"></app-select>
-            </section>
-            <section id="top-body-3">
-                <app-input [input]="constants.inputLabelCoordinador"></app-input>
-                <app-input [input]="constants.inputCoordinador"></app-input>
-            </section>
-            <section id="top-body-4">
-                <app-select [select]="Matricula"></app-select>
-            </section>
-            <section id="top-body-5">
-                <app-select [select]="Cursos"></app-select>
-            </section>
-            <section id="top-body-6"></section>
-        </section>
-        <section class="bottom-body">
-            <app-table-select-filter></app-table-select-filter>
-        </section>
+<section class="master-main-page">
+  <section class="title-master-main-page">
+    <app-title-page [titlePage]="constants.titlePage"></app-title-page>
+  </section>
+  <section class="body-master-main-page">
+    <ng-template #elseBlock
+      >Content to render when condition is false.</ng-template
+    >
+    <section *ngIf="!(masterListener | async); else elseBlock">
+      <app-select [select]="facultades" [selectedValueI]="asd"></app-select>
     </section>
-
+    <section id="top-body-2">
+      <app-select
+        [select]="maestrias"
+        (selectedValue)="selectedMaster($event)"
+      ></app-select>
+    </section>
+    <section id="top-body-3">
+      <app-input [input]="constants.inputNombreCoordinador"></app-input>
+    </section>
+    <section id="top-body-4">
+      <app-select [select]="curriculas"></app-select>
+    </section>
+    <section id="top-body-5">
+      <app-select [select]="cursos"></app-select>
+    </section>
+    <section id="top-body-6">
+      <app-input [input]="constants.inputCorreoCoordinador"></app-input>
+    </section>
+    <section id="top-body-7">
+      <app-button-shared
+        [button]="constants.buttonRegistar"
+      ></app-button-shared>
+      <!-- <app-button-shared [button]="constants.buttonModificar"></app-button-shared>
+            <app-button-shared [button]="constants.buttonVer"></app-button-shared>
+            <app-button-shared [button]="constants.buttonEliminar"></app-button-shared> -->
+    </section>
+    <section id="top-body-8"></section>
+    <section id="top-body-9"></section>
+    <section id="top-body-10">
+      <app-table-select-filter
+        [table_select_filter]="constants.table"
+      ></app-table-select-filter>
+    </section>
+    <section id="top-body-11"></section>
+    <section id="top-body12"></section>
+  </section>
 </section>
-
-
 <!--
 <section class="template-page">
 

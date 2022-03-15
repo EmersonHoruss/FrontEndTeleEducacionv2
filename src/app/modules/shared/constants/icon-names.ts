@@ -3,6 +3,8 @@ export const IconNames = {
   update: 'bi bi-pencil-square',
   delete: 'bi bi-trash',
   see: 'bi bi-eye',
+  save : 'bi bi-save',
+  reschedule : 'bi bi-bootstrap-reboot',
   master: 'bi bi-file-ruled',
   doctorate: 'bi bi-file-ruled',
   course: 'bi bi-file-text',

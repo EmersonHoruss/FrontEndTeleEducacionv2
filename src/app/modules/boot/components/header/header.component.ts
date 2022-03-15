@@ -20,8 +20,6 @@ export class HeaderComponent implements OnInit {
   sesion: any = localStorage.getItem('sesion');
   photoUrl: string = JSON.parse(this.sesion).photoUrl;
 
-  namePage: Observable<string> = this.namePageS.getNamePage();
-
   @Output() navBarClicked = new EventEmitter<boolean>();
 
   constructor(
@@ -29,7 +27,7 @@ export class HeaderComponent implements OnInit {
     public namePageS: NamePageService
   ) {
     // this.namePagex.subscribe((e) => (this.namePage = e));
-    // console.log(this.namePage);
+    console.log(this.photoUrl);
   }
 
   ngOnInit(): void {}

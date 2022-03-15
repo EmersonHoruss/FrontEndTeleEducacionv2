@@ -1,22 +1,15 @@
 <mat-form-field appearance="fill" (click)="haveBeenClicked()">
-  <mat-select
-    disableOptionCentering="select.disableOptionCentering"
-    (selectionChange)="selectionChange($event.value)"
-  >
-    <mat-option
-      *ngFor="let item of data"
-      [value]="item[select.itemValue]"
-      [disabled]="itemToDisable(item[select.itemValue])"
-    >
-      {{ item[select.viewValue] }}
-    </mat-option>
+  <mat-select [ngModel]="selectedValueI" disableOptionCentering="select.disableOptionCentering" (selectionChange)="selectionChange($event.value)">
+      <mat-option *ngFor="let item of data" [value]="item[select.itemValue]" [disabled]="itemToDisable(item[select.itemValue])">
+          {{ item[select.viewValue] }}
+      </mat-option>
   </mat-select>
 
   <mat-label *ngIf="showLoader()" class="loading">
-    <p>Cargando...</p>
-    <section class="spinner">
-      <app-spinner></app-spinner>
-    </section>
+      <p>Cargando...</p>
+      <section class="spinner">
+          <app-spinner></app-spinner>
+      </section>
   </mat-label>
   <mat-label *ngIf="!showLoader()">{{ select.label }} </mat-label>
 </mat-form-field>

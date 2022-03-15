@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalsDialogComponent } from 'src/app/modules/shared/components/modals-dialog/modals-dialog.component';
 import { modalsDialog } from 'src/app/modules/shared/constants/modals-dialog';
 import { ModalsDialogInterface } from '../../modules/shared/interfaces/modals-dialog-interface';
@@ -11,22 +11,29 @@ export class ModalsDialogService {
   width: string = '15rem';
   height: string = '17rem';
 
+  openedModalDialog: any = undefined;
+
   constructor(private matDialog: MatDialog) {}
 
-  successModalDialog(data: ModalsDialogInterface) {
-    this.matDialog.open(ModalsDialogComponent, {
+  openModalDialog(
+    data: ModalsDialogInterface,
+    disableClose: boolean = false,
+    id: string = 'mat-dialog-0'
+  ) {
+    const matDialogRef = this.matDialog.open(ModalsDialogComponent, {
       data,
       width: this.width,
       height: this.height,
-      disableClose: false,
+      disableClose,
     });
   }
 
-  warningModalDialog() {}
+  closeLastOpenedModalDialog() {
+    // const modalDialogRef: MatDialogRef = this.matDialog.openDialogs[0]
+    const numberOpenedDialog: number = this.matDialog.openDialogs.length;
+    const lastModalDialogRef: MatDialogRef<any> =
+      this.matDialog.openDialogs[numberOpenedDialog - 1];
 
-  errorModalDialog() {}
-
-  confirmModalDialog() {}
-
-  loadingModalDialog() {}
+    lastModalDialogRef.close();
+  }
 }

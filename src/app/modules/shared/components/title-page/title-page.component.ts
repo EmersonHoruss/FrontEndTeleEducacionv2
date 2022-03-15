@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DefaultTitlePage } from '../../constants/default-title-page';
+import { TitlePageInterface } from '../../interfaces/title-page-interface';
 
 @Component({
   selector: 'app-title-page',
@@ -6,9 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./title-page.component.scss'],
 })
 export class TitlePageComponent implements OnInit {
-  @Input() titlePage: string = '';
-  @Input() actionPage: string = '';
-  @Input() sectionPage: string = '';
+  @Input() titlePage : TitlePageInterface  = DefaultTitlePage
   
   constructor() {}
 

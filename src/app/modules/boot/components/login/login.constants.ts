@@ -14,7 +14,7 @@ selectRol.label = 'Seleccione Rol';
 selectRol.viewValue = 'Nombre';
 selectRol.itemValue = 'Codigo';
 selectRol.isAsync = true;
-selectRol.optionsToDisable = [2, 3];
+selectRol.optionsToDisable = ['S', 'C'];
 // selectRol.getHttp
 export const Constants = {
   buttonGoogle,

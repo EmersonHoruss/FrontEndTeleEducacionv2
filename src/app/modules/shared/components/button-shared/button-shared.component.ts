@@ -14,7 +14,9 @@ export class ButtonSharedComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.button);
+  }
 
   isClicked(value: boolean) {
     this.clicked.emit(value);

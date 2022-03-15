@@ -17,14 +17,14 @@ export class TableSelectFilterComponent {
 
   @Input() table_select_filter:TableSelectFilterInterface = DefaultTableSelectFilter;
   @Output() selectedRow = { index: '0' };
-  dataSource: MatTableDataSource<Columnass> = new MatTableDataSource(this.table_select_filter.dataSource);
+  dataSource: MatTableDataSource<MasterColumns> = new MatTableDataSource(this.table_select_filter.dataSource);
   StartInput: InputInterface = JSON.parse(JSON.stringify(DefaultInput));
   EndInput  : InputInterface = JSON.parse(JSON.stringify(DefaultInput));
   
  
   constructor() {
-    this.StartInput.placeholder = 'Desde: ';
-    this.EndInput.placeholder   = 'Hasta: ';
+    this.StartInput.value = 'Desde: ';
+    this.EndInput.value   = 'Hasta: ';
   }
 
   applyFilter(filterValue: string) {
@@ -40,8 +40,11 @@ export class TableSelectFilterComponent {
   }
 
 }
-interface Columnass {
-  Id: number;
-  'Column 2': string;
-  'Column 3': string;
+
+interface MasterColumns {
+  'Nombre Profesor': string;
+  'Correo Profesor': string;
+  'Numero Profesor': string;
+  'Sesiones': string;
+  'Estado': string;
 }

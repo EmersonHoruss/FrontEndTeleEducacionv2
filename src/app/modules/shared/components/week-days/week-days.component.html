@@ -1,0 +1,26 @@
+<section class="week-days">
+  <section class="button-week-days">
+    <app-button-shared
+      [button]="constants.buttonRepeat"
+      (clicked)="toggleIsDiabled($event)"
+    ></app-button-shared>
+  </section>
+
+  <section class="outer-week-days">
+    <section class="inner-week-days">
+      <section class="title">
+        <p [ngClass]="{ disabled: isDisabled }">Días de la semana:</p>
+      </section>
+      <section class="days">
+        <button
+          *ngFor="let weekDay of constants.weekDays; let i = index"
+          (click)="toggleDay(i)"
+          [ngClass]="{ selected: weekDay.selected, disabled: isDisabled }"
+          [disabled]="isDisabled"
+        >
+          {{ weekDay.name }}
+        </button>
+      </section>
+    </section>
+  </section>
+</section>

@@ -1,7 +1,7 @@
-<section class="template-page-title">
+<section class="template-page-title" [ngStyle]="titlePage.ngStyle">
   <!-- <section class="content"> -->
-  <p>{{ titlePage }}</p>
-  <p *ngIf="actionPage">: {{ actionPage }}</p>
-  <p *ngIf="sectionPage">&nbsp;{{ sectionPage }}</p>
+  <p>{{ titlePage.titlePage }}&nbsp;</p>
+  <p *ngIf="titlePage.actionPage">: {{ titlePage.actionPage }}</p>
+  <p *ngIf="titlePage.sectionPage">&nbsp;{{ titlePage.sectionPage }}</p>
   <!-- </section> -->
 </section>

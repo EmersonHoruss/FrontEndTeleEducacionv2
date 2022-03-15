@@ -8,12 +8,11 @@ import { ModalsDialogService } from '../../../../services/modals-dialog/modals-d
   styleUrls: ['./start.component.scss'],
 })
 export class StartComponent implements OnInit {
-  
   constructor(private modalDialogService: ModalsDialogService) {}
 
   ngOnInit(): void {}
 
   openModal() {
-    this.modalDialogService.successModalDialog(modalsDialog.success);
+    this.modalDialogService.openModalDialog(modalsDialog.success);
   }
 }

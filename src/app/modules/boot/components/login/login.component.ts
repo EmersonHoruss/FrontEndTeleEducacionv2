@@ -3,7 +3,6 @@ import { SocialLoginService } from '../../../../services/social-login/social-log
 import { Constants } from './login.constants';
 import { ModalsDialogService } from '../../../../services/modals-dialog/modals-dialog.service';
 import { modalsDialog } from 'src/app/modules/shared/constants/modals-dialog';
-import { LoginService } from '../../../../services/login/login.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -18,7 +17,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private loginSS: SocialLoginService,
-    private loginService: LoginService,
     private dialogService: ModalsDialogService,
     private http: HttpClient,
     private router: Router
@@ -28,21 +26,43 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  getSelectedValue(event: string | number) {
+    this.rolUser = event;
+  }
+
   signInWithGoogle(event: boolean) {
     const modalError = modalsDialog.error;
     modalError.description = 'Seleccione un rol para ingresar al sistema.';
 
     !this.rolUser
-      ? this.dialogService.successModalDialog(modalsDialog.error)
+      ? this.dialogService.openModalDialog(modalError)
       : this.loginSS.signIn().then((e) => {
-          // saving session
-          this.loginSS.saveSession(this.loginSS.formatSesion(e));
-          // redirecting after logged
-          this.router.navigate(['casa']);
+          this.afterSignInWithGoogle(e);
         });
   }
 
-  getSelectedValue(event: string | number) {
-    this.rolUser = event;
+  afterSignInWithGoogle(sesion: any) {
+    const correo: string = sesion.email;
+
+    this.dialogService.openModalDialog(modalsDialog.load, true);
+
+    this.http
+      .get(`/api/Acceso?Correo=${correo}&TipoPerfil=${this.rolUser}`)
+      .subscribe((e: any) => {
+        this.dialogService.closeLastOpenedModalDialog();
+        if (!e.length) this.openErrorModalDialog();
+        else {
+          this.loginSS.saveSession(this.loginSS.formatSesion(sesion));
+          this.loginSS.setIsLogged(true);
+          this.loginSS.expiration();
+          this.router.navigateByUrl('/casa');
+        }
+      });
+  }
+
+  openErrorModalDialog() {
+    modalsDialog.error.description =
+      'Usted no tiene acceso, comuníquese con tele-educacion_epg@unprg.edu.pe';
+    this.dialogService.openModalDialog(modalsDialog.error);
   }
 }
