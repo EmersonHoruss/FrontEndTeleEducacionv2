@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -14,7 +15,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { SharedxdComponent } from './sharedxd/sharedxd.component';
 import { TitlePageComponent } from './components/title-page/title-page.component';
@@ -35,6 +36,11 @@ import { TableSelectFilterComponent } from './components/table-select-filter/tab
 import { DatepickerFromToComponent } from './components/datepicker-from-to/datepicker-from-to.component';
 import { TimeFromToComponent } from './components/time-from-to/time-from-to.component';
 import { WeekDaysComponent } from './components/week-days/week-days.component';
+import { TextAreaComponent } from './components/text-area/text-area.component';
+import { ProgramComponent } from './set-components/program/program.component';
+import { ProgramButtonsComponent } from './set-components/program-buttons/program-buttons.component';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { ProgramTableComponent } from './set-components/program-table/program-table.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +61,11 @@ import { WeekDaysComponent } from './components/week-days/week-days.component';
     DatepickerFromToComponent,
     TimeFromToComponent,
     WeekDaysComponent,
+    TextAreaComponent,
+    ProgramComponent,
+    ProgramButtonsComponent,
+    DatepickerComponent,
+    ProgramTableComponent,
   ],
   imports: [
     CommonModule,
@@ -72,8 +83,10 @@ import { WeekDaysComponent } from './components/week-days/week-days.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatTooltipModule,
+    ReactiveFormsModule,
   ],
   exports: [
+    PruebaComponent,
     SharedxdComponent,
     TitlePageComponent,
     TableSelectComponent,
@@ -88,7 +101,15 @@ import { WeekDaysComponent } from './components/week-days/week-days.component';
     DatepickerFromToComponent,
     TimeFromToComponent,
     WeekDaysComponent,
+    TextAreaComponent,
+    ProgramComponent,
+    ProgramButtonsComponent,
+    ProgramTableComponent,
   ],
-  providers: [ModalsDialogService, ApiService],
+  providers: [
+    ModalsDialogService,
+    ApiService,
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+  ],
 })
 export class SharedModule {}

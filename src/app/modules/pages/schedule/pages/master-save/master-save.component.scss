@@ -1,0 +1,25 @@
+.template-body-page {
+    padding: 1rem;
+    .body-page {
+        display: grid;
+        grid-template: 15% 85% / 55% 45%;
+        section {
+            margin-bottom: 1rem;
+        }
+        #section_1,
+        #section_3 {
+            padding-right: 1rem;
+        }
+         :nth-child(4) {
+             :nth-child(5) {
+                .mat-form-field {
+                    margin-top: 1rem;
+                }
+            }
+            .buttons {
+                display: flex;
+                justify-content: space-evenly;
+            }
+        }
+    }
+}

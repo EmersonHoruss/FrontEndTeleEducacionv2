@@ -4,6 +4,7 @@ export const IconNames = {
   delete: 'bi bi-trash',
   see: 'bi bi-eye',
   save : 'bi bi-save',
+  plus : 'bi bi-plus-lg',
   reschedule : 'bi bi-bootstrap-reboot',
   master: 'bi bi-file-ruled',
   doctorate: 'bi bi-file-ruled',

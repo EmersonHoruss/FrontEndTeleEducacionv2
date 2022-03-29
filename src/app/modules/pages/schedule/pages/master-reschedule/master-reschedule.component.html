@@ -1,0 +1,24 @@
+<section class="template-body-page">
+    <section class="body-page">
+        <section id="section_1">
+            <app-input [input]="constantsInput.inputMaestria"></app-input>
+        </section>
+        <section id="section_2">
+            <app-input [input]="constantsInput.inputCurso"></app-input>
+        </section>
+        <section id="section_3">
+            <app-table-select-filter [table_select_filter]="constantsTable.table"></app-table-select-filter>
+        </section>
+        <section id="section_4">
+            <app-input [input]="constantsReUpInput.inputTitle"></app-input>
+            <app-datepicker-from-to></app-datepicker-from-to>
+            <app-time-from-to></app-time-from-to>
+            <app-week-days></app-week-days>
+            <app-input [input]="constantsReUpInput.inputReason"></app-input>
+            <section class="buttons">
+                <app-button-shared [button]="constantsReUpButton.saveButton"></app-button-shared>
+                <app-button-shared [button]="constantsReUpButton.cancelButton"></app-button-shared>
+            </section>
+        </section>
+    </section>
+</section>

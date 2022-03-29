@@ -77,7 +77,7 @@ export class SocialLoginService {
   }
 
   // LOCAL STORAGE
-  formatSesion(sesion: any): SesionInterface {
+  formatSesion(sesion: any, tipoPerfil: string): SesionInterface {
     const formatedSesion: SesionInterface = {
       email: sesion.email,
       token_type: sesion.response.token_type,
@@ -85,16 +85,13 @@ export class SocialLoginService {
       expires_at: sesion.response.expires_at,
       expires_in: sesion.response.expires_in,
       photoUrl: sesion.photoUrl,
+      basic_token: btoa(sesion.email + ':' + tipoPerfil),
     };
     return formatedSesion;
   }
 
   saveSession(sesion: SesionInterface) {
     localStorage.setItem('sesion', JSON.stringify(sesion));
-    // this.expiration();
-    // console.log(sesion.expires_in, typeof sesion.expires_in);
-    // console.log(sesion.expires_at, typeof sesion.expires_at);
-    // console.log(new Date(sesion.expires_at).toString());
   }
 
   getSesion() {

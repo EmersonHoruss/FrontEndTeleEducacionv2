@@ -10,6 +10,8 @@ import { MasterMainComponent } from './pages/master-main/master-main.component';
 import { MasterUpdateComponent } from './pages/master-update/master-update.component';
 import { MasterSeeComponent } from './pages/master-see/master-see.component';
 import { MasterRegisterComponent } from './pages/master-register/master-register.component';
+import { MasterRescheduleComponent } from './pages/master-reschedule/master-reschedule.component';
+import { MasterSaveComponent } from './pages/master-save/master-save.component';
 
 const routes: Routes = [
   { path: '', component: StartComponent },
@@ -18,7 +20,8 @@ const routes: Routes = [
     path: 'maestria/registrar',
     component: MasterRegisterComponent,
   },
-
+  { path: 'maestria/reprogramar', component: MasterRescheduleComponent },
+  { path: 'maestria/guardar', component: MasterSaveComponent },
   { path: 'maestria/actualizar', component: MasterUpdateComponent },
   { path: 'maestria/ver', component: MasterSeeComponent },
   { path: 'doctorado', component: DoctorateMainComponent },

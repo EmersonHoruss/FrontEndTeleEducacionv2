@@ -6,6 +6,7 @@ export const DefaultInput: InputInterface = {
   placeholder: 'Write something here',
   disabled: true,
   value: '',
+  matFormStyle : {}
 };
 
 // form-control-sm

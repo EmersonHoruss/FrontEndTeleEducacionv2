@@ -1,0 +1,21 @@
+<section class="template-body-page">
+    <section class="body-page">
+        <section id="section_1">
+            <app-input [input]="constantsInput.inputMaestria"></app-input>
+        </section>
+        <section id="section_2">
+            <app-input [input]="constantsInput.inputCurso"></app-input>
+        </section>
+        <section id="section_3">
+            <app-table-select-filter [table_select_filter]="constantsTable.table"></app-table-select-filter>
+        </section>
+        <section id="section_4">
+            <app-input [input]="constantsReUpInput.inputTitle"></app-input>
+            <app-text-area [text_area]="constantsReUpTextArea.textAreaLink"></app-text-area>
+            <section class="buttons">
+                <app-button-shared [button]="constantsReUpButton.saveButton"></app-button-shared>
+                <app-button-shared [button]="constantsReUpButton.cancelButton"></app-button-shared>
+            </section>
+        </section>
+    </section>
+</section>

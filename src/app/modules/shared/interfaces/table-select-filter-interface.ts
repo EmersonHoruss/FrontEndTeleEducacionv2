@@ -18,6 +18,6 @@ export interface TableSelectFilterInterface {
     // as name says
     ngStyle: any;
     //Interface will be use to search 
-    
+    complete: boolean;
   }
   

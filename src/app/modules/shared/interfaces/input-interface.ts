@@ -7,4 +7,5 @@ export interface InputInterface {
   ariaDescribedby?: string;
   disabled: boolean;
   value?: string | number;
+  matFormStyle : Object;
 }

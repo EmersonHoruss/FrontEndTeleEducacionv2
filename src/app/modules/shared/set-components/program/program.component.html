@@ -1,0 +1,71 @@
+<section class="wrapper-selects">
+  <mat-form-field
+    appearance="fill"
+    (click)="openProgramaSelect()"
+    class="programa"
+  >
+    <mat-label>{{ programa.placeholder }}</mat-label>
+    <mat-select
+      [(ngModel)]="programaSeleccionado"
+      name="programa"
+      (selectionChange)="changedPrograma($event.value)"
+    >
+      <mat-option *ngIf="loadingPrograma">Está cargando...</mat-option>
+
+      <mat-option *ngIf="!loadingPrograma && programas.length === 0"
+        >Sin resultados</mat-option
+      >
+
+      <mat-option *ngFor="let programa of programas" [value]="programa.Codigo">
+        {{ programa.Nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field
+    appearance="fill"
+    (click)="openCurriculaSelect()"
+    class="curricula"
+  >
+    <mat-label>Seleccione currícula</mat-label>
+    <mat-select
+      [(ngModel)]="curriculaSeleccionada"
+      name="curricula"
+      [disabled]="disabledCurricula"
+      (selectionChange)="changedCurricula($event.value)"
+    >
+      <mat-option *ngIf="loadingCurricula">Está cargando...</mat-option>
+
+      <mat-option *ngIf="!loadingCurricula && curriculas.length === 0"
+        >Sin resultados</mat-option
+      >
+
+      <mat-option
+        *ngFor="let curricula of curriculas"
+        [value]="curricula.Codigo"
+      >
+        {{ curricula.Nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" (click)="openCursoSelect()" class="curso">
+    <mat-label>Seleccione curso</mat-label>
+    <mat-select
+      [(ngModel)]="cursoSeleccionado"
+      name="curso"
+      [disabled]="disabledCurso"
+      (selectionChange)="changedCurso($event.value)"
+    >
+      <mat-option *ngIf="loadingCurso">Está cargando...</mat-option>
+
+      <mat-option *ngIf="!loadingCurso && cursos.length === 0"
+        >Sin resultados</mat-option
+      >
+
+      <mat-option *ngFor="let curso of cursos" [value]="curso.Codigo">
+        {{ curso.Nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</section>

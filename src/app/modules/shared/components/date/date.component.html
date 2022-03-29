@@ -1,6 +1,19 @@
 <mat-form-field appearance="fill">
-    <mat-label>{{date.label}}</mat-label>
-    <input matInput [matDatepicker]="picker">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+  <mat-label>{{ date.label }}</mat-label>
+  <input
+    matInput
+    [matDatepicker]="picker"
+    (dateChange)="setDate($event)"
+    disabled
+  />
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker disabled="false"> </mat-datepicker>
 </mat-form-field>
+
+<!-- <mat-form-field>
+    <input matInput [matDatepicker]="disabletext" placeholder="" disabled>
+    <mat-datepicker-toggle matSuffix [for]="disabletext">
+    </mat-datepicker-toggle>
+    <mat-datepicker #disabletext disabled="false">
+    </mat-datepicker>
+  </mat-form-field> -->

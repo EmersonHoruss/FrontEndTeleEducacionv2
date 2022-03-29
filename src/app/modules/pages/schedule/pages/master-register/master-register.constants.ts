@@ -91,6 +91,7 @@ selectTeacher.isAsync = true;
 buttonRegister.text = 'Registrar';
 
 buttonCancel.text = 'Cancelar';
+buttonCancel.url = '../';
 
 buttonManagementStudents.text = 'Gestionar Alumnos';
 

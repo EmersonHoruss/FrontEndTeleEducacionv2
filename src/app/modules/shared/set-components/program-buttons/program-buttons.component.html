@@ -1,0 +1,23 @@
+<section class="wrapper-buttons">
+  <section class="coordinador">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Coordinador</mat-label>
+      <input
+        matInput
+        placeholder="Coordinador"
+        [value]="nombreCoordinador"
+        disabled="true"
+      />
+    </mat-form-field>
+  </section>
+  <section class="buttons">
+    <button
+      mat-flat-button
+      color="primary"
+      [routerLink]="registrarUrl"
+      (click)="clickedRegisterBtn()"
+    >
+      Registrar
+    </button>
+  </section>
+</section>

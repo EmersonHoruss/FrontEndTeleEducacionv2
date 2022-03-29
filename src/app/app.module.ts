@@ -15,10 +15,18 @@ import { BootModule } from './modules/boot/boot.module';
 
 // bootstraped component
 import { AppComponent } from './app.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptorServiceService } from './interceptors/auth/auth-interceptor-service.service';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, BootModule, NoopAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BootModule,
+    NoopAnimationsModule,
+    HttpClientModule,
+  ],
   providers: [
     {
       provide: 'SocialAuthServiceConfig',
@@ -33,6 +41,11 @@ import { AppComponent } from './app.component';
           },
         ],
       } as SocialAuthServiceConfig,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorServiceService,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

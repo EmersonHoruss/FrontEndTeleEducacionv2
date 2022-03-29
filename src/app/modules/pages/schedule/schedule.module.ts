@@ -21,6 +21,8 @@ import { MasterSeeComponent } from './pages/master-see/master-see.component';
 import { ModalsDialogService } from '../../../services/modals-dialog/modals-dialog.service';
 import { NamePageService } from '../../../services/name-page/name-page.service';
 import { MasterRegisterComponent } from './pages/master-register/master-register.component';
+import { MasterRescheduleComponent } from './pages/master-reschedule/master-reschedule.component';
+import { MasterSaveComponent } from './pages/master-save/master-save.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { MasterRegisterComponent } from './pages/master-register/master-register
     MasterUpdateComponent,
     MasterSeeComponent,
     MasterRegisterComponent,
+    MasterRescheduleComponent,
+    MasterSaveComponent,
   ],
   imports: [
     CommonModule,

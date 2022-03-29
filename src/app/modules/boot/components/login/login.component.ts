@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
     private router: Router
   ) {
-    this.constants.selectRol.getHttp = this.http.get('/api/TipoPerfil');
+    this.constants.selectRol.getHttp = this.http.get('/api/TipoPerfiles');
   }
 
   ngOnInit(): void {}
@@ -42,22 +42,24 @@ export class LoginComponent implements OnInit {
   }
 
   afterSignInWithGoogle(sesion: any) {
-    const correo: string = sesion.email;
-
     this.dialogService.openModalDialog(modalsDialog.load, true);
 
-    this.http
-      .get(`/api/Acceso?Correo=${correo}&TipoPerfil=${this.rolUser}`)
-      .subscribe((e: any) => {
+    this.loginSS.saveSession(this.loginSS.formatSesion(sesion, this.rolUser));
+
+    this.http.get('/api/AccesoSistemaTeleEducacion').subscribe(
+      (e: any) => {
         this.dialogService.closeLastOpenedModalDialog();
-        if (!e.length) this.openErrorModalDialog();
-        else {
-          this.loginSS.saveSession(this.loginSS.formatSesion(sesion));
-          this.loginSS.setIsLogged(true);
-          this.loginSS.expiration();
-          this.router.navigateByUrl('/casa');
-        }
-      });
+        this.loginSS.setIsLogged(true);
+        this.loginSS.expiration();
+        this.router.navigateByUrl('/casa');
+      },
+      (error) => {
+        this.loginSS.deleteSesion();
+        this.dialogService.closeLastOpenedModalDialog();
+        this.openErrorModalDialog();
+        // console.log('no pass');
+      }
+    );
   }
 
   openErrorModalDialog() {

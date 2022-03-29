@@ -1,4 +1,4 @@
-<section class="all-container">
+<!-- <section class="all-container">
   <section class="top-side">&nbsp;</section>
   <section class="left-side">
     <app-input [input]="constants.inputMaster"></app-input>
@@ -6,20 +6,27 @@
     <app-input [input]="constants.inputFullNameCoordinator"></app-input>
     <app-input [input]="constants.inputEmailCoordinator"></app-input>
     <app-select [select]="constants.selectTypeMaster"></app-select>
-    <app-select [select]="constants.selectTeacher"></app-select>
+    <section id="select_button">
+      <app-select [select]="constants.selectTeacher"></app-select>
+      <app-button-shared
+        [button]="constantsRiSiBu.plusButton"
+      ></app-button-shared>
+    </section>
     <app-input [input]="constants.inputLinkTeleEducation"></app-input>
     <app-input [input]="constants.inputLinkTeacher"></app-input>
   </section>
 
   <section class="right-side">
     <section class="time"></section>
-    <!-- <app-button-shared [button]="constants.buttonRegister"></app-button-shared> -->
     <app-datepicker-from-to></app-datepicker-from-to>
     <app-time-from-to></app-time-from-to>
     <section class="week-days-and-add-button">
       <app-week-days (weekDays)="selectedDays($event)"></app-week-days>
       <app-button-shared [button]="constants.buttonAdd"></app-button-shared>
     </section>
+    <app-table-select-filter
+      [table_select_filter]="constantsTaGe.table"
+    ></app-table-select-filter>
   </section>
 
   <section class="buttom-side">
@@ -31,10 +38,5 @@
     <section class="buttom-item">
       <app-button-shared [button]="constants.buttonCancel"></app-button-shared>
     </section>
-    <section class="buttom-item">
-      <app-button-shared
-        [button]="constants.buttonManagementStudents"
-      ></app-button-shared>
-    </section>
   </section>
-</section>
+</section> -->

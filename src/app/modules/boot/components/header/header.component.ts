@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
     public namePageS: NamePageService
   ) {
     // this.namePagex.subscribe((e) => (this.namePage = e));
-    console.log(this.photoUrl);
+    // console.log(this.photoUrl);
   }
 
   ngOnInit(): void {}

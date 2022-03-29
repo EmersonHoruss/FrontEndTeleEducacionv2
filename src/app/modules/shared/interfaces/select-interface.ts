@@ -6,7 +6,7 @@ export interface SelectInterface {
   // name's attribute that program takes when is selected an item
   itemValue: string;
   //selected item value
-  selectedValue ?: string | number;
+  selectedValue?: string | number;
   // list of items
   items: Array<any>;
   // as name says
@@ -19,4 +19,9 @@ export interface SelectInterface {
   optionsToDisable?: Array<any>;
   isAsync: boolean;
   getHttp?: any;
+  // disable all the select
+  disabled?: boolean;
+  // a flag to say if data depends of other selects, example: select a master
+  // and should load other data
+  autoload?: boolean;
 }

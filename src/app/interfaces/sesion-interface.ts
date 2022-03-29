@@ -5,4 +5,5 @@ export interface SesionInterface {
   expires_at: string;
   expires_in: string;
   photoUrl: string;
+  basic_token: string;
 }

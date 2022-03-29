@@ -3,16 +3,14 @@ button {
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 100%;
   section {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .content-container {
-    margin-right: 0.5rem;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
   }
 }
+
 .mat-flat-button {
   min-width: auto;
 }

@@ -1,0 +1,19 @@
+.wrapper-selects {
+  width: 100%;
+  display: grid;
+  grid-template-areas: "programa programa" "curricula curso";
+  grid-template-columns: 15rem auto;
+
+  .programa {
+    grid-area: programa;
+  }
+
+  .curricula {
+    grid-area: curricula;
+    padding-right: 1rem;
+  }
+
+  .curso {
+    grid-area: curso;
+  }
+}
