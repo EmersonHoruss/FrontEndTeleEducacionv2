@@ -1,0 +1,55 @@
+.wrapper-program-master-register {
+  width: 100%;
+  height: 100%;
+  .teacher {
+    display: grid;
+    grid-template-areas:
+      "select button"
+      "error comodin";
+    grid-template-columns: auto 4rem;
+
+    .select-teacher {
+      grid-area: select;
+    }
+
+    .button-plus {
+      grid-area: button;
+    }
+
+    .error {
+      grid-area: error;
+      height: 1rem;
+      position: relative;
+      top: -20px;
+      width: 100%;
+      .input-error {
+        height: 1rem;
+        background-color: transparent;
+        border: none;
+        color: red !important;
+        font-size: 0.8rem;
+        width: 100%;
+      }
+    }
+
+    .comodin {
+      grid-area: comodin;
+    }
+  }
+
+  .error {
+    // background-color: red;
+    height: 1rem;
+    position: relative;
+    top: -20px;
+    width: 100%;
+    .input-error {
+      height: 1rem;
+      background-color: transparent;
+      border: none;
+      color: red !important;
+      font-size: 0.8rem;
+      width: 100%;
+    }
+  }
+}

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalsDialogComponent } from 'src/app/modules/shared/components/modals-dialog/modals-dialog.component';
-import { modalsDialog } from 'src/app/modules/shared/constants/modals-dialog';
 import { ModalsDialogInterface } from '../../modules/shared/interfaces/modals-dialog-interface';
 
 @Injectable({
@@ -18,7 +17,6 @@ export class ModalsDialogService {
   openModalDialog(
     data: ModalsDialogInterface,
     disableClose: boolean = false,
-    id: string = 'mat-dialog-0'
   ) {
     const matDialogRef = this.matDialog.open(ModalsDialogComponent, {
       data,
@@ -35,5 +33,9 @@ export class ModalsDialogService {
       this.matDialog.openDialogs[numberOpenedDialog - 1];
 
     lastModalDialogRef.close();
+  }
+
+  openModalDialogv2(){
+
   }
 }

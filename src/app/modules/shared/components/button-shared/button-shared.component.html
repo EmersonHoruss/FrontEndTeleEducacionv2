@@ -1,19 +1,34 @@
 <!-- For bottons that go other link -->
 <ng-container *ngIf="button.url.length !== 0; else elseTemplate">
-  <button [matTooltip]="button.tooltipText" mat-flat-button color="primary" [routerLink]="button.url" [ngStyle]="button.style">
-  <section class="content-container">{{ button.text }}</section>
-  <section class="icon-container" *ngIf="button.icon.classCss">
-    <app-icon-shared [icon]="button.icon"></app-icon-shared>
-  </section>
-</button>
+  <button
+    [matTooltip]="button.tooltipText"
+    mat-flat-button
+    color="primary"
+    [routerLink]="button.url"
+    [ngStyle]="button.style"
+    type="button"
+  >
+    <section class="content-container">{{ button.text }}</section>
+    <section class="icon-container" *ngIf="button.icon.classCss">
+      <app-icon-shared [icon]="button.icon"></app-icon-shared>
+    </section>
+  </button>
 </ng-container>
 
 <!-- For bottons that dosent go other link -->
 <ng-template #elseTemplate>
-  <button [matTooltip]="button.tooltipText" mat-flat-button color="primary" [ngStyle]="button.style" (click)="isClicked(true)" [ngClass]="button.class">
-  <section class="content-container">{{ button.text }}</section>
-  <section class="icon-container" *ngIf="button.icon.classCss">
-    <app-icon-shared [icon]="button.icon"></app-icon-shared>
-  </section>
-</button>
+  <button
+    [matTooltip]="button.tooltipText"
+    mat-flat-button
+    color="primary"
+    [ngStyle]="button.style"
+    (click)="isClicked(true)"
+    [ngClass]="button.class"
+    type="button"
+  >
+    <section class="content-container">{{ button.text }}</section>
+    <section class="icon-container" *ngIf="button.icon.classCss">
+      <app-icon-shared [icon]="button.icon"></app-icon-shared>
+    </section>
+  </button>
 </ng-template>

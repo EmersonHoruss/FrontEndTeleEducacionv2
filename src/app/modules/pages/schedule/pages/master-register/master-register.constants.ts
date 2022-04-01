@@ -4,8 +4,15 @@ import { SelectInterface } from '../../../../shared/interfaces/select-interface'
 import { DefaultSelect } from 'src/app/modules/shared/constants/default-select';
 import { ButtonInterface } from '../../../../shared/interfaces/button-interface';
 import { DefaultButton } from '../../../../shared/constants/default-button';
+import { TitlePageInterface } from 'src/app/modules/shared/interfaces/title-page-interface';
+import { DefaultTitlePage } from 'src/app/modules/shared/constants/default-title-page';
 
 // ***** DEFINITIONS *****
+// TITLE PAGE
+const titlePage: TitlePageInterface = JSON.parse(
+  JSON.stringify(DefaultTitlePage)
+);
+
 // INPUTS
 const inputMaster: InputInterface = JSON.parse(JSON.stringify(DefaultInput));
 const inputCourse: InputInterface = JSON.parse(JSON.stringify(DefaultInput));
@@ -44,6 +51,9 @@ const buttonManagementStudents: ButtonInterface = JSON.parse(
 const buttonAdd: ButtonInterface = JSON.parse(JSON.stringify(DefaultButton));
 
 // ***** CONFIGURATION *****
+// TITLE PAGE
+titlePage.titlePage = 'Registrar programación curso de una maestría';
+
 // INPUTS
 inputMaster.placeholder = 'Ingrese maestría';
 inputMaster.disabled = true;
@@ -112,4 +122,5 @@ export const Constants = {
   buttonCancel,
   buttonManagementStudents,
   buttonAdd,
+  titlePage,
 };

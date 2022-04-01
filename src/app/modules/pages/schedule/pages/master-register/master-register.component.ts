@@ -13,11 +13,27 @@ export class MasterRegisterComponent implements OnInit {
   constants = Constants;
   constantsRiSiBu = ConstantsRiSiBu;
   constantsTaGe = ConstantsTaGe;
+
+  toggleFormValidate: boolean = false;
+  formIsValid: string = 'INVALID';
   constructor() {}
 
   ngOnInit(): void {}
 
   selectedDays($event: Array<WeekDayInterface>) {
+    console.log($event);
+  }
+
+  formValidate() {
+    this.toggleFormValidate = !this.toggleFormValidate;
+  }
+
+  formIsValidEE($event: any) {
+    // console.log('ASDKLFJASÑLDKFJ', $event);
+    this.formIsValid = $event;
+  }
+
+  formValuesEE($event: any) {
     console.log($event);
   }
 }

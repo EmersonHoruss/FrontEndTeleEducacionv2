@@ -1,42 +1,32 @@
-<!-- <section class="all-container">
-  <section class="top-side">&nbsp;</section>
-  <section class="left-side">
-    <app-input [input]="constants.inputMaster"></app-input>
-    <app-input [input]="constants.inputCourse"></app-input>
-    <app-input [input]="constants.inputFullNameCoordinator"></app-input>
-    <app-input [input]="constants.inputEmailCoordinator"></app-input>
-    <app-select [select]="constants.selectTypeMaster"></app-select>
-    <section id="select_button">
-      <app-select [select]="constants.selectTeacher"></app-select>
-      <app-button-shared
-        [button]="constantsRiSiBu.plusButton"
-      ></app-button-shared>
-    </section>
-    <app-input [input]="constants.inputLinkTeleEducation"></app-input>
-    <app-input [input]="constants.inputLinkTeacher"></app-input>
-  </section>
+<app-title-page [titlePage]="constants.titlePage"></app-title-page>
 
-  <section class="right-side">
-    <section class="time"></section>
-    <app-datepicker-from-to></app-datepicker-from-to>
-    <app-time-from-to></app-time-from-to>
-    <section class="week-days-and-add-button">
-      <app-week-days (weekDays)="selectedDays($event)"></app-week-days>
-      <app-button-shared [button]="constants.buttonAdd"></app-button-shared>
-    </section>
-    <app-table-select-filter
-      [table_select_filter]="constantsTaGe.table"
-    ></app-table-select-filter>
+<section class="wrapper-master-register">
+  <section class="information">
+    <app-program-master-register
+      [formValidate]="toggleFormValidate"
+      (formIsValid)="formIsValidEE($event)"
+      (formValues)="formValuesEE($event)"
+    ></app-program-master-register>
   </section>
-
-  <section class="buttom-side">
-    <section class="buttom-item">
-      <app-button-shared
-        [button]="constants.buttonRegister"
-      ></app-button-shared>
+  <section class="sessions">
+    <app-program-master-sessions></app-program-master-sessions>
+  </section>
+  <section class="buttons">
+    <section class="register">
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        form="setDataForm"
+        (click)="formValidate()"
+      >
+        <section class="content-container">Registrar</section>
+      </button>
     </section>
-    <section class="buttom-item">
-      <app-button-shared [button]="constants.buttonCancel"></app-button-shared>
+    <section class="cancel">
+      <button mat-flat-button color="accent" type="button">
+        <section class="content-container" routerLink="../">Cancelar</section>
+      </button>
     </section>
   </section>
-</section> -->
+</section>

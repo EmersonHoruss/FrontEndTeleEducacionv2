@@ -41,6 +41,9 @@ import { ProgramComponent } from './set-components/program/program.component';
 import { ProgramButtonsComponent } from './set-components/program-buttons/program-buttons.component';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { ProgramTableComponent } from './set-components/program-table/program-table.component';
+import { ProgramMasterRegisterComponent } from './set-components/program-master-register/program-master-register.component';
+import { ProgramMasterSessionsComponent } from './set-components/program-master-sessions/program-master-sessions.component';
+import { TeacherRegisterModalComponent } from './set-components/teacher-register-modal/teacher-register-modal.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +69,9 @@ import { ProgramTableComponent } from './set-components/program-table/program-ta
     ProgramButtonsComponent,
     DatepickerComponent,
     ProgramTableComponent,
+    ProgramMasterRegisterComponent,
+    ProgramMasterSessionsComponent,
+    TeacherRegisterModalComponent,
   ],
   imports: [
     CommonModule,
@@ -105,6 +111,8 @@ import { ProgramTableComponent } from './set-components/program-table/program-ta
     ProgramComponent,
     ProgramButtonsComponent,
     ProgramTableComponent,
+    ProgramMasterRegisterComponent,
+    ProgramMasterSessionsComponent,
   ],
   providers: [
     ModalsDialogService,

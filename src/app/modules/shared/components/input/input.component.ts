@@ -1,4 +1,10 @@
-import { Component, OnInit, Input, Output, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { DefaultInput } from '../../constants/default-input';
 import { InputInterface } from '../../interfaces/input-interface';
 
@@ -10,8 +16,12 @@ import { InputInterface } from '../../interfaces/input-interface';
 })
 export class InputComponent implements OnInit {
   @Input() input: InputInterface = DefaultInput;
-  
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  change($event: any) {
+    // console.log($event);
+  }
 }
