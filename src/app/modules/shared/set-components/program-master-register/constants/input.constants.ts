@@ -21,22 +21,22 @@ const cursoData = JSON.parse(cursoLS);
 // INPUTS
 inputMaster.placeholder = 'Ingrese maestría';
 inputMaster.disabled = true;
-inputMaster.value = cursoData.programa.Nombre;
+// inputMaster.value = cursoData.programa.Nombre;
 inputMaster.label = 'Maestría';
 
 inputCourse.placeholder = 'Ingrese curso';
 inputCourse.disabled = true;
-inputCourse.value = cursoData.curso.Nombre;
+// inputCourse.value = cursoData.curso.Nombre;
 inputCourse.label = 'Curso';
 
 inputCoordinator.placeholder = 'Ingrese nombre coordinador';
 inputCoordinator.disabled = true;
-inputCoordinator.value =
-  cursoData.coordinador.Nombre +
-  ' ' +
-  cursoData.coordinador.ApellidoPaterno +
-  ' ' +
-  cursoData.coordinador.ApellidoMaterno;
+// inputCoordinator.value =
+//   cursoData.coordinador.Nombre +
+//   ' ' +
+//   cursoData.coordinador.ApellidoPaterno +
+//   ' ' +
+//   cursoData.coordinador.ApellidoMaterno;
 inputCoordinator.label = 'Nombre coordinador';
 
 inputLinkTeleEducacion.placeholder = 'Ingrese link brindado por TeleEducación';

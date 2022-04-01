@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './modules/boot/components/login/login.component';
 import { HomeComponent } from './modules/boot/components/home/home.component';
+import { TestComponent } from './modules/pages/test/test.component';
 
 const routes: Routes = [
   { path: 'iniciar-sesion', component: LoginComponent },
@@ -45,7 +46,11 @@ const routes: Routes = [
       import('./modules/pages/configuration/configuration.module').then(
         (m) => m.ConfigurationModule
       ),
-  },
+  },{
+    path: 'test',
+    component: TestComponent
+  }
+
 ];
 
 @NgModule({
