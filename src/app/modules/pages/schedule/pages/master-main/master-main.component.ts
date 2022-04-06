@@ -61,6 +61,7 @@ export class MasterMainComponent implements OnInit {
   cursoEE($event: any) {
     this.cursoSeleccionado = $event;
     this.setRegisterUrl();
+    this.saveCursoProgramaLS();
   }
 
   clickedRegisterBtnEE($event: any) {
@@ -92,5 +93,9 @@ export class MasterMainComponent implements OnInit {
     };
 
     localStorage.setItem('cursoPrograma', JSON.stringify(cursoPrograma));
+  }
+
+  foundCoordinador($event: any) {
+    this.coordinadorEncontrado = $event;
   }
 }

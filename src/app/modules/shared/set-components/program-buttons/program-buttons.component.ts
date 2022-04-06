@@ -19,6 +19,7 @@ export class ProgramButtonsComponent implements OnInit, OnChanges {
   @Input() registrarUrl: string;
   @Input() switchedProgramaSelect: boolean;
   @Output() clickedRegisterBtnEE = new EventEmitter();
+  @Output() foundCoordinador = new EventEmitter();
   // @Output() coordinador =
 
   nombreCoordinador: any;
@@ -47,10 +48,12 @@ export class ProgramButtonsComponent implements OnInit, OnChanges {
               ' ' +
               e.data.ApellidoMaterno;
             this.coordinador = e.data;
+            this.foundCoordinador.emit(this.coordinador);
           },
           (error) => {
             this.nombreCoordinador = 'Sin coordinador';
             this.coordinador = null;
+            this.foundCoordinador.emit(null);
           }
         );
       }
@@ -61,4 +64,6 @@ export class ProgramButtonsComponent implements OnInit, OnChanges {
     // console.log(this.registrarUrl);
     this.clickedRegisterBtnEE.emit(this.coordinador);
   }
+
+  saveInLS() {}
 }

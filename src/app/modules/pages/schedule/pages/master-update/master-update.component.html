@@ -1,1 +1,33 @@
-<p>master-update works!</p>
+<app-title-page [titlePage]="constants.titlePage"></app-title-page>
+
+<section class="wrapper-master-update">
+  <!-- INFORMATION -->
+  <section class="information">
+    <app-program-master-update></app-program-master-update>
+  </section>
+
+  <!-- SESSIONS -->
+  <section class="sessions">
+    <app-program-master-update-sessions></app-program-master-update-sessions>
+  </section>
+
+  <!-- BUTTONS -->
+  <section class="buttons">
+    <section class="update">
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        form="setDataForm"
+        (click)="update()"
+      >
+        <section class="content-container">Registrar</section>
+      </button>
+    </section>
+    <section class="cancel">
+      <button mat-flat-button color="accent" type="button">
+        <section class="content-container" (click)="cancel()">Cancelar</section>
+      </button>
+    </section>
+  </section>
+</section>
