@@ -69,14 +69,34 @@
     <section class="add-session">
       <button
         mat-flat-button
+        [matTooltip]="
+          noUpdating ? plusButton.tooltipText : 'Actualizar sesión'
+        "
         color="primary"
-        [ngStyle]="button.style"
+        [ngStyle]="plusButton.style"
         type="submit"
         (click)="submitSessionForm()"
       >
-        <section class="content-container">{{ button.text }}</section>
-        <section class="icon-container" *ngIf="button.icon.classCss">
-          <app-icon-shared [icon]="button.icon"></app-icon-shared>
+        <section class="content-container">{{ plusButton.text }}</section>
+        <section class="icon-container" *ngIf="plusButton.icon.classCss">
+          <app-icon-shared [icon]="plusButton.icon"></app-icon-shared>
+        </section>
+      </button>
+    </section>
+
+    <section class="add-session">
+      <button
+        mat-flat-button
+        [matTooltip]="cancelButton.tooltipText"
+        color="accent"
+        [ngStyle]="cancelButton.style"
+        type="button"
+        [disabled]="noUpdating"
+        (click)="cancelReschedule()"
+      >
+        <section class="content-container">{{ cancelButton.text }}</section>
+        <section class="icon-container" *ngIf="cancelButton.icon.classCss">
+          <app-icon-shared [icon]="cancelButton.icon"></app-icon-shared>
         </section>
       </button>
     </section>

@@ -1,6 +1,7 @@
 <app-title-page [titlePage]="constants.titlePage"></app-title-page>
 
 <section class="wrapper-master-register">
+  <!-- INFORMATION -->
   <section class="information">
     <app-program-master-register
       [formValidate]="toggleFormValidate"
@@ -8,9 +9,16 @@
       (formValues)="formValuesEE($event)"
     ></app-program-master-register>
   </section>
+
+  <!-- SESSIONS -->
   <section class="sessions">
-    <app-program-master-sessions></app-program-master-sessions>
+    <app-program-master-sessions
+      [listenerMasterRegister]="listenerMasterRegister"
+      (sessionsEE)="sessionsEE($event)"
+    ></app-program-master-sessions>
   </section>
+
+  <!-- BUTTONS -->
   <section class="buttons">
     <section class="register">
       <button
@@ -18,14 +26,14 @@
         color="primary"
         type="submit"
         form="setDataForm"
-        (click)="formValidate()"
+        (click)="register()"
       >
         <section class="content-container">Registrar</section>
       </button>
     </section>
     <section class="cancel">
       <button mat-flat-button color="accent" type="button">
-        <section class="content-container" routerLink="../">Cancelar</section>
+        <section class="content-container" (click)="cancel()">Cancelar</section>
       </button>
     </section>
   </section>

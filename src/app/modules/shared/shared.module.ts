@@ -44,6 +44,8 @@ import { ProgramTableComponent } from './set-components/program-table/program-ta
 import { ProgramMasterRegisterComponent } from './set-components/program-master-register/program-master-register.component';
 import { ProgramMasterSessionsComponent } from './set-components/program-master-sessions/program-master-sessions.component';
 import { TeacherRegisterModalComponent } from './set-components/teacher-register-modal/teacher-register-modal.component';
+import { ProgramMasterUpdateComponent } from './set-components/program-master-update/program-master-update.component';
+import { ProgramMasterUpdateSessionsComponent } from './set-components/program-master-update-sessions/program-master-update-sessions.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +74,8 @@ import { TeacherRegisterModalComponent } from './set-components/teacher-register
     ProgramMasterRegisterComponent,
     ProgramMasterSessionsComponent,
     TeacherRegisterModalComponent,
+    ProgramMasterUpdateComponent,
+    ProgramMasterUpdateSessionsComponent,
   ],
   imports: [
     CommonModule,
@@ -113,6 +117,8 @@ import { TeacherRegisterModalComponent } from './set-components/teacher-register
     ProgramTableComponent,
     ProgramMasterRegisterComponent,
     ProgramMasterSessionsComponent,
+    ProgramMasterUpdateComponent,
+    ProgramMasterUpdateSessionsComponent,
   ],
   providers: [
     ModalsDialogService,

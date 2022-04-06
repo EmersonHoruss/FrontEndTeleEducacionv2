@@ -1,15 +1,22 @@
 <section class="wrapper-program-master-register">
   <section class="static-data">
     <section class="master">
-      <app-input [input]="constants.constantsInput.inputMaster"></app-input>
+      <mat-form-field appearance="fill">
+        <mat-label>Maestría</mat-label>
+        <input matInput [value]="getPrograma()" disabled />
+      </mat-form-field>
     </section>
     <section class="course">
-      <app-input [input]="constants.constantsInput.inputCourse"></app-input>
+      <mat-form-field appearance="fill">
+        <mat-label>Curso</mat-label>
+        <input matInput [value]="getCurso()" disabled />
+      </mat-form-field>
     </section>
     <section class="coordinator">
-      <app-input
-        [input]="constants.constantsInput.inputCoordinator"
-      ></app-input>
+      <mat-form-field appearance="fill">
+        <mat-label>Coordinador</mat-label>
+        <input matInput [value]="getCoordinador()" disabled />
+      </mat-form-field>
     </section>
   </section>
 

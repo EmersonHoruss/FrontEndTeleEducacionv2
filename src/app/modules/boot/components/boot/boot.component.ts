@@ -13,6 +13,7 @@ export class BootComponent implements OnInit {
 
   constructor(private loginSS: SocialLoginService) {
     this.loginSS.expiration();
+    console.log('asdfas')
   }
 
   ngOnInit(): void {}

@@ -22,9 +22,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProgramMasterRegisterComponent
   implements OnInit, OnChanges, AfterViewInit
-{ 
+{
   // START CONSTANTS ZONE
   constants = Constants;
+  programa = '';
   // END CONSTANTS ZONE
 
   // START INPUT OUTPUT ZONE
@@ -71,6 +72,7 @@ export class ProgramMasterRegisterComponent
 
   ngOnInit(): void {
     this.formValues.emit(this.startFormValues);
+    this.programa = this.getPrograma();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -127,5 +129,29 @@ export class ProgramMasterRegisterComponent
 
   openRegisterModal($event: any) {
     console.log(this.setDataForm.controls);
+  }
+
+  getPrograma(): string {
+    const cursoPrograma: any = localStorage.getItem('cursoPrograma');
+    const cursoProgramaObject = JSON.parse(cursoPrograma);
+    return cursoProgramaObject.programa.Nombre;
+  }
+
+  getCurso(): string {
+    const cursoPrograma: any = localStorage.getItem('cursoPrograma');
+    const cursoProgramaObject = JSON.parse(cursoPrograma);
+    return cursoProgramaObject.curso.Nombre;
+  }
+
+  getCoordinador(): string {
+    const cursoPrograma: any = localStorage.getItem('cursoPrograma');
+    const cursoProgramaObject = JSON.parse(cursoPrograma);
+    return (
+      cursoProgramaObject.coordinador.Nombre +
+      ' ' +
+      cursoProgramaObject.coordinador.ApellidoPaterno +
+      ' ' +
+      cursoProgramaObject.coordinador.ApellidoMaterno
+    );
   }
 }

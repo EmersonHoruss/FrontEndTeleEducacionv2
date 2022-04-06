@@ -23,8 +23,12 @@
     <section class="description">{{ data.description }}</section>
     <section class="buttons" *ngIf="data.type === 'load'"></section>
     <section class="buttons" *ngIf="data.type === 'confirm'">
-      <button mat-raised-button color="primary">Sí</button>
-      <button mat-raised-button color="warn">No</button>
+      <button mat-raised-button color="primary" [mat-dialog-close]="true">
+        Sí
+      </button>
+      <button mat-raised-button color="warn" [mat-dialog-close]="false">
+        No
+      </button>
     </section>
     <section
       class="buttons"

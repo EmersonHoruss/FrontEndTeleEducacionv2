@@ -7,6 +7,7 @@ import { ModalsDialogService } from '../../../../services/modals-dialog/modals-d
 import { modalsDialog } from '../../constants/modals-dialog';
 import { HttpClient } from '@angular/common/http';
 import { ConstantsTaBu } from './table-buttons.constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-program-table',
@@ -32,7 +33,8 @@ export class ProgramTableComponent implements OnInit {
 
   constructor(
     private dialogService: ModalsDialogService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -123,5 +125,72 @@ export class ProgramTableComponent implements OnInit {
       dataDuplicatedKey['Acciones'] = 'true';
     }
     return dataDuplicated;
+  }
+
+  innerButtonTableClicked(buttonIndexTable: any, programation: any) {
+    console.log(buttonIndexTable, programation);
+    buttonIndexTable === 0
+      ? this.updateProgramation(programation)
+      : buttonIndexTable === 1
+      ? this.deleteProgramation(programation)
+      : buttonIndexTable === 2
+      ? this.saveSesionProgramation(programation)
+      : buttonIndexTable === 3
+      ? this.reescheduleProgramation(programation)
+      : null;
+  }
+
+  updateProgramation(programation: any) {
+    this.dialogService.openModalDialog(modalsDialog.load, true);
+
+    this.http
+      .get(`/api/ProgramacionesSesiones/${programation.Codigo}`)
+      .subscribe(
+        (e: any) => {
+          this.dialogService.closeLastOpenedModalDialog();
+          programation.Sesiones = e.data;
+          localStorage.setItem('programation', JSON.stringify(programation));
+          this.router.navigateByUrl('/programar/maestria/actualizar');
+        },
+        (err: any) => {
+          this.dialogService.closeLastOpenedModalDialog();
+          const errorDialog = modalsDialog.error;
+          errorDialog.description = 'Ha surgido un error.';
+          this.dialogService.openModalDialog(errorDialog);
+        }
+      );
+  }
+
+  deleteProgramation(programation: any) {
+    const indexItem = this.data.findIndex(
+      (e: any) => e.Codigo === programation.Codigo
+    );
+    this.dialogService.openModalDialog(modalsDialog.load, true);
+    this.http
+      .patch(`/api/EliminarProgramacionesCurso/${programation.Codigo}`, {})
+      .subscribe(
+        (e: any) => {
+          this.data.splice(indexItem, 1);
+          this.data = JSON.parse(JSON.stringify(this.data));
+          this.dialogService.closeLastOpenedModalDialog();
+          const succesDialog = modalsDialog.success;
+          succesDialog.description = 'Se ha eliminado correctamente.';
+          this.dialogService.openModalDialog(succesDialog);
+        },
+        (err: any) => {
+          this.dialogService.closeLastOpenedModalDialog();
+          const errorDialo = modalsDialog.error;
+          errorDialo.description = 'Ha surgido un error.';
+          this.dialogService.openModalDialog(errorDialo);
+        }
+      );
+  }
+
+  saveSesionProgramation(programation: any) {
+    console.log('saving');
+  }
+
+  reescheduleProgramation(programation: any) {
+    console.log('reeschude');
   }
 }

@@ -22,7 +22,6 @@ seeButton.style = { 'border-radius': '50%', width: '75%' };
 const saveButton: ButtonInterface = JSON.parse(JSON.stringify(DefaultButton));
 saveButton.tooltipText = 'Guardar Sesión';
 saveButton.icon = icons.saveIcon;
-saveButton.url = 'guardar';
 saveButton.style = { 'border-radius': '50%', width: '75%' };
 
 const rescheduleButton: ButtonInterface = JSON.parse(
@@ -30,7 +29,6 @@ const rescheduleButton: ButtonInterface = JSON.parse(
 );
 rescheduleButton.tooltipText = 'Reprogramar';
 rescheduleButton.icon = icons.rescheduleIcon;
-rescheduleButton.url = 'reprogramar';
 rescheduleButton.style = { 'border-radius': '50%', width: '75%' };
 
 const listButton: ButtonInterface = JSON.parse(JSON.stringify(DefaultButton));
@@ -40,19 +38,9 @@ export const ConstantsTaBu = {
   buttons: [
     updateButton,
     deleteButton,
-    seeButton,
+    // seeButton,
     saveButton,
     rescheduleButton,
     // listButton,
   ],
 };
-
-
-
-
-
-
-
-
-
-

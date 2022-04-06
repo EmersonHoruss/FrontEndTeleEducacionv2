@@ -102,4 +102,8 @@ export class SocialLoginService {
   deleteSesion() {
     localStorage.removeItem('sesion');
   }
+
+  savePersonal($personal: any) {
+    localStorage.setItem('personal', JSON.stringify($personal));
+  }
 }

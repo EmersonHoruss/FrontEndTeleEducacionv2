@@ -14,10 +14,7 @@ export class ModalsDialogService {
 
   constructor(private matDialog: MatDialog) {}
 
-  openModalDialog(
-    data: ModalsDialogInterface,
-    disableClose: boolean = false,
-  ) {
+  openModalDialog(data: ModalsDialogInterface, disableClose: boolean = false) {
     const matDialogRef = this.matDialog.open(ModalsDialogComponent, {
       data,
       width: this.width,
@@ -35,7 +32,17 @@ export class ModalsDialogService {
     lastModalDialogRef.close();
   }
 
-  openModalDialogv2(){
+  // openModalDialogAfterClose(
+  //   data: ModalsDialogInterface,
+  //   disableClose: boolean = false
+  // ) {
+  //   const matDialogRef = this.matDialog.open(ModalsDialogComponent, {
+  //     data,
+  //     width: this.width,
+  //     height: this.height,
+  //     disableClose,
+  //   });
 
-  }
+
+  // }
 }

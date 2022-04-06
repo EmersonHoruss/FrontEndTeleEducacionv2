@@ -4,6 +4,10 @@ import {
   Input,
   AfterViewInit,
   ViewChild,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { DateInterface } from '../../interfaces/date-interface';
 import { Constants } from './datepicker.constants';
@@ -22,17 +26,28 @@ import { modalsDialog } from 'src/app/modules/shared/constants/modals-dialog';
   templateUrl: './program-master-sessions.component.html',
   styleUrls: ['./program-master-sessions.component.scss'],
 })
-export class ProgramMasterSessionsComponent implements OnInit, AfterViewInit {
+export class ProgramMasterSessionsComponent
+  implements OnInit, AfterViewInit, OnChanges
+{
   // START: LOCAL VARIABLES
   formatoEntrada = 'DD/MM/YYYY';
   formatoWithTime = 'DD/MM/YYYY, h:mm';
   formatoSalida = 'DD/MM/YYYY';
   formatoWhenUpdateDateJS = 'MM/DD/YYYY';
   // END: LOCAL VARIABLES
+
+  // START: INPUT OUTPUT VARIABLES
+  @Input() listenerMasterRegister: boolean;
+  @Output() sessionsEE = new EventEmitter<any>();
+  @Output() fechaInicioEE = new EventEmitter<any>();
+  @Output() fechaFinEE = new EventEmitter<any>();
+  // END: INPUT OUTPUT VARIABLES
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   date: DateInterface = Constants.dateStart;
-  button: ButtonInterface = constantsButton.plusButton;
+  plusButton: ButtonInterface = constantsButton.plusButton;
+  cancelButton: ButtonInterface = constantsButton.cancelButton;
   disabledDate = true;
   sessionForm = this.fb.group({
     date: ['', [Validators.required]],
@@ -40,12 +55,17 @@ export class ProgramMasterSessionsComponent implements OnInit, AfterViewInit {
     endTime: ['', [Validators.required]],
   });
 
+  fechaInicio: any;
+  fechaFin: any;
+
   sessions: any;
   sessionsHelp = [];
+  sessionFormated = [];
   columns = ['Fecha', 'Hora de inicio', 'Hora de fin', 'Acciones'];
   noSessions = 'Sin sesiones por mostrar';
   constantTaBu = ConstantsTaBu;
-  updating = false;
+  noUpdating = true;
+  indexToUpdate: any = null;
 
   constructor(
     private fb: FormBuilder,
@@ -56,6 +76,12 @@ export class ProgramMasterSessionsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     // console.log('adsf');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    // console.log('YUARE IN CHANGES');
+    if (changes['listenerMasterRegister'])
+      this.sessionsEE.emit(this.sessionsHelp);
   }
 
   ngAfterViewInit() {
@@ -108,7 +134,7 @@ export class ProgramMasterSessionsComponent implements OnInit, AfterViewInit {
     this.sessionForm.invalid
       ? null
       : !this.logicErrorSession().error
-      ? this.splice00Sesions()
+      ? this.splicexySesions()
       : this.showErrors();
   }
 
@@ -118,7 +144,12 @@ export class ProgramMasterSessionsComponent implements OnInit, AfterViewInit {
     const noError = { error: false, msg: '' };
 
     return this.foundSimilar()
-      ? { error: true, msg: 'Sesiones repetidas, no se ha añadido.' }
+      ? {
+          error: true,
+          msg: this.noUpdating
+            ? 'Sesiones repetidas, no se ha añadido.'
+            : 'Es la misma sesión no se puede actualizar',
+        }
       : !this.startTimeLessThanEndTime()
       ? {
           error: true,
@@ -169,24 +200,26 @@ export class ProgramMasterSessionsComponent implements OnInit, AfterViewInit {
       sameYear + sessionToAdd['Hora de fin'],
       this.formatoWithTime
     );
-    const isTargeable = this.sessionsHelp.find((e: any) => {
-      const startTimeE = moment(
-        sameYear + e['Hora de inicio'],
-        this.formatoWithTime
-      );
-      const endTimeE = moment(
-        sameYear + e['Hora de fin'],
-        this.formatoWithTime
-      );
-      // console.log(sessionToAdd['Fecha'], e['Fecha']);
+    const isTargeable = this.sessionsHelp.find((e: any, index: number) => {
+      // if dosent exist an index isn't updating
+      if (!this.indexToUpdate && this.noUpdating) {
+        const startTimeE = moment(
+          sameYear + e['Hora de inicio'],
+          this.formatoWithTime
+        );
+        const endTimeE = moment(
+          sameYear + e['Hora de fin'],
+          this.formatoWithTime
+        );
 
-      // if date are the same we have to corroborate dates dosent target
-      // otherwise it dosent target
-      if (e['Fecha'] === sessionToAdd['Fecha']) {
-        const isNoTargeteable =
-          moment(endTime).isSameOrBefore(startTimeE) ||
-          moment(startTime).isSameOrAfter(endTimeE);
-        return !isNoTargeteable;
+        // if date are the same we have to corroborate dates dosent target
+        // otherwise it dosent target
+        if (e['Fecha'] === sessionToAdd['Fecha']) {
+          const isNoTargeteable =
+            moment(endTime).isSameOrBefore(startTimeE) ||
+            moment(startTime).isSameOrAfter(endTimeE);
+          return !isNoTargeteable;
+        }
       }
 
       return false;
@@ -217,16 +250,31 @@ export class ProgramMasterSessionsComponent implements OnInit, AfterViewInit {
     return session;
   }
 
-  splice00Sesions() {
+  splicexySesions() {
     const sessionsAux = JSON.parse(JSON.stringify(this.sessionsHelp));
-    sessionsAux.splice(0, 0, this.getSession());
+    // if dosen't exist an index and isn't updating
+    !this.indexToUpdate && this.noUpdating
+      ? sessionsAux.splice(0, 0, this.getSession())
+      : sessionsAux.splice(this.indexToUpdate, 1, this.getSession());
+
     this.sessionsHelp = sessionsAux;
 
     this.sessions = new MatTableDataSource(this.sessionsHelp);
     this.sessions.paginator = this.paginator;
 
-    modalsDialog.success.description = 'Sesión añadida.';
+    // if dosen't exist an index and isn't updating
+    const description =
+      !this.indexToUpdate && this.noUpdating
+        ? 'Sesión añadida.'
+        : 'Sesión actualizada.';
+    modalsDialog.success.description = description;
+
     this.dialogService.openModalDialog(modalsDialog.success);
+    // at the end if we're updating or not we say no updating
+    // because it dosent matter. It's unnecesary for register,
+    // but for updates it is
+    this.noUpdating = true;
+    this.sessionsEE.emit(this.sessionsHelp);
   }
 
   innerButtonTableClicked(indexButton: any, elementInRow: any) {
@@ -239,26 +287,26 @@ export class ProgramMasterSessionsComponent implements OnInit, AfterViewInit {
     const setForm: any = {};
     // console.log(elementInRow);
 
-    // const date = moment(elementInRow['Fecha'], this.formatoEntrada);
-    // const date = dateFormatedIn.format(this.formatoSalida);
-    // console.log(date);
-    setForm.date = 'hjghgj';
+    console.log('set values when update');
+    const dateFormatedIn = moment(elementInRow['Fecha'], 'DD/MM/YYYY');
+    const dateOut = dateFormatedIn.format('MM/DD/YYYY');
+    setForm.date = new Date(dateOut);
     setForm.startTime = elementInRow['Hora de inicio'];
     setForm.endTime = elementInRow['Hora de fin'];
     this.sessionForm.setValue(setForm);
-    console.log(this.sessionForm);
+    this.noUpdating = false;
   }
 
   updateSession(elementInRow: any) {
     // console.log('updating');
     this.setValuesWhenUpdate(elementInRow);
-    // const indexToUpdate = this.sessionsHelp.findIndex((e: any) => {
-    //   return (
-    //     e['Fecha'] === elementInRow['Fecha'] &&
-    //     e['Hora de inicio'] === elementInRow['Hora de inicio'] &&
-    //     e['Hora de fin'] === elementInRow['Hora de fin']
-    //   );
-    // });
+    this.indexToUpdate = this.sessionsHelp.findIndex((e: any) => {
+      return (
+        e['Fecha'] === elementInRow['Fecha'] &&
+        e['Hora de inicio'] === elementInRow['Hora de inicio'] &&
+        e['Hora de fin'] === elementInRow['Hora de fin']
+      );
+    });
     // console.log(indexToUpdate);
     // const updatedSession: any = 1;
     // // this.sessionsHelp.splice(indexToUpdate, 1, updatedSession);
@@ -284,5 +332,20 @@ export class ProgramMasterSessionsComponent implements OnInit, AfterViewInit {
 
     modalsDialog.success.description = 'Sesión eliminada.';
     this.dialogService.openModalDialog(modalsDialog.success);
+    this.cancelReschedule();
+    this.sessionsEE.emit(this.sessionsHelp);
+  }
+
+  cancelReschedule() {
+    this.sessionForm.reset();
+    this.sessionForm.controls['date'].setErrors(null);
+    this.sessionForm.controls['startTime'].setErrors(null);
+    this.sessionForm.controls['endTime'].setErrors(null);
+    // console.log('rescheculing', this.sessionForm);
+    this.noUpdating = true;
+  }
+
+  getSessionFormated() {
+    
   }
 }
