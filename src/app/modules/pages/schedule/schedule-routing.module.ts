@@ -21,6 +21,7 @@ const routes: Routes = [
     component: MasterRegisterComponent,
   },
   { path: 'maestria/reprogramar', component: MasterRescheduleComponent },
+  { path: 'maestria/dar-seguimiento', component: MasterRescheduleComponent },
   { path: 'maestria/guardar', component: MasterSaveComponent },
   { path: 'maestria/actualizar', component: MasterUpdateComponent },
   { path: 'maestria/ver', component: MasterSeeComponent },

@@ -3,12 +3,20 @@
 <section class="wrapper-master-update">
   <!-- INFORMATION -->
   <section class="information">
-    <app-program-master-update></app-program-master-update>
+    <app-program-master-update
+      [formValidate]="toggleFormValidate"
+      (formIsValid)="formIsValidEE($event)"
+      (formValues)="formValuesEE($event)"
+    ></app-program-master-update>
   </section>
 
   <!-- SESSIONS -->
   <section class="sessions">
-    <app-program-master-update-sessions></app-program-master-update-sessions>
+    <app-program-master-update-sessions
+      [listenerMasterRegister]="listenerMasterRegister"
+      (sessionsEE)="sessionsEE($event)"
+      (sessionsDeletedEE)="sessionsDeletedEE($event)"
+    ></app-program-master-update-sessions>
   </section>
 
   <!-- BUTTONS -->
@@ -21,7 +29,7 @@
         form="setDataForm"
         (click)="update()"
       >
-        <section class="content-container">Registrar</section>
+        <section class="content-container">Actualizar</section>
       </button>
     </section>
     <section class="cancel">

@@ -7,6 +7,8 @@
     [routerLink]="button.url"
     [ngStyle]="button.style"
     type="button"
+    [disabled]="disabled"
+
   >
     <section class="content-container">{{ button.text }}</section>
     <section class="icon-container" *ngIf="button.icon.classCss">
@@ -25,6 +27,7 @@
     (click)="isClicked(true)"
     [ngClass]="button.class"
     type="button"
+    [disabled]="disabled"
   >
     <section class="content-container">{{ button.text }}</section>
     <section class="icon-container" *ngIf="button.icon.classCss">

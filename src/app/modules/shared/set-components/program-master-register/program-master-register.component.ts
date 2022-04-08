@@ -1,7 +1,4 @@
 import {
-  AfterContentChecked,
-  AfterContentInit,
-  AfterViewChecked,
   Component,
   EventEmitter,
   OnChanges,
@@ -11,7 +8,6 @@ import {
 } from '@angular/core';
 import { FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Constants } from './constants/main.constants';
-import { atLeastOneLinkProgram } from '../../../../utils/my-validators';
 import { AfterViewInit, Input, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 

@@ -73,14 +73,14 @@ export class ProgramTableComponent implements OnInit {
       )
       .subscribe(
         (e: any) => {
-          console.log(e);
+          // console.log(e);
           const data = e.data;
           data.length === 0
             ? (this.noData = 'Sin programaciones por mostrar.')
             : (this.data = this.tranformDataToShowInTable(data));
         },
         (error: any) => {
-          console.log(error);
+          // console.log(error);
         }
       );
   }
@@ -128,7 +128,7 @@ export class ProgramTableComponent implements OnInit {
   }
 
   innerButtonTableClicked(buttonIndexTable: any, programation: any) {
-    console.log(buttonIndexTable, programation);
+    // console.log(buttonIndexTable, programation);
     buttonIndexTable === 0
       ? this.updateProgramation(programation)
       : buttonIndexTable === 1
@@ -147,10 +147,21 @@ export class ProgramTableComponent implements OnInit {
       .get(`/api/ProgramacionesSesiones/${programation.Codigo}`)
       .subscribe(
         (e: any) => {
-          this.dialogService.closeLastOpenedModalDialog();
           programation.Sesiones = e.data;
           localStorage.setItem('programation', JSON.stringify(programation));
-          this.router.navigateByUrl('/programar/maestria/actualizar');
+          this.http.get('/api/DocentesVigentes').subscribe(
+            (e2: any) => {
+              localStorage.setItem('docentes', JSON.stringify(e2.data));
+              this.dialogService.closeLastOpenedModalDialog();
+              this.router.navigateByUrl('/programar/maestria/actualizar');
+            },
+            (err: any) => {
+              this.dialogService.closeLastOpenedModalDialog();
+              const errorDialog = modalsDialog.error;
+              errorDialog.description = 'Ha surgido un error.';
+              this.dialogService.openModalDialog(errorDialog);
+            }
+          );
         },
         (err: any) => {
           this.dialogService.closeLastOpenedModalDialog();

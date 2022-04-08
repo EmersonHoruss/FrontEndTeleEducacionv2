@@ -11,6 +11,7 @@ import { IconInterface } from '../../interfaces/icon-interface';
 export class ButtonSharedComponent implements OnInit {
   @Input() button: ButtonInterface = DefaultButton;
   @Output() clicked: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() disabled: boolean = false;
 
   constructor() {}
 

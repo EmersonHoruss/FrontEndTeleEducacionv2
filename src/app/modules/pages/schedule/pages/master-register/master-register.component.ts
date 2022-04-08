@@ -99,12 +99,12 @@ export class MasterRegisterComponent implements OnInit {
   }
 
   formIsValidEE($event: any) {
-    // console.log('ASDKLFJASÑLDKFJ', $event);
+    // .log('ASDKLFJASÑLDKFJ', $event);
     this.formIsValid = $event;
   }
 
   formValuesEE($event: any) {
-    // console.log('VALUES', $event);
+    // .log('VALUES', $event);
     this.formValues = $event;
   }
 

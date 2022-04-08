@@ -1,144 +1,133 @@
 <section class="wrapper-program-master-register">
-    <section class="static-data">
-      <section class="master">
-        <mat-form-field appearance="fill">
-          <mat-label>Maestría</mat-label>
-          <input matInput [value]="getPrograma()" disabled />
-        </mat-form-field>
-      </section>
-      <section class="course">
-        <mat-form-field appearance="fill">
-          <mat-label>Curso</mat-label>
-          <input matInput [value]="getCurso()" disabled />
-        </mat-form-field>
-      </section>
-      <section class="coordinator">
-        <mat-form-field appearance="fill">
-          <mat-label>Coordinador</mat-label>
-          <input matInput [value]="getCoordinador()" disabled />
-        </mat-form-field>
-      </section>
+  <section class="static-data">
+    <section class="master">
+      <mat-form-field appearance="fill">
+        <mat-label>Maestría</mat-label>
+        <input matInput [value]="getPrograma()" disabled />
+      </mat-form-field>
     </section>
-  
-    <section class="set-data">
-      <form
-        autocomplete="off"
-        [formGroup]="setDataForm"
-        #setDataFormHtml="ngForm"
-        id="setDataForm"
-      >
-        <!-- KIND PROGRAMATION -->
-        <section class="kin-programation">
-          <mat-form-field appearance="fill" class="programa">
-            <mat-label>Tipo de programación</mat-label>
-            <mat-select
-              disableOptionCentering="true"
-              formControlName="kindProgramation"
+    <section class="course">
+      <mat-form-field appearance="fill">
+        <mat-label>Curso</mat-label>
+        <input matInput [value]="getCurso()" disabled />
+      </mat-form-field>
+    </section>
+    <section class="coordinator">
+      <mat-form-field appearance="fill">
+        <mat-label>Coordinador</mat-label>
+        <input matInput [value]="getCoordinador()" disabled />
+      </mat-form-field>
+    </section>
+  </section>
+
+  <section class="set-data">
+    <form
+      autocomplete="off"
+      [formGroup]="setDataForm"
+      #setDataFormHtml="ngForm"
+      id="setDataForm"
+    >
+      <!-- KIND PROGRAMATION -->
+      <section class="kin-programation">
+        <mat-form-field appearance="fill" class="programa">
+          <mat-label>Tipo de programación</mat-label>
+          <mat-select
+            disableOptionCentering="true"
+            formControlName="kindProgramation"
+          >
+            <mat-option
+              *ngFor="
+                let tipoProgramacion of constants.constantsTiposProgramacion
+                  .tiposProgramacion
+              "
+              [value]="tipoProgramacion.Codigo"
             >
+              {{ tipoProgramacion.Nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </section>
+
+      <!-- TEACHER -->
+      <section class="teacher">
+        <section class="select-teacher">
+          <mat-form-field appearance="fill" class="programa">
+            <mat-label>Docente</mat-label>
+            <mat-select disableOptionCentering="true" formControlName="teacher">
               <mat-option
-                *ngFor="
-                  let tipoProgramacion of constants.constantsTiposProgramacion
-                    .tiposProgramacion
-                "
-                [value]="tipoProgramacion.Codigo"
+                *ngFor="let teacher of teachers"
+                [value]="teacher.Codigo"
               >
-                {{ tipoProgramacion.Nombre }}
+                {{
+                  teacher.Nombre +
+                    " " +
+                    teacher.ApellidoPaterno +
+                    " " +
+                    teacher.ApellidoMaterno
+                }}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </section>
-  
-        <!-- TEACHER -->
-        <section class="teacher">
-          <section class="select-teacher">
-            <mat-form-field
-              appearance="fill"
-              class="programa"
-              (click)="openTeacherSelect()"
-            >
-              <mat-label>Docente</mat-label>
-              <mat-select disableOptionCentering="true" formControlName="teacher">
-                <mat-option *ngIf="loadingTeacher">Está cargando...</mat-option>
-  
-                <mat-option *ngIf="!loadingTeacher && teachers.length === 0"
-                  >Sin resultados</mat-option
-                >
-  
-                <mat-option
-                  *ngFor="let teacher of teachers"
-                  [value]="teacher.Codigo"
-                >
-                  {{
-                    teacher.Nombre +
-                      " " +
-                      teacher.ApellidoPaterno +
-                      " " +
-                      teacher.ApellidoMaterno
-                  }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </section>
-          <section class="button-plus">
-            <app-button-shared
-              [button]="constants.constantsButton.plusButton"
-              (clicked)="openRegisterModal($event)"
-            ></app-button-shared>
-          </section>
-          <section class="error">
-            <input
-              *ngIf="getError('teacher').error"
-              type="text"
-              disabled
-              class="input-error"
-              [value]="getError('teacher').msg"
-            />
-          </section>
-          <section class="comodin"></section>
+        <section class="button-plus">
+          <app-button-shared
+            [button]="constants.constantsButton.plusButton"
+            (clicked)="openRegisterModal($event)"
+          ></app-button-shared>
         </section>
-  
-        <!-- LINK TELE_EDUCACION -->
-        <section class="link-tele-educacion">
-          <mat-form-field appearance="fill">
-            <mat-label>Link TeleEducación</mat-label>
-            <input
-              matInput
-              formControlName="linkTeleEducacion"
-              placeholder="Ingrese link brindado por TeleEducación."
-            />
-          </mat-form-field>
-          <section class="error">
-            <input
-              *ngIf="getError('linkTeleEducacion').error"
-              type="text"
-              disabled
-              class="input-error"
-              [value]="getError('linkTeleEducacion').msg"
-            />
-          </section>
+        <section class="error">
+          <input
+            *ngIf="getError('teacher').error"
+            type="text"
+            disabled
+            class="input-error"
+            [value]="getError('teacher').msg"
+          />
         </section>
-  
-        <!-- LINK TEACHER -->
-        <section class="link-teacher">
-          <mat-form-field appearance="fill">
-            <mat-label>Link docente</mat-label>
-            <input
-              matInput
-              formControlName="linkTeacher"
-              placeholder="Ingrese link brindado por el docente."
-            />
-          </mat-form-field>
-          <section class="error">
-            <input
-              *ngIf="getError('linkTeacher').error"
-              type="text"
-              disabled
-              class="input-error"
-              [value]="getError('linkTeacher').msg"
-            />
-          </section>
+        <section class="comodin"></section>
+      </section>
+
+      <!-- LINK TELE_EDUCACION -->
+      <section class="link-tele-educacion">
+        <mat-form-field appearance="fill">
+          <mat-label>Link TeleEducación</mat-label>
+          <input
+            matInput
+            formControlName="linkTeleEducacion"
+            placeholder="Ingrese link brindado por TeleEducación."
+          />
+        </mat-form-field>
+        <section class="error">
+          <input
+            *ngIf="getError('linkTeleEducacion').error"
+            type="text"
+            disabled
+            class="input-error"
+            [value]="getError('linkTeleEducacion').msg"
+          />
         </section>
-      </form>
-    </section>
+      </section>
+
+      <!-- LINK TEACHER -->
+      <section class="link-teacher">
+        <mat-form-field appearance="fill">
+          <mat-label>Link docente</mat-label>
+          <input
+            matInput
+            formControlName="linkTeacher"
+            placeholder="Ingrese link brindado por el docente."
+          />
+        </mat-form-field>
+        <section class="error">
+          <input
+            *ngIf="getError('linkTeacher').error"
+            type="text"
+            disabled
+            class="input-error"
+            [value]="getError('linkTeacher').msg"
+          />
+        </section>
+      </section>
+    </form>
   </section>
-  
+</section>

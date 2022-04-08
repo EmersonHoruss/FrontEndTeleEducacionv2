@@ -33,19 +33,25 @@ export class ProgramMasterUpdateComponent
   @ViewChild('setDataFormHtml') setDataFormHtmlCode: NgForm;
   // END INPUT OUTPUT ZONE
 
+  // START LOCAL STORAGE
+  programation: any = localStorage.getItem('programation');
+  programationObj = JSON.parse(this.programation);
+  docentes: any = localStorage.getItem('docentes');
+  docentesObj = JSON.parse(this.docentes);
+  // EDN LOCAL STORAGE
+
   // START LOCAL VARIABLES ZONE
   startFormValues = {
-    linkTeleEducacion: '',
-    linkTeacher: '',
-    teacher: null,
-    kindProgramation: 0,
+    linkTeleEducacion: this.programationObj.LinkInstitucional,
+    linkTeacher: this.programationObj.LinkNoInstitucional,
+    teacher: this.programationObj.CodigoDocente,
+    kindProgramation: this.programationObj.Dirigido === 0 ? 1 : 0,
   };
-  loadingTeacher: boolean = true;
   selectedTeacher = '';
-  teachers: any = [];
+  teachers: any = this.docentesObj;
   setDataForm = this.fb.group({
     linkTeleEducacion: [
-      '',
+      this.startFormValues.linkTeleEducacion,
       [
         Validators.pattern(
           /[https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)]?/
@@ -54,7 +60,7 @@ export class ProgramMasterUpdateComponent
       ],
     ],
     linkTeacher: [
-      '',
+      this.startFormValues.linkTeacher,
       [
         Validators.pattern(
           /[https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)]?/
@@ -62,8 +68,11 @@ export class ProgramMasterUpdateComponent
         Validators.maxLength(50),
       ],
     ],
-    teacher: ['hgkjhghj', [Validators.required]],
-    kindProgramation: [1, [Validators.required]],
+    teacher: [this.startFormValues.teacher, [Validators.required]],
+    kindProgramation: [
+      this.startFormValues.kindProgramation,
+      [Validators.required],
+    ],
   });
   // END LOCAL VARIABLES
   constructor(private fb: FormBuilder, private http: HttpClient) {}
@@ -84,13 +93,6 @@ export class ProgramMasterUpdateComponent
   ngAfterViewInit(): void {
     this.setDataForm.statusChanges.subscribe((e) => this.formIsValid.emit(e));
     this.setDataForm.valueChanges.subscribe((e) => this.formValues.emit(e));
-  }
-
-  openTeacherSelect() {
-    this.http.get('/api/Docentes').subscribe((e: any) => {
-      this.loadingTeacher = false;
-      this.teachers = e.data;
-    });
   }
 
   getError(control: string): any {
@@ -152,4 +154,6 @@ export class ProgramMasterUpdateComponent
       cursoProgramaObject.coordinador.ApellidoMaterno
     );
   }
+
+  
 }

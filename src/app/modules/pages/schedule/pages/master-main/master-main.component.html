@@ -1,5 +1,6 @@
 <app-title-page [titlePage]="constants.titlePage"></app-title-page>
 <section class="wrapper-master-main">
+  <!-- SELECTS -->
   <section class="program-selects">
     <app-program
       [programa]="programa"
@@ -7,6 +8,8 @@
       (cursoEE)="cursoEE($event)"
     ></app-program>
   </section>
+
+  <!-- BUTTONS -->
   <section class="program-buttons">
     <app-program-buttons
       [codigoCoordinador]="codigoCoordinador"
@@ -16,6 +19,8 @@
       (foundCoordinador)="foundCoordinador($event)"
     ></app-program-buttons>
   </section>
+
+  <!-- TABLE -->
   <section class="program-table">
     <app-program-table
       [nameTable]="nameTable"
