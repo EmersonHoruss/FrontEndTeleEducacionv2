@@ -1,0 +1,120 @@
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  section {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.mat-flat-button {
+  min-width: auto;
+}
+
+.wrapper-program-master-sessions {
+  width: 100%;
+  padding-left: 2rem;
+
+  .date {
+    width: 11rem;
+  }
+
+  .time {
+    width: 9rem;
+  }
+
+  .time-pickers {
+    width: 100%;
+
+    .schedule-session,
+    .reschedule-session {
+      width: 100%;
+      display: grid;
+      grid-template-areas:
+        "title title"
+        "timepickers buttons";
+      grid-column: 80% 20%;
+
+      .title {
+        grid-area: title;
+        margin-bottom: 0.5rem;
+        // background-color: red;
+      }
+
+      .time-pickers-inner {
+        grid-area: timepickers;
+        display: flex;
+        // background-color: blue;
+        justify-content: space-between;
+      }
+
+      .buttons {
+        // width: 8rem;
+        width: 9rem;
+        display: flex;
+        // justify-content: center;
+        // align-items: flex-end;
+        grid-area: buttons;
+        // background-color: yellow;
+
+        .add-session {
+          width: 4.5rem;
+          height: 5.5rem;
+        }
+      }
+    }
+
+    .motive-reprogramation {
+      width: 100%;
+    }
+  }
+}
+
+.error {
+  grid-area: error;
+  height: 1rem;
+  position: relative;
+  top: -20px;
+  width: 100%;
+  .input-error {
+    height: 1rem;
+    background-color: transparent;
+    border: none;
+    color: red !important;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+}
+
+.session-tables {
+  width: 100%;
+  display: grid;
+  grid-template-areas: 100% 100% 100%/100%;
+  // background-color: red;
+  // color: #3F51B5;
+  .title {
+    margin-bottom: 0.5rem;
+  }
+
+  table {
+    background-color: #e8e8f2;
+    border: 0;
+    th {
+      font-size: 0.9rem;
+    }
+
+    .buttons-container {
+      display: flex;
+    }
+  }
+
+  mat-paginator {
+    background-color: #ededf7;
+    border: 0;
+    margin-bottom: 1.5rem;
+  }
+}

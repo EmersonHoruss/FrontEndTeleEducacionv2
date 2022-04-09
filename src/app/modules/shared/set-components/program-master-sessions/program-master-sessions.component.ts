@@ -201,25 +201,25 @@ export class ProgramMasterSessionsComponent
       this.formatoWithTime
     );
     const isTargeable = this.sessionsHelp.find((e: any, index: number) => {
-      // if dosent exist an index isn't updating
-      if (!this.indexToUpdate && this.noUpdating) {
-        const startTimeE = moment(
-          sameYear + e['Hora de inicio'],
-          this.formatoWithTime
-        );
-        const endTimeE = moment(
-          sameYear + e['Hora de fin'],
-          this.formatoWithTime
-        );
+      // // if dosent exist an index isn't updating
+      // if (!this.indexToUpdate && this.noUpdating) {
+      const startTimeE = moment(
+        sameYear + e['Hora de inicio'],
+        this.formatoWithTime
+      );
+      const endTimeE = moment(
+        sameYear + e['Hora de fin'],
+        this.formatoWithTime
+      );
 
-        // if date are the same we have to corroborate dates dosent target
-        // otherwise it dosent target
-        if (e['Fecha'] === sessionToAdd['Fecha']) {
-          const isNoTargeteable =
-            moment(endTime).isSameOrBefore(startTimeE) ||
-            moment(startTime).isSameOrAfter(endTimeE);
-          return !isNoTargeteable;
-        }
+      // if date are the same we have to corroborate dates dosent target
+      // otherwise it dosent target
+      if (e['Fecha'] === sessionToAdd['Fecha']) {
+        const isNoTargeteable =
+          moment(endTime).isSameOrBefore(startTimeE) ||
+          moment(startTime).isSameOrAfter(endTimeE);
+        return !isNoTargeteable;
+        // }
       }
 
       return false;
@@ -345,7 +345,5 @@ export class ProgramMasterSessionsComponent
     this.noUpdating = true;
   }
 
-  getSessionFormated() {
-    
-  }
+  getSessionFormated() {}
 }
