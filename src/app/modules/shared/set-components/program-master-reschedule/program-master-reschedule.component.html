@@ -1,1 +1,28 @@
-<p>program-master-reschedule works!</p>
+<section class="wrapper-program-master-register">
+  <section class="static-data">
+    <section class="master">
+      <mat-form-field appearance="fill">
+        <mat-label>Maestría</mat-label>
+        <input matInput [value]="getPrograma()" disabled />
+      </mat-form-field>
+    </section>
+    <section class="course">
+      <mat-form-field appearance="fill">
+        <mat-label>Curso</mat-label>
+        <input matInput [value]="getCurso()" disabled />
+      </mat-form-field>
+    </section>
+    <section class="coordinator">
+      <mat-form-field appearance="fill">
+        <mat-label>Coordinador</mat-label>
+        <input matInput [value]="getCoordinador()" disabled />
+      </mat-form-field>
+    </section>
+    <section class="coordinator">
+      <mat-form-field appearance="fill">
+        <mat-label>Docente</mat-label>
+        <input matInput [value]="getDocente()" disabled />
+      </mat-form-field>
+    </section>
+  </section>
+</section>

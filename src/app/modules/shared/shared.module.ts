@@ -123,6 +123,8 @@ import { ProgramMasterRescheduleSessionsComponent } from './set-components/progr
     ProgramMasterSessionsComponent,
     ProgramMasterUpdateComponent,
     ProgramMasterUpdateSessionsComponent,
+    ProgramMasterRescheduleComponent,
+    ProgramMasterRescheduleSessionsComponent,
   ],
   providers: [
     ModalsDialogService,

@@ -12,6 +12,7 @@ import { MasterSeeComponent } from './pages/master-see/master-see.component';
 import { MasterRegisterComponent } from './pages/master-register/master-register.component';
 import { MasterRescheduleComponent } from './pages/master-reschedule/master-reschedule.component';
 import { MasterSaveComponent } from './pages/master-save/master-save.component';
+import { MasterFollowComponent } from './pages/master-follow/master-follow.component';
 
 const routes: Routes = [
   { path: '', component: StartComponent },
@@ -21,7 +22,7 @@ const routes: Routes = [
     component: MasterRegisterComponent,
   },
   { path: 'maestria/reprogramar', component: MasterRescheduleComponent },
-  { path: 'maestria/dar-seguimiento', component: MasterRescheduleComponent },
+  { path: 'maestria/dar-seguimiento', component: MasterFollowComponent },
   { path: 'maestria/guardar', component: MasterSaveComponent },
   { path: 'maestria/actualizar', component: MasterUpdateComponent },
   { path: 'maestria/ver', component: MasterSeeComponent },

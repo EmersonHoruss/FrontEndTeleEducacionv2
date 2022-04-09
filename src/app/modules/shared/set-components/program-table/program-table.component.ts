@@ -202,6 +202,24 @@ export class ProgramTableComponent implements OnInit {
   }
 
   reescheduleProgramation(programation: any) {
-    console.log('reeschude');
+    this.dialogService.openModalDialog(modalsDialog.load, true);
+
+    this.http
+      .get(`/api/ProgramacionesSesiones/${programation.Codigo}`)
+      .subscribe(
+        (e: any) => {
+          programation.Sesiones = e.data;
+          localStorage.setItem('programation', JSON.stringify(programation));
+
+          this.dialogService.closeLastOpenedModalDialog();
+          this.router.navigateByUrl('/programar/maestria/reprogramar');
+        },
+        (err: any) => {
+          this.dialogService.closeLastOpenedModalDialog();
+          const errorDialog = modalsDialog.error;
+          errorDialog.description = 'Ha surgido un error.';
+          this.dialogService.openModalDialog(errorDialog);
+        }
+      );
   }
 }

@@ -1,24 +1,33 @@
-<section class="template-body-page">
-    <section class="body-page">
-        <section id="section_1">
-            <app-input [input]="constantsInput.inputMaestria"></app-input>
-        </section>
-        <section id="section_2">
-            <app-input [input]="constantsInput.inputCurso"></app-input>
-        </section>
-        <section id="section_3">
-            <app-table-select-filter [table_select_filter]="constantsTable.table"></app-table-select-filter>
-        </section>
-        <section id="section_4">
-            <app-input [input]="constantsReUpInput.inputTitle"></app-input>
-            <app-datepicker-from-to></app-datepicker-from-to>
-            <app-time-from-to></app-time-from-to>
-            <app-week-days></app-week-days>
-            <app-input [input]="constantsReUpInput.inputReason"></app-input>
-            <section class="buttons">
-                <app-button-shared [button]="constantsReUpButton.saveButton"></app-button-shared>
-                <app-button-shared [button]="constantsReUpButton.cancelButton"></app-button-shared>
-            </section>
-        </section>
+<app-title-page [titlePage]="constants.titlePage"></app-title-page>
+
+<section class="wrapper-master-register">
+  <!-- INFORMATION -->
+  <section class="information">
+    <app-program-master-reschedule></app-program-master-reschedule>
+  </section>
+
+  <!-- SESSIONS -->
+  <section class="sessions">
+    <app-program-master-reschedule-sessions></app-program-master-reschedule-sessions>
+  </section>
+
+  <!-- BUTTONS -->
+  <section class="buttons">
+    <section class="register">
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        form="setDataForm"
+        (click)="reschedule()"
+      >
+        <section class="content-container">Reprogramar</section>
+      </button>
     </section>
+    <section class="cancel">
+      <button mat-flat-button color="accent" type="button">
+        <section class="content-container" (click)="cancel()">Cancelar</section>
+      </button>
+    </section>
+  </section>
 </section>
