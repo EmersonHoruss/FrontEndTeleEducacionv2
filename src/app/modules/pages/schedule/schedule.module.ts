@@ -25,6 +25,7 @@ import { MasterRescheduleComponent } from './pages/master-reschedule/master-resc
 import { MasterSaveComponent } from './pages/master-save/master-save.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MasterFollowComponent } from './pages/master-follow/master-follow.component';
+import { MasterManagementComponentComponent } from './pages/master-management-component/master-management-component.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { MasterFollowComponent } from './pages/master-follow/master-follow.compo
     MasterRescheduleComponent,
     MasterSaveComponent,
     MasterFollowComponent,
+    MasterManagementComponentComponent,
   ],
   imports: [
     CommonModule,

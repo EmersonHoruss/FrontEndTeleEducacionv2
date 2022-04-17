@@ -3,7 +3,7 @@
 
   .lookers {
     width: 100%;
-
+    display: flex;
     .dates {
       width: 100%;
       display: flex;
@@ -13,6 +13,12 @@
       }
 
       .button {
+        height: 59.5px;
+      }
+    }
+
+    .actions {
+      button {
         height: 59.5px;
       }
     }
@@ -37,6 +43,7 @@
       }
 
       .buttons-container {
+        width: 5rem;
         display: flex;
         justify-content: space-between;
       }

@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getSelectedValue(event: string | number) {
+  getSelectedValue(event: any) {
+    console.log(event);
     this.rolUser = event;
   }
 
@@ -51,7 +52,7 @@ export class LoginComponent implements OnInit {
         this.dialogService.closeLastOpenedModalDialog();
         this.loginSS.setIsLogged(true);
         this.loginSS.expiration();
-        this.loginSS.savePersonal(e.personal)
+        this.loginSS.savePersonal(e.personal);
         // console.log(e);
         this.router.navigateByUrl('/casa');
       },

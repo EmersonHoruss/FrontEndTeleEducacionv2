@@ -1,0 +1,56 @@
+.wrapper-program-course-coordinator {
+  width: 100%;
+  display: grid;
+  grid-template-areas:
+    "titleheader titleheader titlecoordinator"
+    "kindprogram program namecoordinator"
+    "curricula course  emailcoordinator";
+  grid-template-columns: 15% 60% 25%;
+
+  .title-header {
+    grid-area: titleheader;
+    margin-bottom: 0.5rem;
+    // background-color: blue;
+  }
+
+  .title-coordinator {
+    grid-area: titlecoordinator;
+    margin-bottom: 0.5rem;
+    // background-color: blueviolet;
+  }
+
+  .kind-program {
+    grid-area: kindprogram;
+    // background-color: rosybrown;
+  }
+
+  .program {
+    grid-area: program;
+    // background-color: lightblue;
+  }
+
+  .curricula {
+    grid-area: curricula;
+    // background-color: yellowgreen;
+  }
+
+  .course {
+    grid-area: course;
+    // background-color: beige;
+  }
+
+  .name-coordinator {
+    grid-area: namecoordinator;
+    // background-color: brown;
+  }
+
+  .email-coordinator {
+    grid-area: emailcoordinator;
+    // background-color: snow;
+  }
+
+  .centro {
+    width: 100%;
+    padding: 0 2rem 0 1rem;
+  }
+}

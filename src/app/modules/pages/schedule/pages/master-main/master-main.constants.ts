@@ -15,7 +15,7 @@ import { ConstantsTaGe } from './constants/table/table-general.constants';
 const titlePage: TitlePageInterface = JSON.parse(
   JSON.stringify(DefaultTitlePage)
 );
-titlePage.titlePage = 'Administrar programaciones de cursos de maestrías';
+titlePage.titlePage = 'Programaciones de Cursos';
 
 const inputNombreCoordinador: InputInterface = JSON.parse(
   JSON.stringify(DefaultInput)

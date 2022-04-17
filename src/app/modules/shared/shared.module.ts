@@ -48,6 +48,10 @@ import { ProgramMasterUpdateComponent } from './set-components/program-master-up
 import { ProgramMasterUpdateSessionsComponent } from './set-components/program-master-update-sessions/program-master-update-sessions.component';
 import { ProgramMasterRescheduleComponent } from './set-components/program-master-reschedule/program-master-reschedule.component';
 import { ProgramMasterRescheduleSessionsComponent } from './set-components/program-master-reschedule-sessions/program-master-reschedule-sessions.component';
+import { LoginSelectRolUserComponent } from './redifining-set-components/login-select-rol-user/login-select-rol-user.component';
+import { SelectProgramaCursoComponent } from './redifining-set-components/select-programa-curso/select-programa-curso.component';
+import { UpdateScheduleCourseComponent } from './redifining-set-components/update-schedule-course/update-schedule-course.component';
+import { ManagementSessionsCourseComponent } from './redifining-set-components/management-sessions-course/management-sessions-course.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +84,10 @@ import { ProgramMasterRescheduleSessionsComponent } from './set-components/progr
     ProgramMasterUpdateSessionsComponent,
     ProgramMasterRescheduleComponent,
     ProgramMasterRescheduleSessionsComponent,
+    LoginSelectRolUserComponent,
+    SelectProgramaCursoComponent,
+    UpdateScheduleCourseComponent,
+    ManagementSessionsCourseComponent,
   ],
   imports: [
     CommonModule,
@@ -125,6 +133,10 @@ import { ProgramMasterRescheduleSessionsComponent } from './set-components/progr
     ProgramMasterUpdateSessionsComponent,
     ProgramMasterRescheduleComponent,
     ProgramMasterRescheduleSessionsComponent,
+    LoginSelectRolUserComponent,
+    SelectProgramaCursoComponent,
+    UpdateScheduleCourseComponent,
+    ManagementSessionsCourseComponent,
   ],
   providers: [
     ModalsDialogService,

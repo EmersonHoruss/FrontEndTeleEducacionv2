@@ -137,6 +137,7 @@
             color="primary"
             [ngStyle]="plusButton.style"
             type="submit"
+            [disabled]="disabledFormBtns()"
             (click)="submitSessionForm()"
           >
             <section class="content-container">{{ plusButton.text }}</section>
@@ -154,7 +155,7 @@
             color="accent"
             [ngStyle]="cancelButton.style"
             type="button"
-            [disabled]="noUpdating"
+            [disabled]="disabledFormBtns()"
             (click)="cancelReschedule()"
           >
             <section class="content-container">{{ cancelButton.text }}</section>
@@ -198,7 +199,7 @@
                 *ngFor="let button of constantTaBu.buttons; let i = index"
                 [button]="button"
                 (clicked)="innerButtonTableClicked(i, object)"
-                [disabled]="setDisabledButton(object)"
+                [disabled]="disabledTableBtns(i, object)"
               ></app-button-shared>
             </section>
           </section>

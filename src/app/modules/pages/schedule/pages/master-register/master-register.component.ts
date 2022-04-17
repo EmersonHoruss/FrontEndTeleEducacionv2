@@ -82,7 +82,7 @@ export class MasterRegisterComponent implements OnInit {
         success.description = 'Programación del curso guardado exitosamente.';
 
         this.dialogService.openModalDialog(success);
-        this.router.navigateByUrl('/programar/maestria');
+        this.router.navigateByUrl('/programaciones/curso');
       },
       (err: any) => {
         this.dialogService.closeLastOpenedModalDialog();
@@ -94,7 +94,7 @@ export class MasterRegisterComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigateByUrl('/programar/maestria');
+    this.router.navigateByUrl('/programaciones/curso');
     // this.dialogService.openModalDialog(modalError);
   }
 
@@ -209,17 +209,39 @@ export class MasterRegisterComponent implements OnInit {
   }
 
   getCodigos() {
-    const cursoPrograma: any = localStorage.getItem('cursoPrograma');
-    const cursoProgramaObejct: any = JSON.parse(cursoPrograma);
+    const selectedProgramCourse: any = this.getSelectedProgramCourse();
 
     const personal: any = localStorage.getItem('personal');
     const personalObject: any = JSON.parse(personal);
 
     return {
-      codigoCoordinador: cursoProgramaObejct.coordinador.Codigo,
-      codigoCurso: cursoProgramaObejct.curso.Codigo,
-      codigoPrograma: cursoProgramaObejct.programa.Codigo,
+      codigoCoordinador: selectedProgramCourse.Coordinador.Codigo,
+      codigoCurso: selectedProgramCourse.Curso.Codigo,
+      codigoPrograma: selectedProgramCourse.Codigo,
       codigoPersonal: personalObject.Codigo,
     };
+  }
+
+  getSelectedProgramCourse(): any {
+    const selectsPCC: any = localStorage.getItem('selectsPCC');
+    const selectsPCCObj = JSON.parse(selectsPCC);
+    const PCC: any = localStorage.getItem('PCC');
+    const PCCObj = JSON.parse(PCC);
+
+    const program = PCCObj[selectsPCCObj.kindProgram].find(
+      (program: any) => program.Codigo === parseInt(selectsPCCObj.program)
+    );
+
+    const programCopy = JSON.parse(JSON.stringify(program));
+    const curriculaIndex = programCopy.Curriculas.findIndex(
+      (curricula: any) => selectsPCCObj.curricula === parseInt(curricula.Codigo)
+    );
+    const course = programCopy.Curriculas[curriculaIndex].Cursos.find(
+      (course: any) => course.Codigo === selectsPCCObj.course
+    );
+    const courseCopy = JSON.parse(JSON.stringify(course));
+    programCopy.Curso = courseCopy;
+
+    return programCopy;
   }
 }

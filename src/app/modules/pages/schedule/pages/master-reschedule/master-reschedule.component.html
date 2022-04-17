@@ -8,7 +8,10 @@
 
   <!-- SESSIONS -->
   <section class="sessions">
-    <app-program-master-reschedule-sessions></app-program-master-reschedule-sessions>
+    <app-program-master-reschedule-sessions
+      [listenerMasterRegister]="listenerMasterRegister"
+      (sessionsEE)="sessionsEE($event)"
+    ></app-program-master-reschedule-sessions>
   </section>
 
   <!-- BUTTONS -->

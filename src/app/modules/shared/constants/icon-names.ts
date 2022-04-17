@@ -16,4 +16,5 @@ export const IconNames = {
   confirm: 'bi bi-question',
   cancel: 'bi bi-x',
   load: 'bi bi-arrow-repeat',
+  management: 'bi bi-clipboard',
 };

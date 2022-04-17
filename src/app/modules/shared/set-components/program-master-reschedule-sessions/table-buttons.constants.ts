@@ -38,7 +38,7 @@ listButton.text = 'Listar';
 export const ConstantsTaBu = {
   buttons: [
     rescheduleButton,
-    updateButton,
+    // updateButton,
     deleteButton,
     // listButton,
   ],

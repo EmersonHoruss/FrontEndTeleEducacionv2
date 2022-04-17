@@ -1,23 +1,9 @@
 <app-title-page [titlePage]="constants.titlePage"></app-title-page>
 <section class="wrapper-master-main">
   <!-- SELECTS -->
-  <section class="program-selects">
-    <app-program
-      [programa]="programa"
-      (programaEE)="programaEE($event)"
-      (cursoEE)="cursoEE($event)"
-    ></app-program>
-  </section>
 
-  <!-- BUTTONS -->
-  <section class="program-buttons">
-    <app-program-buttons
-      [codigoCoordinador]="codigoCoordinador"
-      [registrarUrl]="registrarUrl"
-      [switchedProgramaSelect]="switchedProgramaSelect"
-      (clickedRegisterBtnEE)="clickedRegisterBtnEE($event)"
-      (foundCoordinador)="foundCoordinador($event)"
-    ></app-program-buttons>
+  <section class="program-selects">
+    <app-select-programa-curso></app-select-programa-curso>
   </section>
 
   <!-- TABLE -->
@@ -26,7 +12,6 @@
       [nameTable]="nameTable"
       [columns]="columnsTable"
       [buttons]="buttonActionsTable"
-      [curso]="cursoSeleccionado"
     ></app-program-table>
   </section>
 </section>

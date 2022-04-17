@@ -7,6 +7,9 @@ updateIcon.classCss = 'bi bi-pencil-square';
 const deleteIcon: IconInterface = JSON.parse(JSON.stringify(DefaultIcon));
 deleteIcon.classCss = 'bi bi-trash';
 
+const managementIcon: IconInterface = JSON.parse(JSON.stringify(DefaultIcon));
+managementIcon.classCss = 'bi bi-clipboard';
+
 const seeIcon: IconInterface = JSON.parse(JSON.stringify(DefaultIcon));
 seeIcon.classCss = 'bi bi-eye';
 
@@ -18,6 +21,7 @@ rescheduleIcon.classCss = 'bi bi-bootstrap-reboot';
 
 export const ConstantsTaIc = {
   updateIcon,
+  managementIcon,
   deleteIcon,
   seeIcon,
   saveIcon,

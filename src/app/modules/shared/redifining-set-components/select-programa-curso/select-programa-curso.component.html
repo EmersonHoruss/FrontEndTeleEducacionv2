@@ -1,0 +1,161 @@
+<form
+  class="wrapper-program-course-coordinator"
+  autocomplete="off"
+  [formGroup]="PCCForm"
+>
+  <!-- HEADER PROGRAM COURSE -->
+  <section class="title-header">
+    <p>Selección de programas y cursos</p>
+  </section>
+
+  <!-- HEADER COORDINATOR -->
+  <section class="title-coordinator">
+    <p>Coordinador del programa</p>
+  </section>
+
+  <!-- KIND PROGRAM -->
+  <mat-form-field appearance="fill" class="kind-program">
+    <mat-label>Tipo de programa</mat-label>
+    <mat-select
+      disableOptionCentering="true"
+      formControlName="kindProgram"
+      (selectionChange)="selectedKindProgram($event.value)"
+    >
+      <mat-option
+        *ngFor="let kindProgram of kindPrograms"
+        [value]="kindProgram.Codigo"
+      >
+        {{ kindProgram.Nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- PROGRAM -->
+  <section class="program centro">
+    <mat-form-field appearance="fill" (click)="openProgramSelect()">
+      <mat-label>Programa</mat-label>
+      <mat-select
+        disableOptionCentering="true"
+        formControlName="program"
+        (selectionChange)="selectedProgram($event.value)"
+      >
+        <mat-option *ngIf="!isLoaded.program">Está cargando...</mat-option>
+
+        <mat-option
+          *ngFor="let programa of dataSelects.programs"
+          [value]="programa.Codigo"
+        >
+          {{ programa.Nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </section>
+
+  <!-- NAME COORDINATOR -->
+  <mat-form-field
+    class="example-full-width"
+    appearance="fill"
+    class="name-coordinator"
+  >
+    <mat-label>Nombre</mat-label>
+    <input
+      matInput
+      *ngIf="!isLoaded.coordinator"
+      [value]="getSelectsPCC().program ? 'Está cargando...' : null"
+      [disabled]="true"
+    />
+
+    <input
+      matInput
+      *ngIf="isLoaded.coordinator && !dataSelects.coordinator"
+      value="Sin coordinador"
+      [disabled]="true"
+    />
+    <input
+      matInput
+      *ngIf="isLoaded.coordinator && dataSelects.coordinator"
+      [value]="nameCoordinatorValue()"
+      [disabled]="true"
+    />
+  </mat-form-field>
+
+  <!-- CURRICULA -->
+  <mat-form-field
+    appearance="fill"
+    class="curricula"
+    (click)="openCurriculaSelect()"
+  >
+    <mat-label>Currícula</mat-label>
+    <mat-select
+      disableOptionCentering="true"
+      formControlName="curricula"
+      (selectionChange)="selectedCurricula($event.value)"
+    >
+      <mat-option *ngIf="!isLoaded.curricula">Está cargando...</mat-option>
+
+      <mat-option *ngIf="isLoaded.curricula && curriculaHasNoElements()"
+        >Sin resultados</mat-option
+      >
+
+      <mat-option
+        *ngFor="let programa of dataSelects.curriculas"
+        [value]="programa.Codigo"
+      >
+        {{ programa.Nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- COURSE -->
+  <section class="course centro">
+    <mat-form-field appearance="fill" (click)="openCourseSelect()">
+      <mat-label>Curso</mat-label>
+      <mat-select
+        disableOptionCentering="true"
+        formControlName="course"
+        (selectionChange)="selectedCourse($event.value)"
+      >
+        <mat-option *ngIf="!isLoaded.course">Está cargando...</mat-option>
+
+        <mat-option *ngIf="isLoaded.course && courseHasNoElements()"
+          >Sin resultados</mat-option
+        >
+
+        <mat-option
+          *ngFor="let course of dataSelects.courses"
+          [value]="course.Codigo"
+        >
+          {{ course.Nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </section>
+
+  <!-- EMAIL COORDINATOR -->
+  <mat-form-field
+    class="example-full-width"
+    appearance="fill"
+    class="email-coordinator"
+  >
+    <mat-label>Correo</mat-label>
+    <input
+      matInput
+      *ngIf="!isLoaded.coordinator"
+      [value]="getSelectsPCC().program ? 'Está cargando...' : null"
+      [disabled]="true"
+    />
+
+    <input
+      matInput
+      *ngIf="isLoaded.coordinator && !dataSelects.coordinator"
+      value="Sin coordinador"
+      [disabled]="true"
+    />
+    <input
+      matInput
+      *ngIf="isLoaded.coordinator && dataSelects.coordinator"
+      [value]="emailCoordinatorValue()"
+      [disabled]="true"
+    />
+  </mat-form-field>
+</form>

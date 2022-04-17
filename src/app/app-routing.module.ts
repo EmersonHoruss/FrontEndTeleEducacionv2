@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'iniciar-sesion', component: LoginComponent },
   { path: 'casa', component: HomeComponent },
   {
-    path: 'programar',
+    path: 'programaciones',
     loadChildren: () =>
       import('./modules/pages/schedule/schedule.module').then(
         (m) => m.ScheduleModule

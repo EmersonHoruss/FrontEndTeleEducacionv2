@@ -14,6 +14,11 @@ deleteButton.tooltipText = 'Eliminar';
 deleteButton.icon = icons.deleteIcon;
 deleteButton.style = { 'border-radius': '50%', width: '75%' };
 
+const managementButton: ButtonInterface = JSON.parse(JSON.stringify(DefaultButton));
+managementButton.tooltipText = 'Gestionar';
+managementButton.icon = icons.managementIcon;
+managementButton.style = { 'border-radius': '50%', width: '75%' };
+
 const seeButton: ButtonInterface = JSON.parse(JSON.stringify(DefaultButton));
 seeButton.tooltipText = 'Ver';
 seeButton.icon = icons.seeIcon;
@@ -36,11 +41,12 @@ listButton.text = 'Listar';
 
 export const ConstantsTaBu = {
   buttons: [
-    updateButton,
+    // updateButton,
+    managementButton,
     deleteButton,
     // seeButton,
-    saveButton,
-    rescheduleButton,
+    // saveButton,
+    // rescheduleButton,
     // listButton,
   ],
 };

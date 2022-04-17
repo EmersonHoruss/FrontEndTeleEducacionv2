@@ -53,7 +53,6 @@ export class ProgramMasterRescheduleSessionsComponent
   // START: INPUT OUTPUT VARIABLES
   @Input() listenerMasterRegister: boolean;
   @Output() sessionsEE = new EventEmitter<any>();
-  @Output() sessionsDeletedEE = new EventEmitter<any>();
   // END: INPUT OUTPUT VARIABLES
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -76,8 +75,8 @@ export class ProgramMasterRescheduleSessionsComponent
   fechaFin: any;
 
   sessions: any;
-  sessionsHelp = [];
-  sessionsBackendDeleted: any = [];
+  sessionsHelp: any = [];
+  sessionsBackend: any = [];
   columns = ['Fecha', 'Hora de inicio', 'Hora de fin', 'Estado', 'Acciones'];
   noSessions = 'Sin sesiones por mostrar';
   constantTaBu = ConstantsTaBu;
@@ -85,9 +84,7 @@ export class ProgramMasterRescheduleSessionsComponent
 
   // index and object to reschedule, update or delete
   indexToUpdate: any = null;
-  objectToUpdate: any = {};
-  // actions like reschedule, update or delete
-  indexAction: any = null;
+  objectToUpdate: any = null;
 
   constructor(
     private fb: FormBuilder,
@@ -99,9 +96,14 @@ export class ProgramMasterRescheduleSessionsComponent
 
   ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['listenerMasterRegister'])
+      this.sessionsEE.emit(this.sessionsBackend);
+  }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+    this.sessions.paginator = this.paginator;
+  }
 
   // START INPUTS FORM ERRORS
   getError(control: string): any {
@@ -176,11 +178,16 @@ export class ProgramMasterRescheduleSessionsComponent
   getSessionDiferentReprogramado(): any {
     // depure sessions. Just get with diferente status of Reprogramado
     // because we cant target in a dictated session or saved
-    const sessionScheduled = this.sessionsHelp.filter(
+    const sessionsScheduled = this.sessionsHelp.filter(
       (session: any) => session.Estado !== 'Reprogramado'
     );
 
-    return sessionScheduled;
+    if (this.rescheduleOrUpdate() === 'update')
+      return sessionsScheduled.filter(
+        (e: any) => e.CodigoReprogramacion !== this.objectToUpdate.Codigo
+      );
+
+    return sessionsScheduled;
   }
 
   // logic as start time should be less than end time
@@ -256,7 +263,7 @@ export class ProgramMasterRescheduleSessionsComponent
         );
 
         // if date are the same we have to corroborate dates dosent target
-        // otherwise it target
+        // otherwise it targets
         if (e['Fecha'] === sessionToAdd['Fecha']) {
           const isNoTargeteable =
             moment(endTime).isSameOrBefore(startTimeE) ||
@@ -287,29 +294,26 @@ export class ProgramMasterRescheduleSessionsComponent
     const endTime = this.sessionForm.controls['endTime'].value;
     let session: any = {};
 
-    // if dosen't exist an index and isn't updating
-    // if (!this.indexToUpdate && this.noUpdating) {
+    session['Codigo'] = this.objectToUpdate.Codigo + 'A';
     session['Fecha'] = date;
     session['Hora de inicio'] = startTime;
     session['Hora de fin'] = endTime;
     session['Acciones'] = 'true';
     session['Estado'] = 'Programado';
-    // } else {
-    //   session = JSON.parse(JSON.stringify(this.objectToUpdate));
-    //   session['Fecha'] = date;
-    //   session['Hora de inicio'] = startTime;
-    //   session['Hora de fin'] = endTime;
-    // }
+    session['CodigoReprogramacion'] = this.objectToUpdate.Codigo;
+    session['Vigencia'] = true;
 
     return session;
   }
 
   splicexySesions() {
-    const sessionsAux = JSON.parse(JSON.stringify(this.sessionsHelp));
-    // if dosen't exist an index and isn't updating
-    !this.indexToUpdate && this.noUpdating
-      ? sessionsAux.splice(0, 0, this.getSession())
-      : sessionsAux.splice(this.indexToUpdate, 1, this.getSession());
+    let sessionsAux = JSON.parse(JSON.stringify(this.sessionsHelp));
+
+    this.rescheduleOrUpdate() === 'reschedule'
+      ? (sessionsAux = this.insertSchedule(sessionsAux))
+      : this.rescheduleOrUpdate() === 'update'
+      ? (sessionsAux = this.updateReschedule(sessionsAux))
+      : null;
 
     this.sessionsHelp = sessionsAux;
 
@@ -318,9 +322,12 @@ export class ProgramMasterRescheduleSessionsComponent
 
     // if dosen't exist an index and isn't updating
     const description =
-      !this.indexToUpdate && this.noUpdating
-        ? 'Sesión añadida.'
-        : 'Sesión actualizada.';
+      this.rescheduleOrUpdate() === 'reschedule'
+        ? 'Sesión reprogramada.'
+        : this.rescheduleOrUpdate() === 'update'
+        ? 'Reprogramación actualizada.'
+        : '';
+
     modalsDialog.success.description = description;
 
     this.dialogService.openModalDialog(modalsDialog.success);
@@ -328,8 +335,127 @@ export class ProgramMasterRescheduleSessionsComponent
     // because it dosent matter. It's unnecesary for register,
     // but for updates it is
     // this.noUpdating = true;
-    this.sessionsEE.emit(this.sessionsHelp);
-    this.sessionsDeletedEE.emit(this.sessionsBackendDeleted);
+    this.sessionsEE.emit(this.sessionsBackend);
+  }
+
+  // let insert new scheduled session and update or convert into
+  // reschedule session the beggining schedule
+  insertSchedule(sessionsAux: any) {
+    // Start frontend update schedule
+    const indexSessionSchedule = sessionsAux.findIndex(
+      (e: any) => e.Codigo === this.objectToUpdate.Codigo
+    );
+
+    sessionsAux[indexSessionSchedule].Estado = 'Reprogramado';
+    sessionsAux[indexSessionSchedule].MotivoReprogramacionDescripcion =
+      this.sessionForm.controls['reason'].value;
+
+    sessionsAux[indexSessionSchedule].MotivoReprogramacionVigencia = true;
+    // End frontend update schedule
+
+    // Start backend update schedule
+    const indexBackendSession = this.sessionsBackend.findIndex(
+      (e: any) => e.Codigo === this.objectToUpdate.Codigo
+    );
+    this.sessionsBackend[indexBackendSession].Estado = 'Reprogramado';
+    this.sessionsBackend[indexBackendSession].MotivoReprogramacionDescripcion =
+      this.sessionForm.controls['reason'].value;
+    this.sessionsBackend[indexBackendSession].MotivoReprogramacionVigencia =
+      true;
+    this.sessionsBackend[indexBackendSession].ModificadoSesion = true;
+    this.sessionsBackend[indexBackendSession].ModificadoMotivoReprogramacion =
+      true;
+    // End backend update schedule
+
+    // Start exist in backend
+    const indexSessionFound = this.sessionsBackend.findIndex(
+      (session: any) =>
+        session.CodigoReprogramacion === this.objectToUpdate.Codigo
+    );
+    // End exist in backend
+
+    const sessionToAdd = this.getSession();
+
+    if (indexSessionFound !== -1) {
+      this.sessionsBackend[indexSessionFound].Estado = 'Programado';
+      this.sessionsBackend[indexSessionFound].Vigencia = true;
+      this.sessionsBackend[indexSessionFound]['Fecha'] = sessionToAdd.Fecha;
+      this.sessionsBackend[indexSessionFound]['Hora de inicio'] =
+        sessionToAdd['Hora de inicio'];
+      this.sessionsBackend[indexSessionFound]['Hora de fin'] =
+        sessionToAdd['Hora de fin'];
+      this.sessionsBackend[indexSessionFound].ModificadoSesion = true;
+
+      const sessionToAddFront = JSON.parse(
+        JSON.stringify(this.sessionsBackend[indexSessionFound])
+      );
+
+      sessionsAux.splice(indexSessionSchedule, 0, sessionToAddFront);
+    } else {
+      sessionsAux.splice(indexSessionSchedule, 0, sessionToAdd);
+      sessionToAdd.ModificadoSesion = true;
+      this.sessionsBackend.push(sessionToAdd);
+    }
+
+    return sessionsAux;
+  }
+
+  // let udpate new scheduled session
+  updateReschedule(sessionsAux: any) {
+    // Start update frontend
+    const indexSessionSchedule = sessionsAux.findIndex(
+      (e: any) => e.Codigo === this.objectToUpdate.Codigo
+    );
+
+    sessionsAux[indexSessionSchedule].MotivoReprogramacionDescripcion =
+      this.sessionForm.controls['reason'].value;
+    sessionsAux[indexSessionSchedule].MotivoReprogramacionVigencia = true;
+
+    const indexNewSessionSchedule = sessionsAux.findIndex(
+      (e: any) => e.CodigoReprogramacion === this.objectToUpdate.Codigo
+    );
+    const dateFormatedIn = moment(
+      this.sessionForm.controls['date'].value,
+      this.formatoEntrada
+    );
+    const date = dateFormatedIn.format(this.formatoSalida);
+
+    sessionsAux[indexNewSessionSchedule].Fecha = date;
+    sessionsAux[indexNewSessionSchedule]['Hora de inicio'] =
+      this.sessionForm.controls['startTime'].value;
+    sessionsAux[indexNewSessionSchedule]['Hora de fin'] =
+      this.sessionForm.controls['endTime'].value;
+    // End update frontend
+
+    // Start update backend
+    const indexSessionScheduleBackend = this.sessionsBackend.findIndex(
+      (e: any) => e.Codigo === this.objectToUpdate.Codigo
+    );
+    this.sessionsBackend[
+      indexSessionScheduleBackend
+    ].MotivoReprogramacionDescripcion =
+      this.sessionForm.controls['reason'].value;
+    this.sessionsBackend[indexSessionScheduleBackend]['ModificadoSesion'] =
+      true;
+    this.sessionsBackend[indexSessionScheduleBackend][
+      'ModificadoMotivoReprogramacion'
+    ] = true;
+    this.sessionsBackend[
+      indexSessionScheduleBackend
+    ].MotivoReprogramacionVigencia = true;
+
+    const indexSessionRescheduleBackend = this.sessionsBackend.findIndex(
+      (e: any) => e.CodigoReprogramacion === this.objectToUpdate.Codigo
+    );
+    this.sessionsBackend[indexSessionRescheduleBackend].Fecha = date;
+    this.sessionsBackend[indexSessionRescheduleBackend]['Hora de inicio'] =
+      this.sessionForm.controls['startTime'].value;
+    this.sessionsBackend[indexSessionRescheduleBackend]['Hora de fin'] =
+      this.sessionForm.controls['endTime'].value;
+    this.sessionsBackend[indexSessionRescheduleBackend]['ModificadoSesion'] =
+      true;
+    // End update backend
+    return sessionsAux;
   }
   // END SUBMITION AND VALIDATION
 
@@ -340,37 +466,24 @@ export class ProgramMasterRescheduleSessionsComponent
     this.sessionForm.controls['endTime'].setErrors(null);
     this.sessionForm.controls['reason'].setErrors(null);
     // console.log('rescheculing', this.sessionForm);
-    // this.noUpdating = true;
+    this.objectToUpdate = null;
   }
 
   innerButtonTableClicked(indexButton: any, elementInRow: any) {
-    this.indexAction = indexButton;
     this.objectToUpdate = elementInRow;
 
-    indexButton === 0 || indexButton === 1
+    indexButton === 0
       ? this.loadRescheduleSession(elementInRow)
-      : indexButton === 2
+      : indexButton === 1
       ? this.deleteRescheduleSession(elementInRow)
       : null;
   }
 
   loadRescheduleSession(elementInRow: any) {
-    // load schedule session
-    const dateFormatedIn = moment(elementInRow['Fecha'], 'DD/MM/YYYY');
-    const dateOut = dateFormatedIn.format('MM/DD/YYYY');
-
-    this.sessionForm.controls['dateSchedule'].setValue(new Date(dateOut));
-    this.sessionForm.controls['startTimeSchedule'].setValue(
-      elementInRow['Hora de inicio']
-    );
-    this.sessionForm.controls['endTimeSchedule'].setValue(
-      elementInRow['Hora de fin']
-    );
-
-    // load reschedule session
+    // console.log(this.rescheduleOrUpdate());
     if (elementInRow.Estado === 'Reprogramado') {
       const codigo = elementInRow.Codigo;
-      const reason = elementInRow.Reason;
+      const reason = elementInRow.MotivoReprogramacionDescripcion;
       this.sessionsHelp.forEach((session: any) => {
         if (codigo === session.CodigoReprogramacion) {
           const dateFormatedIn = moment(session['Fecha'], 'DD/MM/YYYY');
@@ -384,24 +497,92 @@ export class ProgramMasterRescheduleSessionsComponent
           this.sessionForm.controls['reason'].setValue(reason);
         }
       });
+    } else {
+      this.cancelReschedule();
+      this.objectToUpdate = elementInRow;
     }
 
-    // this.noUpdating = false;
+    const dateFormatedIn = moment(elementInRow['Fecha'], 'DD/MM/YYYY');
+    const dateOut = dateFormatedIn.format('MM/DD/YYYY');
+
+    this.sessionForm.controls['dateSchedule'].setValue(new Date(dateOut));
+    this.sessionForm.controls['startTimeSchedule'].setValue(
+      elementInRow['Hora de inicio']
+    );
+    this.sessionForm.controls['endTimeSchedule'].setValue(
+      elementInRow['Hora de fin']
+    );
+    if (elementInRow.hasOwnProperty('MotivoReprogramacionDescripcion'))
+      this.sessionForm.controls['reason'].setValue(
+        elementInRow['MotivoReprogramacionDescripcion']
+      );
   }
 
   deleteRescheduleSession(elementInRow: any) {
-    console.log('deleting');
+    this.logicDeleteRescheduleSession(elementInRow);
+
+    modalsDialog.success.description = 'Reprogramación eliminada.';
+    this.dialogService.openModalDialog(modalsDialog.success);
+
+    this.cancelReschedule();
+    this.sessionsEE.emit(this.sessionsBackend);
+  }
+
+  logicDeleteRescheduleSession(elementInRow: any) {
+    // reset frontend
+    const sessionsAux = JSON.parse(JSON.stringify(this.sessionsHelp));
+    const indexScheduledSession = sessionsAux.findIndex(
+      (session: any) => elementInRow.Codigo === session.Codigo
+    );
+    sessionsAux[indexScheduledSession].Estado = 'Programado';
+    sessionsAux[indexScheduledSession].MotivoReprogramacionDescripcion = '';
+
+    // delete frontend
+    this.sessionsHelp = sessionsAux.filter(
+      (session: any) => session.CodigoReprogramacion !== elementInRow.Codigo
+    );
+
+    // reset backend
+    const indexScheduleBackendSession = this.sessionsBackend.findIndex(
+      (session: any) => elementInRow.Codigo === session.Codigo
+    );
+    this.sessionsBackend[indexScheduleBackendSession].Estado = 'Programado';
+    this.sessionsBackend[indexScheduleBackendSession].ModificadoSesion = true;
+    this.sessionsBackend[
+      indexScheduleBackendSession
+    ].MotivoReprogramacionVigencia = false;
+    this.sessionsBackend[
+      indexScheduleBackendSession
+    ].ModificadoMotivoReprogramacion = true;
+    this.sessionsBackend[
+      indexScheduleBackendSession
+    ].MotivoReprogramacionDescripcion = '';
+
+    // delete backend (if type of code is string delete else update)
+    const indexRescheduleBackendSession = this.sessionsBackend.findIndex(
+      (session: any) => session.CodigoReprogramacion === elementInRow.Codigo
+    );
+    if (
+      typeof this.sessionsBackend[indexRescheduleBackendSession].Codigo ===
+      'string'
+    ) {
+      this.sessionsBackend = this.sessionsBackend.filter(
+        (session: any) => session.CodigoReprogramacion !== elementInRow.Codigo
+      );
+    } else {
+      this.sessionsBackend[indexRescheduleBackendSession].Vigencia = false;
+      this.sessionsBackend[indexRescheduleBackendSession].ModificadoSesion =
+        false;
+    }
+
+    // update data in table
+    this.sessions = new MatTableDataSource(this.sessionsHelp);
+    this.sessions.paginator = this.paginator;
   }
 
   formatearSesionesDeLS(): any {
-    const sesiones: any = [];
-
     // used to compare if exist any changes fron original fecha
     this.programacionObj.Sesiones.forEach((sesion: any, index: any) => {
-      sesion['FechaBackend'] = moment(
-        sesion.Fecha,
-        this.formatoBackDate
-      ).format(this.formatoFrontDate);
       sesion['Fecha'] = moment(sesion.Fecha, this.formatoBackDate).format(
         this.formatoFrontDate
       );
@@ -418,10 +599,14 @@ export class ProgramMasterRescheduleSessionsComponent
           ? 'Dictado'
           : 'No Existe';
       sesion['Acciones'] = 'true';
-      sesiones.push(sesion);
-    });
 
-    this.sessionsHelp = sesiones;
+      sesion['ModificadoSesion'] = false;
+      sesion['ModificadoMotivoReprogramacion'] = false;
+
+      this.sessionsBackend.push(sesion);
+
+      if (sesion.Vigencia === 1) this.sessionsHelp.push(sesion);
+    });
   }
 
   // after deleting an element we have to include this piece of code
@@ -440,8 +625,29 @@ export class ProgramMasterRescheduleSessionsComponent
       this.sessionForm.controls['endTime'].setErrors({ required: '' });
   }
 
-  setDisabledButton(elementInRow: any): boolean {
-    // not implemented yet
-    return false;
+  disabledFormBtns(): boolean {
+    return this.objectToUpdate === null ? true : false;
+  }
+
+  disabledTableBtns(indexButton: any, elementInRow: any): boolean {
+    const estado = elementInRow.Estado;
+
+    return estado === 'Programado'
+      ? indexButton === 1
+      : estado === 'Reprogramado'
+      ? false
+      : true;
+  }
+
+  rescheduleOrUpdate(): any {
+    if (this.objectToUpdate !== null) {
+      const codigo = this.objectToUpdate.Codigo;
+      return this.sessionsHelp.findIndex((session: any) => {
+        return codigo === session.CodigoReprogramacion;
+      }) === -1
+        ? 'reschedule'
+        : 'update';
+    }
+    return 'norNeither';
   }
 }

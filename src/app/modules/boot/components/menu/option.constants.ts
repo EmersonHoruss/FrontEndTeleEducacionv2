@@ -11,7 +11,7 @@ const optionsText: Array<string> = [
 
 const optionsUrl: Array<string> = [
   '/casa',
-  '/programar',
+  '/programaciones',
   '/mantenimiento',
   '/reportes',
   '/configuración',
