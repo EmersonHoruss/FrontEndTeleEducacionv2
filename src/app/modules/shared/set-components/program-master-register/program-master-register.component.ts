@@ -87,7 +87,7 @@ export class ProgramMasterRegisterComponent
   }
 
   openTeacherSelect() {
-    this.http.get('/api/Docentes').subscribe((e: any) => {
+    this.http.get('/api/DocentesVigentes').subscribe((e: any) => {
       this.loadingTeacher = false;
       this.teachers = e.data;
     });

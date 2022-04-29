@@ -53,6 +53,15 @@ import { SelectProgramaCursoComponent } from './redifining-set-components/select
 import { UpdateScheduleCourseComponent } from './redifining-set-components/update-schedule-course/update-schedule-course.component';
 import { ManagementSessionsCourseComponent } from './redifining-set-components/management-sessions-course/management-sessions-course.component';
 
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ExamMainSelectComponent } from './redifining-set-components/exam-main-select/exam-main-select.component';
+import { ExamMainTableComponent } from './redifining-set-components/exam-main-table/exam-main-table.component';
+import { ExamRegisterFormComponent } from './redifining-set-components/exam-register-form/exam-register-form.component';
+import { ExamRegisterPostulantComponent } from './redifining-set-components/exam-register-postulant/exam-register-postulant.component';
+import { LiftMainSelectComponent } from './redifining-set-components/lift-main-select/lift-main-select.component';
+import { LiftMainTableComponent } from './redifining-set-components/lift-main-table/lift-main-table.component';
+import { LiftMainAllContentComponent } from './redifining-set-components/lift-main-all-content/lift-main-all-content.component';
+
 @NgModule({
   declarations: [
     SharedxdComponent,
@@ -88,6 +97,13 @@ import { ManagementSessionsCourseComponent } from './redifining-set-components/m
     SelectProgramaCursoComponent,
     UpdateScheduleCourseComponent,
     ManagementSessionsCourseComponent,
+    ExamMainSelectComponent,
+    ExamMainTableComponent,
+    ExamRegisterFormComponent,
+    ExamRegisterPostulantComponent,
+    LiftMainSelectComponent,
+    LiftMainTableComponent,
+    LiftMainAllContentComponent,
   ],
   imports: [
     CommonModule,
@@ -106,6 +122,7 @@ import { ManagementSessionsCourseComponent } from './redifining-set-components/m
     MatNativeDateModule,
     MatTooltipModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
   ],
   exports: [
     PruebaComponent,
@@ -137,6 +154,15 @@ import { ManagementSessionsCourseComponent } from './redifining-set-components/m
     SelectProgramaCursoComponent,
     UpdateScheduleCourseComponent,
     ManagementSessionsCourseComponent,
+
+    ExamMainSelectComponent,
+    ExamMainTableComponent,
+    ExamRegisterFormComponent,
+    ExamRegisterPostulantComponent,
+
+    LiftMainSelectComponent,
+    LiftMainTableComponent,
+    LiftMainAllContentComponent,
   ],
   providers: [
     ModalsDialogService,

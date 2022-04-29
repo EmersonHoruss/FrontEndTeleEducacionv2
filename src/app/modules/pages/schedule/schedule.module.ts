@@ -12,8 +12,6 @@ import { MatTableModule } from '@angular/material/table';
 import { StartComponent } from './start/start.component';
 import { DoctorateMainComponent } from './pages/doctorate-main/doctorate-main.component';
 import { LanguageMainComponent } from './pages/language-main/language-main.component';
-import { ExamMainComponent } from './pages/exam-main/exam-main.component';
-import { LiftMainComponent } from './pages/lift-main/lift-main.component';
 import { FormsModule } from '@angular/forms';
 import { MasterMainComponent } from './pages/master-main/master-main.component';
 import { MasterUpdateComponent } from './pages/master-update/master-update.component';
@@ -26,6 +24,14 @@ import { MasterSaveComponent } from './pages/master-save/master-save.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MasterFollowComponent } from './pages/master-follow/master-follow.component';
 import { MasterManagementComponentComponent } from './pages/master-management-component/master-management-component.component';
+import { ExamNewComponent } from './exam/exam-new/exam-new.component';
+import { ExamManagementComponent } from './exam/exam-management/exam-management.component';
+import { ExamMainComponent } from './exam/exam-main/exam-main.component';
+import { LiftManagementComponent } from './lift/lift-management/lift-management.component';
+import { LiftNewComponent } from './lift/lift-new/lift-new.component';
+import { LiftMainComponent } from './lift/lift-main/lift-main.component';
+import { LiftGetItBackComponent } from './lift/lift-get-it-back/lift-get-it-back.component';
+import { ExamGetItBackComponent } from './exam/exam-get-it-back/exam-get-it-back.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +39,6 @@ import { MasterManagementComponentComponent } from './pages/master-management-co
     DoctorateMainComponent,
     MasterMainComponent,
     LanguageMainComponent,
-    ExamMainComponent,
-    LiftMainComponent,
     MasterUpdateComponent,
     MasterSeeComponent,
     MasterRegisterComponent,
@@ -42,6 +46,14 @@ import { MasterManagementComponentComponent } from './pages/master-management-co
     MasterSaveComponent,
     MasterFollowComponent,
     MasterManagementComponentComponent,
+    LiftMainComponent,
+    ExamMainComponent,
+    ExamNewComponent,
+    ExamManagementComponent,
+    LiftManagementComponent,
+    LiftNewComponent,
+    LiftGetItBackComponent,
+    ExamGetItBackComponent,
   ],
   imports: [
     CommonModule,

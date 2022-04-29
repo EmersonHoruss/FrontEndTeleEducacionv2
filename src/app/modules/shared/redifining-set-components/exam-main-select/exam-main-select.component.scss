@@ -1,0 +1,33 @@
+.wrapper-program-course-coordinator {
+  width: 100%;
+  display: grid;
+  grid-template-areas:
+    "titleheader titleheader"
+    "kindprogram program";
+  grid-template-columns: 15% 85%;
+
+  .title-header {
+    grid-area: titleheader;
+    margin-bottom: 0.5rem;
+    // background-color: blue;
+  }
+
+  .kind-program {
+    grid-area: kindprogram;
+    // background-color: rosybrown;
+  }
+
+  .program {
+    grid-area: program;
+    // background-color: lightblue;
+  }
+
+  .centro {
+    width: 100%;
+    padding-left: 1rem;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}

@@ -191,14 +191,32 @@ export class ProgramTableComponent implements OnInit {
     this.dialogService.openModalDialog(modalsDialog.load, true);
     console.log(programation);
     this.http
-      .get(`/api/ProgramacionesSesiones/${programation.Codigo}`, {})
+      .get(`/api/ProgramacionesSesiones/${programation.Codigo}`)
       .subscribe(
         (e: any) => {
-          programation.Sesiones = e.data;
-          localStorage.setItem('programation', JSON.stringify(programation));
+          this.http
+            .get(
+              `/api/Docentes/${programation.CodigoCoordinador}`
+            )
+            .subscribe(
+              (el: any) => {
+                programation.Sesiones = e.data;
+                programation.Coordinador = el.data;
+                localStorage.setItem(
+                  'programation',
+                  JSON.stringify(programation)
+                );
 
-          this.dialogService.closeLastOpenedModalDialog();
-          this.router.navigateByUrl('/programaciones/curso/gestionar');
+                this.dialogService.closeLastOpenedModalDialog();
+                this.router.navigateByUrl('/programaciones/curso/gestionar');
+              },
+              (err: any) => {
+                this.dialogService.closeLastOpenedModalDialog();
+                const errorDialo = modalsDialog.error;
+                errorDialo.description = 'Ha surgido un error.';
+                this.dialogService.openModalDialog(errorDialo);
+              }
+            );
         },
         (err: any) => {
           this.dialogService.closeLastOpenedModalDialog();

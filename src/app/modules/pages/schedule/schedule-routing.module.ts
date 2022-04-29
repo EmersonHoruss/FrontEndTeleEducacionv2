@@ -2,38 +2,35 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { StartComponent } from './start/start.component';
-import { DoctorateMainComponent } from './pages/doctorate-main/doctorate-main.component';
-import { LanguageMainComponent } from './pages/language-main/language-main.component';
-import { ExamMainComponent } from './pages/exam-main/exam-main.component';
-import { LiftMainComponent } from './pages/lift-main/lift-main.component';
 import { MasterMainComponent } from './pages/master-main/master-main.component';
-import { MasterUpdateComponent } from './pages/master-update/master-update.component';
-import { MasterSeeComponent } from './pages/master-see/master-see.component';
 import { MasterRegisterComponent } from './pages/master-register/master-register.component';
-import { MasterRescheduleComponent } from './pages/master-reschedule/master-reschedule.component';
-import { MasterSaveComponent } from './pages/master-save/master-save.component';
-import { MasterFollowComponent } from './pages/master-follow/master-follow.component';
 import { MasterManagementComponentComponent } from './pages/master-management-component/master-management-component.component';
+
+import { ExamMainComponent } from './exam/exam-main/exam-main.component';
+import { ExamNewComponent } from './exam/exam-new/exam-new.component';
+import { ExamManagementComponent } from './exam/exam-management/exam-management.component';
+import { LiftNewComponent } from './lift/lift-new/lift-new.component';
+import { LiftManagementComponent } from './lift/lift-management/lift-management.component';
+import { LiftMainComponent } from './lift/lift-main/lift-main.component';
+import { LiftGetItBackComponent } from './lift/lift-get-it-back/lift-get-it-back.component';
+import { ExamGetItBackComponent } from './exam/exam-get-it-back/exam-get-it-back.component';
 
 const routes: Routes = [
   { path: '', component: StartComponent },
+  
   { path: 'curso', component: MasterMainComponent },
   { path: 'curso/nuevo', component: MasterRegisterComponent },
   { path: 'curso/gestionar', component: MasterManagementComponentComponent },
-  // { path: 'maestria', component: MasterMainComponent },
-  // {
-  //   path: 'maestria/registrar',
-  //   component: MasterRegisterComponent,
-  // },
-  // { path: 'maestria/reprogramar', component: MasterRescheduleComponent },
-  // { path: 'maestria/dar-seguimiento', component: MasterFollowComponent },
-  // { path: 'maestria/guardar', component: MasterSaveComponent },
-  // { path: 'maestria/actualizar', component: MasterUpdateComponent },
-  // { path: 'maestria/ver', component: MasterSeeComponent },
-  // { path: 'doctorado', component: DoctorateMainComponent },
-  // { path: 'idioma', component: LanguageMainComponent },
+
   { path: 'examen', component: ExamMainComponent },
+  { path: 'examen/nuevo', component: ExamNewComponent },
+  { path: 'examen/recuperar', component: ExamGetItBackComponent },
+  { path: 'examen/gestionar', component: ExamManagementComponent },
+
   { path: 'sustentacion', component: LiftMainComponent },
+  { path: 'sustentacion/nuevo', component: LiftNewComponent },
+  { path: 'sustentacion/recuperar', component: LiftGetItBackComponent },
+  { path: 'sustentacion/gestionar', component: LiftManagementComponent },
 ];
 
 @NgModule({

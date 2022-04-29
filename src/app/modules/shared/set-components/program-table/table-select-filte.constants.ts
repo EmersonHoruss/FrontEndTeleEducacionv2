@@ -23,11 +23,6 @@ dateEnd.label = 'Fecha de fin';
 
 buttonList.text = 'Listar';
 
-
-
-
-
-
 export const Constants = {
   inputStart,
   dateStart,

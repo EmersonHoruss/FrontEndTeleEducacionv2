@@ -5,7 +5,8 @@
   display: grid;
   grid-template-areas: "update management";
   grid-template-columns: 40% 60%;
-  grid-template-rows: auto 3rem;
+  grid-template-rows: auto 6rem;
+  // grid-template-rows: auto 3rem;
 
   .update {
     grid-area: update;
@@ -13,5 +14,13 @@
 
   .management {
     grid-area: management;
+    .button {
+      width: 100%;
+      // justify-content: center;
+      align-items: center;
+      button {
+        height: 59.5px;
+      }
+    }
   }
 }

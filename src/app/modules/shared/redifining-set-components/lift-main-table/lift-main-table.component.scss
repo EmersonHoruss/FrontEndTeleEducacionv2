@@ -1,0 +1,58 @@
+.wrapper-table-select-filter {
+    width: 100%;
+  
+    .lookers {
+      width: 100%;
+      display: flex;
+      .dates {
+        width: 100%;
+        display: flex;
+  
+        .end {
+          margin: 0 1rem;
+        }
+  
+        .button {
+          height: 59.5px;
+        }
+      }
+  
+      .actions {
+        button {
+          height: 59.5px;
+        }
+      }
+    }
+  
+    .table {
+      width: 100%;
+      display: grid;
+      grid-template-areas: 100% 100% 100%/100%;
+      // background-color: red;
+      // color: #3F51B5;
+      .title {
+        margin-bottom: 0.5rem;
+      }
+  
+      table {
+        background-color: #e8e8f2;
+        border: 0;
+  
+        th {
+          font-size: 0.9rem;
+        }
+  
+        .buttons-container {
+          width: 5rem;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+  
+      mat-paginator {
+        background-color: #ededf7;
+        border: 0;
+      }
+    }
+  }
+  

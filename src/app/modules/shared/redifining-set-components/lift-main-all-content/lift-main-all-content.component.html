@@ -1,0 +1,201 @@
+<section class="wrapper-lift-main-all-content">
+  <!-- ALL FILTERS -->
+  <form class="all-filters" autocomplete="off" [formGroup]="FilterForm">
+    <!-- FILTERS  -->
+    <section class="title-filters">
+      <p>Filtros</p>
+    </section>
+    <section class="filters">
+      <!-- SELECT TIME -->
+      <mat-form-field
+        appearance="fill"
+        class="select-time one-rem-margin-right"
+      >
+        <mat-label>Tiempo</mat-label>
+        <mat-select
+          disableOptionCentering="true"
+          (selectionChange)="selectedTimeFilter($event.value)"
+          formControlName="selectTime"
+        >
+          <mat-option
+            *ngFor="let selectTime of selectTimeFilters"
+            [value]="selectTime.Codigo"
+          >
+            {{ selectTime.Valor }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- START DATE -->
+      <mat-form-field class="start-date one-rem-margin-right" appearance="fill">
+        <mat-label>Fecha de inicio</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [disabled]="true"
+          formControlName="startDate"
+          (dateChange)="datePickerStartDate($event.value)"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker [disabled]="isDisableStartDate">
+        </mat-datepicker>
+      </mat-form-field>
+
+      <!-- END DATE -->
+      <mat-form-field class="start-date one-rem-margin-right" appearance="fill">
+        <mat-label>Fecha de fin</mat-label>
+        <input
+          matInput
+          [matDatepicker]="pickerEndDate"
+          [disabled]="true"
+          formControlName="endDate"
+          (dateChange)="datePickerEndDate($event.value)"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerEndDate"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerEndDate [disabled]="isDisableEndDate">
+        </mat-datepicker>
+      </mat-form-field>
+
+      <!-- LIST BUTTON -->
+      <section class="list-button">
+        <section
+          class="button primary"
+          (click)="list()"
+          matTooltip="Listar según los filtros"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            fill="white"
+            class="bi bi-card-list"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"
+            />
+            <path
+              d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"
+            />
+          </svg>
+        </section>
+      </section>
+    </section>
+  </form>
+
+  <!-- TABLE -->
+  <section class="table">
+    <section class="headers-section-table">
+      <p class="title">{{ nameTable }}</p>
+      <section class="options" *ngIf="enabledOptionsTable">
+        <!-- GET IT BACK -->
+        <section
+          class="button-out-table primary one-rem-margin-right"
+          (click)="getItBack()"
+          matTooltip="Recuperar eliminados"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="white"
+            class="bi bi-arrow-repeat"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"
+            />
+            <path
+              fill-rule="evenodd"
+              d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"
+            />
+          </svg>
+        </section>
+
+        <!-- ADD NEW -->
+        <section
+          class="button-out-table primary"
+          (click)="addNew()"
+          matTooltip="Agregar uno nuevo"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="white"
+            class="bi bi-plus-lg"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+            />
+          </svg>
+        </section>
+      </section>
+    </section>
+    <table mat-table [dataSource]="data">
+      <ng-container *ngFor="let column of columns" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+        <td mat-cell *matCellDef="let object">
+          <section *ngIf="object[column] !== 'true'">
+            {{ object[column] }}
+          </section>
+          <section *ngIf="object[column] === 'true'">
+            <section class="buttons-container">
+              <!-- <app-button-shared
+                *ngFor="let button of constantsBu.buttons; let i = index"
+                [button]="button"
+                (clicked)="innerButtonTableClicked(i, object)"
+              ></app-button-shared> -->
+            </section>
+          </section>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">
+          <!-- {{ noData }} -->
+        </td>
+      </tr>
+    </table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </section>
+
+  <!-- BACK BUTTON -->
+  <section class="back" *ngIf="enableBackButton">
+    <section
+      class="button primary"
+      (click)="back()"
+      [matTooltip]="contentBackToolTip"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        fill="white"
+        class="bi bi-card-list"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
+        />
+      </svg>
+    </section>
+  </section>
+</section>
+
+<button (click)="save()">Save</button>
+<button (click)="subscribe()">subscribe</button>
+<button (click)="test()">Test</button>
+<button (click)="mng()">Mng</button>

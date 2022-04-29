@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Constants } from './master-main.constants';
 @Component({
   selector: 'app-master-management-component',
@@ -7,7 +8,11 @@ import { Constants } from './master-main.constants';
 })
 export class MasterManagementComponentComponent implements OnInit {
   constants = Constants;
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  cancel() {
+    this.router.navigateByUrl('programaciones/curso');
+  }
 }
