@@ -1,0 +1,123 @@
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  //   margin-top: 1rem;
+  background-color: #ddddf3;
+  color: #3f51b5;
+  height: 2.5rem;
+}
+
+form {
+  display: grid;
+  grid-template-areas:
+    "date startTime endTime"
+    "link numResolution numResolution"
+    "proyect proyect proyect"
+    "buttons buttons buttons";
+
+  grid-template-columns: 50% 25% 25%;
+
+  .date {
+    grid-area: date;
+  }
+
+  .startTime {
+    grid-area: startTime;
+  }
+
+  .endTime {
+    grid-area: endTime;
+  }
+
+  .link {
+    grid-area: link;
+  }
+
+  .numResolution {
+    grid-area: numResolution;
+  }
+
+  .proyect {
+    grid-area: proyect;
+    display: grid;
+    grid-template-areas:
+      "selectprogram containerbutton"
+      "error containerbutton";
+
+    grid-template-columns: 90% 10%;
+
+    .select-program {
+      grid-area: selectprogram;
+    }
+
+    .error {
+      grid-area: error;
+    }
+
+    .container-button {
+      grid-area: containerbutton;
+      padding-top: .5rem;
+    }
+  }
+
+  .buttons {
+    grid-area: buttons;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.one-rem-padding-right {
+  padding-right: 1rem;
+}
+
+.one-rem-margin-right {
+  margin-right: 1rem;
+}
+
+.one-rem-margin-left {
+  margin-left: 1rem;
+}
+
+.button {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary {
+  background-color: #3f51b5;
+}
+
+.warning {
+  background-color: #f44336;
+}
+
+.error {
+  grid-area: error;
+  height: 1rem;
+  position: relative;
+  top: -20px;
+  width: 100%;
+  // background-color: red;
+
+  .input-error {
+    height: 1rem;
+    background-color: transparent;
+    border: none;
+    color: red !important;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+}

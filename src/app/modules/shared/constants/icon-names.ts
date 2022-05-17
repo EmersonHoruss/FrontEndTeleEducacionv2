@@ -18,4 +18,5 @@ export const IconNames = {
   load: 'bi bi-arrow-repeat',
   management: 'bi bi-clipboard',
   dictate: 'bi bi-bookmark-check',
+  getBack: 'bi bi-arrow-repeat',
 };

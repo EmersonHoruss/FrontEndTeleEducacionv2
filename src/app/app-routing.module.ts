@@ -14,19 +14,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'reprogramar',
-    loadChildren: () =>
-      import('./modules/pages/reschedule/reschedule.module').then(
-        (m) => m.RescheduleModule
-      ),
-  },
-  {
-    path: 'dar-seguimiento',
-    loadChildren: () =>
-      import('./modules/pages/track/track.module').then((m) => m.TrackModule),
-  },
-  {
-    path: 'matenimiento',
+    path: 'mantenimientos',
     loadChildren: () =>
       import('./modules/pages/maintenance/maintenance.module').then(
         (m) => m.MaintenanceModule

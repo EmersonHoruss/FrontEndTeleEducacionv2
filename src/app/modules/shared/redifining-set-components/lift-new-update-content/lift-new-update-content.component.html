@@ -1,0 +1,263 @@
+<form
+  class="wrapper-lift-register"
+  autocomplete="off"
+  [formGroup]="liftRegisterForm"
+>
+  <!-- DATE -->
+  <section class="date one-rem-padding-right">
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha</mat-label>
+      <input
+        matInput
+        [matDatepicker]="pickerSchedule"
+        [disabled]="true"
+        formControlName="date"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerSchedule"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerSchedule disabled="false"> </mat-datepicker>
+    </mat-form-field>
+    <section class="error">
+      <!-- <input
+              *ngIf="getError('linkTeleEducacion').error"
+              type="text"
+              disabled
+              class="input-error"
+              [value]="getError('linkTeleEducacion').msg"
+            /> -->
+    </section>
+  </section>
+
+  <!-- START TIME -->
+  <section class="startTime one-rem-padding-right">
+    <mat-form-field class="time" appearance="fill">
+      <mat-label>Hora de inicio</mat-label>
+      <input
+        matInput
+        placeholder="Hora de inicio"
+        type="time"
+        formControlName="startTime"
+      />
+    </mat-form-field>
+    <section class="error">
+      <!-- <input
+              *ngIf="getError('linkTeleEducacion').error"
+              type="text"
+              disabled
+              class="input-error"
+              [value]="getError('linkTeleEducacion').msg"
+            /> -->
+    </section>
+  </section>
+
+  <!-- END TIME -->
+  <section class="endTime">
+    <mat-form-field class="time" appearance="fill">
+      <mat-label>Hora de fin</mat-label>
+      <input
+        matInput
+        placeholder="Hora de fin"
+        type="time"
+        formControlName="endTime"
+      />
+    </mat-form-field>
+    <section class="error">
+      <!-- <input
+              *ngIf="getError('linkTeleEducacion').error"
+              type="text"
+              disabled
+              class="input-error"
+              [value]="getError('linkTeleEducacion').msg"
+            /> -->
+    </section>
+  </section>
+
+  <!-- LINK -->
+  <section class="link">
+    <mat-form-field class="link" appearance="fill">
+      <mat-label>Link</mat-label>
+      <input matInput formControlName="link" placeholder="Ingrese link." />
+    </mat-form-field>
+    <section class="error">
+      <!-- <input
+              *ngIf="getError('linkTeleEducacion').error"
+              type="text"
+              disabled
+              class="input-error"
+              [value]="getError('linkTeleEducacion').msg"
+            /> -->
+    </section>
+  </section>
+
+  <!-- INPUT NUMBER RESOLUTION -->
+  <section class="numResolution">
+    <mat-form-field appearance="fill" class="numResolution">
+      <mat-label>Número de resolución</mat-label>
+      <input
+        matInput
+        formControlName="numResolution"
+        placeholder="Ingrese el número de resolución."
+      />
+    </mat-form-field>
+    <section class="error">
+      <!-- <input
+              *ngIf="getError('linkTeleEducacion').error"
+              type="text"
+              disabled
+              class="input-error"
+              [value]="getError('linkTeleEducacion').msg"
+            /> -->
+    </section>
+  </section>
+
+  <!-- SELECT AND BUTTONS PROYECT -->
+  <section class="proyect">
+    <section class="select-proyect">
+      <!-- SELECT -->
+      <mat-form-field appearance="fill" class="select-program">
+        <!-- (click)="openProgramaSelect()" -->
+        <mat-label>Proyecto</mat-label>
+        <mat-select
+          name="programa"
+          formControlName="proyect"
+          class="select-project"
+          placeholder="Seleccione proyecto."
+          [disableOptionCentering]="true"
+        >
+          <!-- (selectionChange)="changedPrograma($event.value)" -->
+          <!-- <mat-option *ngIf="loadingPrograma">Está cargando...</mat-option> -->
+
+          <!-- <mat-option *ngIf="!loadingPrograma && programas.length === 0"
+        >Sin resultados</mat-option
+      > -->
+
+          <mat-option
+            class="multiline-mat-option select-project-option"
+            *ngFor="let proyecto of proyects"
+            [value]="proyecto.Codigo"
+          >
+            {{ proyecto.Nombre }}
+            {{ proyecto.Url }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- ERROR -->
+      <section class="error">
+        <!-- <input
+                *ngIf="getError('linkTeleEducacion').error"
+                type="text"
+                disabled
+                class="input-error"
+                [value]="getError('linkTeleEducacion').msg"
+              /> -->
+      </section>
+    </section>
+
+    <!-- BUTTONS PROYECT -->
+    <section class="buttons-proyect">
+      <!-- ADD -->
+      <section
+        class="button primary one-rem-margin-left"
+        (click)="add()"
+        matTooltip="Nuevo proyecto"
+        routerLink="/mantenimientos/proyectos/nuevo"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="white"
+          class="bi bi-clipboard"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+          />
+        </svg>
+      </section>
+
+      <!-- UPDATE -->
+      <section
+        class="button primary one-rem-margin-left"
+        matTooltip="Actualizar proyecto"
+        (click)="update()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="white"
+          class="bi bi-arrow-repeat"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"
+          />
+          <path
+            fill-rule="evenodd"
+            d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"
+          />
+        </svg>
+      </section>
+    </section>
+  </section>
+
+  <section class="buttons">
+    <section
+      class="button primary one-rem-margin-right"
+      (click)="save()"
+      matTooltip="Guardar"
+    >
+      <svg
+        version="1.1"
+        id="Layer_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px"
+        y="0px"
+        viewBox="0 0 460.002 460.002"
+        style="enable-background: new 0 0 460.002 460.002"
+        xml:space="preserve"
+        width="25"
+        height="25"
+        fill="white"
+      >
+        <path
+          d="M427.137,0C408.93,0,51.379,0,32.865,0C14.743,0,0,14.743,0,32.865v394.272c0,18.122,14.743,32.865,32.865,32.865
+         c0,0,374.895,0,394.272,0c18.122,0,32.865-14.743,32.865-32.865V32.865C460.001,14.743,445.258,0,427.137,0z M245.812,30h50.995
+         v54.466h-50.995V30z M107.198,30h108.615v69.466c0,8.284,6.716,15,15,15h80.995c8.284,0,15-6.716,15-15V30h26.377v119.636H107.198
+         V30z M107.007,430.001V308.673h245.986v121.328H107.007z M430.002,427.137L430.002,427.137c-0.001,1.58-1.286,2.865-2.866,2.865
+         h-44.143V293.673c0-8.284-6.716-15-15-15H92.007c-8.284,0-15,6.716-15,15v136.328H32.865c-1.58,0-2.865-1.285-2.865-2.865V32.865
+         C30,31.285,31.285,30,32.865,30h44.333v134.636c0,8.284,6.716,15,15,15h275.986c8.284,0,15-6.716,15-15V30h43.953
+         c1.58,0,2.865,1.285,2.865,2.865V427.137z"
+        />
+      </svg>
+    </section>
+
+    <section class="back">
+      <section
+        class="button secondary"
+        (click)="back()"
+        [matTooltip]="'Ir a programaciones de sustentaciones'"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          fill="white"
+          class="bi bi-card-list"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
+          />
+        </svg>
+      </section>
+    </section>
+  </section>
+</form>

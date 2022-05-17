@@ -92,3 +92,69 @@ p {
   //   }
   // }
 }
+// .my-select-panel-class {
+//   height: 10rem;
+//   // font-size: 10px;
+//   .mat-option {
+//     height: 6rem !important;
+//   }
+// }
+// .mat-select-value-text {
+//   height: 2rem !important;
+// }
+// .multiline-mat-option.mat-option {
+//   white-space: normal;
+//   line-height: normal;
+//   height: unset;
+//   padding-top: 0.9em;
+//   padding-bottom: 0.9em;
+// }
+
+// .mat-select-panel mat-option.mat-option {
+//   height: unset;
+// }
+
+// .mat-option-text.mat-option-text {
+//   white-space: normal;
+// }
+
+.mat-select-panel mat-option.mat-option.long-select-option {
+  margin: 0.5rem 0;
+  overflow: unset;
+  line-height: initial;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.mat-option-text.mat-option-text {
+  white-space: normal;
+}
+
+.long-select .mat-select-trigger span {
+  // margin: 0.5rem 0 !important;
+  overflow: unset !important;
+  line-height: initial !important;
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+.mat-select-panel mat-option.mat-option.select-project-option {
+  // margin: 3rem 0;
+  overflow: unset;
+  line-height: initial;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  height: 10rem;
+}
+
+.mat-option-text.mat-option-text {
+  white-space: normal;
+}
+
+.select-project .mat-select-trigger span {
+  // margin: 0.5rem 0 !important;
+  overflow: unset !important;
+  line-height: initial !important;
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}

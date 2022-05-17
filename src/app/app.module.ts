@@ -1,5 +1,5 @@
 // internal modules
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -17,6 +17,13 @@ import { BootModule } from './modules/boot/boot.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptorServiceService } from './interceptors/auth/auth-interceptor-service.service';
+
+import Dexie from 'dexie';
+
+import { dbService } from './services/db/db.service';
+
+
+export const db = new dbService();
 
 @NgModule({
   declarations: [AppComponent],
@@ -47,6 +54,7 @@ import { AuthInterceptorServiceService } from './interceptors/auth/auth-intercep
       useClass: AuthInterceptorServiceService,
       multi: true,
     },
+    dbService,
   ],
   bootstrap: [AppComponent],
 })

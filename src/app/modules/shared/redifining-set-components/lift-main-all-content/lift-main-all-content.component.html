@@ -98,19 +98,23 @@
           matTooltip="Recuperar eliminados"
         >
           <svg
+            version="1.1"
+            id="Layer_1"
             xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 0 492.308 492.308"
             width="20"
             height="20"
             fill="white"
-            class="bi bi-arrow-repeat"
-            viewBox="0 0 16 16"
+            xml:space="preserve"
           >
-            <path
-              d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"
+            <polygon
+              points="246.154,240.111 163.702,322.567 177.625,336.49 236.308,277.803 236.308,425.356 256,425.356 256,277.802 
+			314.692,336.49 328.615,322.567 		"
             />
             <path
-              fill-rule="evenodd"
-              d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"
+              d="M241.952,76.308l-60.721-59.077H0v457.846h492.308V76.308H241.952z M472.615,455.385H19.692V167.351h452.923V455.385z
+			 M472.615,147.659H19.692V36.923h153.538L233.952,96h238.663V147.659z"
             />
           </svg>
         </section>
@@ -141,16 +145,28 @@
       <ng-container *ngFor="let column of columns" [matColumnDef]="column">
         <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
         <td mat-cell *matCellDef="let object">
-          <section *ngIf="object[column] !== 'true'">
-            {{ object[column] }}
+          <section
+            *ngIf="object[column] !== 'true'"
+            [ngClass]="{
+              'date-time-status-width-mat-cell-table': setWidthColumnsTable(
+                column,
+                'date-time-status'
+              ),
+              'num-resolution-width-mat-cell-table': setWidthColumnsTable(
+                column,
+                'num-resolution'
+              )
+            }"
+          >
+            {{ object[column] | columTableProgramations: column }}
           </section>
           <section *ngIf="object[column] === 'true'">
             <section class="buttons-container">
-              <!-- <app-button-shared
+              <app-button-shared
                 *ngFor="let button of constantsBu.buttons; let i = index"
                 [button]="button"
-                (clicked)="innerButtonTableClicked(i, object)"
-              ></app-button-shared> -->
+              ></app-button-shared>
+              <!-- (clicked)="innerButtonTableClicked(i, object)" -->
             </section>
           </section>
         </td>
@@ -174,7 +190,7 @@
   <!-- BACK BUTTON -->
   <section class="back" *ngIf="enableBackButton">
     <section
-      class="button primary"
+      class="button secondary"
       (click)="back()"
       [matTooltip]="contentBackToolTip"
     >
@@ -195,7 +211,27 @@
   </section>
 </section>
 
-<button (click)="save()">Save</button>
+<!-- <button (click)="save()">Save</button>
 <button (click)="subscribe()">subscribe</button>
 <button (click)="test()">Test</button>
-<button (click)="mng()">Mng</button>
+<button (click)="mng()">Mng</button>-->
+<!-- <button (click)="uwu()">UWU</button> -->
+<!-- <app-button-shared
+  *ngFor="let button of constantsBu.buttons; let i = index"
+  [button]="button"
+></app-button-shared>  -->
+<!-- (clicked)="innerButtonTableClicked(i, object)" -->
+<!-- <section>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 16 16"
+  >
+    <path
+      d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"
+    />
+    <path
+      fill-rule="evenodd"
+      d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"
+    />
+  </svg>
+</section> -->

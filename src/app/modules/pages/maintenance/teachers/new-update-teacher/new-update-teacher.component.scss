@@ -1,0 +1,147 @@
+.title {
+  background-color: #cacaea85;
+  color: #3f51b5;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.wrapper-main {
+  width: 100%;
+  padding: 2rem;
+
+  form {
+    display: grid;
+    grid-template-areas:
+      "title title"
+      "name cell"
+      "first_last_name appointed"
+      "second_last_name grade"
+      "personal_email document_type"
+      "institutional_email document_number"
+      "buttons buttons";
+    padding: 0 25%;
+    grid-template-columns: 60% 40%;
+
+    .title {
+      grid-area: title;
+      margin-bottom: 1rem;
+    }
+
+    .name {
+      grid-area: name;
+      margin-right: 0.5rem;
+    }
+
+    .first-last-name {
+      grid-area: first_last_name;
+      margin-right: 0.5rem;
+    }
+
+    .second-last-name {
+      grid-area: second_last_name;
+      margin-right: 0.5rem;
+    }
+
+    .personal-email {
+      grid-area: personal_email;
+      margin-right: 0.5rem;
+    }
+
+    .institution-email {
+      grid-area: institutional_email;
+      margin-right: 0.5rem;
+    }
+
+    .cell {
+      grid-area: cell;
+      margin-left: 0.5rem;
+    }
+
+    .appointed {
+      grid-area: appointed;
+      margin-left: 0.5rem;
+    }
+
+    .grade {
+      grid-area: grade;
+      margin-left: 0.5rem;
+    }
+
+    .document-type {
+      grid-area: document_type;
+      margin-left: 0.5rem;
+    }
+
+    .document-number {
+      grid-area: document_number;
+      margin-left: 0.5rem;
+    }
+
+    .buttons {
+      grid-area: buttons;
+      display: flex;
+      justify-content: center;
+
+      align-items: center;
+    }
+  }
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.one-rem-padding-right {
+  padding-right: 1rem;
+}
+
+.one-rem-margin-right {
+  margin-right: 1rem;
+}
+
+.one-rem-margin-left {
+  margin-left: 1rem;
+}
+
+.button {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary {
+  background-color: #3f51b5;
+}
+
+.warning {
+  background-color: #f44336;
+}
+
+.secondary {
+  background-color: #ff4081;
+}
+
+.error {
+  grid-area: error;
+  height: 1rem;
+  position: relative;
+  top: -20px;
+  width: 100%;
+  //   background-color: red;
+
+  .input-error {
+    height: 1rem;
+    background-color: transparent;
+    border: none;
+    color: red !important;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+}

@@ -1,0 +1,202 @@
+<section class="title">
+  <p>Registrar una Programación de Sustentación</p>
+</section>
+
+<form class="wrapper-lift-register" autocomplete="off">
+  <!-- [formGroup]="liftRegisterForm" -->
+  <!-- DATE -->
+  <section class="date one-rem-padding-right">
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha</mat-label>
+      <input
+        matInput
+        [matDatepicker]="pickerSchedule"
+        [disabled]="true"
+        formControlName="date"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="pickerSchedule"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerSchedule disabled="false"> </mat-datepicker>
+    </mat-form-field>
+    <section class="error">
+      <!-- <input
+                  *ngIf="getError('linkTeleEducacion').error"
+                  type="text"
+                  disabled
+                  class="input-error"
+                  [value]="getError('linkTeleEducacion').msg"
+                /> -->
+    </section>
+  </section>
+
+  <!-- START TIME -->
+  <section class="startTime one-rem-padding-right">
+    <mat-form-field class="time" appearance="fill">
+      <mat-label>Hora de inicio</mat-label>
+      <input
+        matInput
+        placeholder="Hora de inicio"
+        type="time"
+        formControlName="startTime"
+      />
+    </mat-form-field>
+    <section class="error">
+      <!-- <input
+                  *ngIf="getError('linkTeleEducacion').error"
+                  type="text"
+                  disabled
+                  class="input-error"
+                  [value]="getError('linkTeleEducacion').msg"
+                /> -->
+    </section>
+  </section>
+
+  <!-- END TIME -->
+  <section class="endTime">
+    <mat-form-field class="time" appearance="fill">
+      <mat-label>Hora de fin</mat-label>
+      <input
+        matInput
+        placeholder="Hora de fin"
+        type="time"
+        formControlName="endTime"
+      />
+    </mat-form-field>
+    <section class="error">
+      <!-- <input
+                  *ngIf="getError('linkTeleEducacion').error"
+                  type="text"
+                  disabled
+                  class="input-error"
+                  [value]="getError('linkTeleEducacion').msg"
+                /> -->
+    </section>
+  </section>
+
+  <!-- LINK -->
+  <section class="link one-rem-padding-right">
+    <mat-form-field class="link" appearance="fill">
+      <mat-label>Link</mat-label>
+      <input matInput formControlName="link" placeholder="Ingrese link." />
+    </mat-form-field>
+    <section class="error">
+      <!-- <input
+                  *ngIf="getError('linkTeleEducacion').error"
+                  type="text"
+                  disabled
+                  class="input-error"
+                  [value]="getError('linkTeleEducacion').msg"
+                /> -->
+    </section>
+  </section>
+
+  <!-- INPUT NUMBER RESOLUTION -->
+  <section class="numResolution">
+    <mat-form-field appearance="fill" class="numResolution">
+      <mat-label>Número de resolución</mat-label>
+      <input
+        matInput
+        formControlName="numResolution"
+        placeholder="Ingrese el número de resolución."
+      />
+    </mat-form-field>
+    <section class="error">
+      <!-- <input
+                  *ngIf="getError('linkTeleEducacion').error"
+                  type="text"
+                  disabled
+                  class="input-error"
+                  [value]="getError('linkTeleEducacion').msg"
+                /> -->
+    </section>
+  </section>
+
+  <!-- SELECT PROYECT -->
+  <section class="proyect">
+    <!-- SELECT -->
+    <!-- <mat-form-field appearance="fill" class="select-program"> -->
+    <!-- (click)="openProgramaSelect()" -->
+    <!-- <mat-label>Proyecto</mat-label>
+      <mat-select
+        name="programa"
+        formControlName="proyect"
+        class="long-select"
+        placeholder="Seleccione proyecto."
+      > -->
+    <!-- (selectionChange)="changedPrograma($event.value)" -->
+    <!-- <mat-option *ngIf="loadingPrograma">Está cargando...</mat-option> -->
+
+    <!-- <mat-option *ngIf="!loadingPrograma && programas.length === 0"
+            >Sin resultados</mat-option
+          > -->
+
+    <!-- <mat-option
+          class="multiline-mat-option long-select-option"
+          *ngFor="let proyecto of proyects"
+          [value]="proyecto.Codigo"
+        >
+          {{ proyecto.Nombre }}
+          {{ proyecto.Url }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+    <!-- ERROR -->
+    <section class="error">
+      <!-- <input
+                    *ngIf="getError('linkTeleEducacion').error"
+                    type="text"
+                    disabled
+                    class="input-error"
+                    [value]="getError('linkTeleEducacion').msg"
+                  /> -->
+    </section>
+  </section>
+
+  <section class="buttons">
+    <section
+      class="button primary one-rem-margin-right"
+      (click)="accept()"
+      matTooltip="Aceptar"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        fill="white"
+        class="bi bi-check2"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+        />
+      </svg>
+    </section>
+
+    <section
+      class="button warning one-rem-margin-left"
+      (click)="cancel()"
+      matTooltip="Cancelar"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        fill="white"
+        class="bi bi-check2"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"
+        />
+        <path
+          fill-rule="evenodd"
+          d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"
+        />
+      </svg>
+    </section>
+  </section>
+</form>

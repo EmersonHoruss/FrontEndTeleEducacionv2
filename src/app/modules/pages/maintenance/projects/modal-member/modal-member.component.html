@@ -1,0 +1,128 @@
+<section class="wrapper">
+  <!-- TITLE -->
+  <section class="title">
+    {{ titleModal }}
+  </section>
+  <!-- ROL -->
+  <section class="rol one-rem-padding-right">
+    <section class="rol-member">
+      <mat-form-field appearance="fill" class="rol-member">
+        <mat-label>Rol del participante</mat-label>
+        <mat-select
+          disableOptionCentering="true"
+          placeholder="Seleccione un rol del participante."
+          formControlName="rolMember"
+        >
+          <mat-option *ngFor="let rol of rolMember" [value]="rol.Codigo">
+            {{ rol.Nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+    <section class="error">
+      <input
+        *ngIf="getError('rolMember').error"
+        type="text"
+        disabled
+        class="input-error"
+        [value]="getError('rolMember').msg"
+      />
+    </section>
+  </section>
+
+  <!-- MEMBER -->
+  <section class="member">
+    <mat-form-field appearance="fill" class="member">
+      <mat-label>Participante</mat-label>
+      <mat-select
+        disableOptionCentering="true"
+        placeholder="Seleccione un participante."
+        formControlName="member"
+      >
+        <mat-option *ngFor="let member of members" [value]="member.Codigo">
+          {{ member.Nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <section class="error">
+      <input
+        *ngIf="getError('member').error"
+        type="text"
+        disabled
+        class="input-error"
+        p
+        [value]="getError('member').msg"
+      />
+    </section>
+  </section>
+
+  <!-- PROGRAM -->
+  <section class="program">
+    <section class="rol-member">
+      <mat-form-field appearance="fill" class="rol-member">
+        <mat-label>programa</mat-label>
+        <mat-select
+          disableOptionCentering="true"
+          placeholder="Seleccione un rol del participante."
+          formControlName="rolMember"
+        >
+          <mat-option *ngFor="let rol of rolMember" [value]="rol.Codigo">
+            {{ rol.Nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
+    <section class="error">
+      <input
+        *ngIf="getError('rolMember').error"
+        type="text"
+        disabled
+        class="input-error"
+        [value]="getError('rolMember').msg"
+      />
+    </section>
+  </section>
+
+  <!-- BUTTONS -->
+  <section class="buttons">
+    <!-- ADD -->
+    <section
+      class="button primary one-rem-margin-right"
+      (click)="add()"
+      [matTooltip]="'Aceptar'"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        fill="white"
+        class="bi bi-clipboard"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+        />
+      </svg>
+    </section>
+
+    <!-- CANCEL -->
+    <section
+      class="button warning one-rem-margin-left"
+      matTooltip="Cancelar"
+      (click)="cancel()"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        fill="white"
+        class="bi bi-x"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+        />
+      </svg>
+    </section>
+  </section>
+</section>

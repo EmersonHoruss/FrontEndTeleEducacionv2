@@ -27,11 +27,10 @@ import { MasterManagementComponentComponent } from './pages/master-management-co
 import { ExamNewComponent } from './exam/exam-new/exam-new.component';
 import { ExamManagementComponent } from './exam/exam-management/exam-management.component';
 import { ExamMainComponent } from './exam/exam-main/exam-main.component';
-import { LiftManagementComponent } from './lift/lift-management/lift-management.component';
-import { LiftNewComponent } from './lift/lift-new/lift-new.component';
 import { LiftMainComponent } from './lift/lift-main/lift-main.component';
 import { LiftGetItBackComponent } from './lift/lift-get-it-back/lift-get-it-back.component';
 import { ExamGetItBackComponent } from './exam/exam-get-it-back/exam-get-it-back.component';
+import { LiftNewUpdateComponent } from './lift/lift-new-update/lift-new-update.component';
 
 @NgModule({
   declarations: [
@@ -50,10 +49,9 @@ import { ExamGetItBackComponent } from './exam/exam-get-it-back/exam-get-it-back
     ExamMainComponent,
     ExamNewComponent,
     ExamManagementComponent,
-    LiftManagementComponent,
-    LiftNewComponent,
     LiftGetItBackComponent,
     ExamGetItBackComponent,
+    LiftNewUpdateComponent,
   ],
   imports: [
     CommonModule,

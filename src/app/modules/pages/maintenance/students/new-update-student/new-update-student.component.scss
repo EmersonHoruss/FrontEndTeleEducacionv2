@@ -1,0 +1,216 @@
+.title {
+  background-color: #cacaea85;
+  color: #3f51b5;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.wrapper-main {
+  width: 100%;
+  padding: 2rem;
+
+  form {
+    grid-area: form;
+
+    display: grid;
+    grid-template-areas:
+      "title title"
+      "name institutional_email"
+      "first_last_name cell"
+      "second_last_name document_type"
+      "personal_email document_number"
+      "buttons buttons";
+    grid-template-columns: 60% 40%;
+    padding: 0 25%;
+
+    .title {
+      grid-area: title;
+      margin-bottom: 1rem;
+    }
+
+    .name {
+      grid-area: name;
+      margin-right: 0.5rem;
+    }
+
+    .first-last-name {
+      grid-area: first_last_name;
+      margin-right: 0.5rem;
+    }
+
+    .second-last-name {
+      grid-area: second_last_name;
+      margin-right: 0.5rem;
+    }
+
+    .personal-email {
+      grid-area: personal_email;
+      margin-right: 0.5rem;
+    }
+
+    .institution-email {
+      grid-area: institutional_email;
+      margin-left: 0.5rem;
+    }
+
+    .cell {
+      grid-area: cell;
+      margin-left: 0.5rem;
+    }
+
+    .document-type {
+      grid-area: document_type;
+      margin-left: 0.5rem;
+    }
+
+    .document-number {
+      grid-area: document_number;
+      margin-left: 0.5rem;
+    }
+
+    .form-buttons {
+      grid-area: buttons;
+      display: flex;
+      justify-content: center;
+
+      align-items: center;
+
+      .button {
+        margin: 0 1rem;
+      }
+    }
+  }
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.one-rem-padding-right {
+  padding-right: 1rem;
+}
+
+.one-rem-margin-right {
+  margin-right: 1rem;
+}
+
+.one-rem-margin-left {
+  margin-left: 1rem;
+}
+
+.button {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-out-table {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary {
+  background-color: #3f51b5;
+}
+
+.warning {
+  background-color: #f44336;
+}
+
+.secondary {
+  background-color: #ff4081;
+}
+
+.error {
+  grid-area: error;
+  height: 1rem;
+  position: relative;
+  top: -20px;
+  width: 100%;
+  //   background-color: red;
+
+  .input-error {
+    height: 1rem;
+    background-color: transparent;
+    border: none;
+    color: red !important;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+}
+
+table {
+  width: 100%;
+  background-color: #e8e8f2;
+}
+
+.table > :not(:first-child) {
+  border-top: 2px solid #939394;
+}
+
+th {
+  font-size: 0.9rem;
+}
+
+mat-paginator {
+  background-color: #ededf7;
+  border: 0;
+}
+
+.buttons-container {
+  width: 5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.one-rem-margin-right {
+  margin-right: 1rem;
+}
+
+.one-rem-margin-right-left {
+  margin: 0 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.sub-title-selection-filters {
+  font-size: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.start-date,
+.end-date {
+  width: 11rem;
+}
+
+.date-time-status-width-mat-cell-table {
+  width: 6rem;
+}
+
+.num-resolution-width-mat-cell-table {
+  width: 10rem;
+}
+
+.mat-cell {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.input {
+  text-transform: uppercase;
+}
+

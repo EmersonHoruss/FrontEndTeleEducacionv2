@@ -5,6 +5,7 @@ import { ModalsDialogService } from '../../../../services/modals-dialog/modals-d
 import { modalsDialog } from 'src/app/modules/shared/constants/modals-dialog';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+// import { db } from '../../../../app.module';
 
 @Component({
   selector: 'app-login',
@@ -70,4 +71,9 @@ export class LoginComponent implements OnInit {
       'Usted no tiene acceso, comuníquese con tele-educacion_epg@unprg.edu.pe';
     this.dialogService.openModalDialog(modalsDialog.error);
   }
+
+  // uwu() {
+  //   const myDB = db;
+  //   myDB.destinos.add({ nombre: 'hola', imgUrl: 'asdf' });
+  // }
 }

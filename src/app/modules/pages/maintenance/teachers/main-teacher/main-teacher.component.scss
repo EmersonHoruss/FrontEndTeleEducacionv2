@@ -1,0 +1,156 @@
+.wrapper-main {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+
+  .all-filters {
+    margin-bottom: 1rem;
+    width: 100%;
+
+    .title-filters,
+    .title-selection-filters {
+      margin-bottom: 0.8rem;
+    }
+
+    .filters {
+      display: flex;
+      width: 100%;
+      .select-time {
+        width: 15rem;
+      }
+      .list-button {
+        height: 59.5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+  .table {
+    color: black;
+    .headers-section-table {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+
+      .options {
+        display: flex;
+      }
+
+      .options:last-child {
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  .back {
+    height: 59.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 0.1rem;
+  }
+}
+
+// GENERAL STYLES
+.button {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-out-table {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary {
+  background-color: #3f51b5;
+}
+
+.secondary {
+  background-color: #ff4081;
+}
+
+table {
+  width: 100%;
+  background-color: #e8e8f2;
+}
+
+.table > :not(:first-child) {
+  border-top: 2px solid #939394;
+}
+
+th {
+  font-size: 0.9rem;
+}
+
+mat-paginator {
+  background-color: #ededf7;
+  border: 0;
+}
+
+.buttons-container {
+  width: 5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.one-rem-margin-right {
+  margin-right: 1rem;
+}
+
+.one-rem-margin-right-left {
+  margin: 0 1rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.sub-title-selection-filters {
+  font-size: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.start-date,
+.end-date {
+  width: 11rem;
+}
+
+.date-time-status-width-mat-cell-table {
+  width: 6rem;
+}
+
+.num-resolution-width-mat-cell-table {
+  width: 10rem;
+}
+
+.mat-cell {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.title-page {
+  background-color: #cacaea85;
+  color: #3f51b5;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+}
+

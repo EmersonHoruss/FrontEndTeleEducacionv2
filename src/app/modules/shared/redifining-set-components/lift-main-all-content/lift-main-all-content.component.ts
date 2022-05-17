@@ -8,6 +8,10 @@ import { modalsDialog } from '../../constants/modals-dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { UwuService } from '../../../../services/uwu/uwu.service';
+import { db } from '../../../../app.module';
+import { ConstantsTaBu } from './table-buttons.constants';
+import { MatDialog } from '@angular/material/dialog';
+import { LiftRegisterComponent } from '../../modals/lift-register/lift-register.component';
 
 @Component({
   selector: 'app-lift-main-all-content',
@@ -48,11 +52,14 @@ export class LiftMainAllContentComponent implements OnInit {
 
   contentBackToolTip = '';
   enableBackButton = true;
+
+  constantsBu = ConstantsTaBu;
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
-    private dialogService: ModalsDialogService
+    private dialogService: ModalsDialogService,
+    private matDialog: MatDialog
   ) {
     this.data = new MatTableDataSource(this.dataHelp);
   }
@@ -212,18 +219,20 @@ export class LiftMainAllContentComponent implements OnInit {
   }
 
   getUrl(): any {
-    return this.router.url === '/programaciones/sustentacion'
-      ? 'api/ProgramacionesSustentacion/1/' + this.getTime().string
-      : this.router.url === '/programaciones/curso'
-      ? 'api/ProgramacionesCurso/1/' + this.getTime().string
-      : this.router.url === '/programaciones/examen'
-      ? 'api/ProgramacionesExamen/1/' + this.getTime().string
-      : this.router.url === '/programaciones/sustentacion/recuperar'
-      ? 'api/ProgramacionesSustentacion/0/' + this.getTime().string
-      : this.router.url === '/programaciones/curso/recuperar'
-      ? 'api/ProgramacionesCurso/0/' + this.getTime().string
-      : this.router.url === '/programaciones/examen/recuperar'
-      ? 'api/ProgramacionesExamen/0/' + this.getTime().string
+    return this.router.url === '/programaciones/sustentaciones'
+      ? 'api/ProgramacionSustentacionEstadoIntervaloFechas/1/' +
+          this.getTime().string
+      : this.router.url === '/programaciones/cursos'
+      ? 'api/ProgramacionCursoEstadoIntervaloFechas/1/' + this.getTime().string
+      : this.router.url === '/programaciones/examenes'
+      ? 'api/ProgramacionExamenEstadoIntervaloFechas/1/' + this.getTime().string
+      : this.router.url === '/programaciones/sustentaciones/recuperar'
+      ? 'api/ProgramacionSustentacionEstadoIntervaloFechas/0/' +
+        this.getTime().string
+      : this.router.url === '/programaciones/cursos/recuperar'
+      ? 'api/ProgramacionCursoEstadoIntervaloFechas/0/' + this.getTime().string
+      : this.router.url === '/programaciones/examenes/recuperar'
+      ? 'api/ProgramacionExamenEstadoIntervaloFechas/0/' + this.getTime().string
       : '';
   }
 
@@ -273,32 +282,40 @@ export class LiftMainAllContentComponent implements OnInit {
   }
 
   getItBack() {
-    this.router.url === '/programaciones/sustentacion'
-      ? this.router.navigateByUrl('/programaciones/sustentacion/recuperar')
-      : this.router.url === '/programaciones/curso'
-      ? this.router.navigateByUrl('/programaciones/curso/recuperar')
-      : this.router.url === '/programaciones/examen'
-      ? this.router.navigateByUrl('/programaciones/examen/recuperar')
+    this.router.url === '/programaciones/sustentaciones'
+      ? this.router.navigateByUrl('/programaciones/sustentaciones/recuperar')
+      : this.router.url === '/programaciones/cursos'
+      ? this.router.navigateByUrl('/programaciones/cursos/recuperar')
+      : this.router.url === '/programaciones/examenes'
+      ? this.router.navigateByUrl('/programaciones/examenes/recuperar')
       : null;
   }
 
   addNew() {
-    this.router.url === '/programaciones/sustentacion'
-      ? this.router.navigateByUrl('/programaciones/sustentacion/nuevo')
-      : this.router.url === '/programaciones/curso'
-      ? this.router.navigateByUrl('/programaciones/curso/nuevo')
-      : this.router.url === '/programaciones/examen'
-      ? this.router.navigateByUrl('/programaciones/examen/nuevo')
+    this.router.url === '/programaciones/sustentaciones'
+      ? this.router.navigateByUrl('/programaciones/sustentaciones/nuevo')
+      : this.router.url === '/programaciones/cursos'
+      ? this.router.navigateByUrl('/programaciones/cursos/nuevo')
+      : this.router.url === '/programaciones/examenes'
+      ? this.router.navigateByUrl('/programaciones/examenes/nuevo')
       : null;
+
+    // this.router.url === '/programaciones/sustentaciones'
+    //   ? this.addNewLift()
+    //   : this.router.url === '/programaciones/cursos'
+    //   ? this.addNewCourse()
+    //   : this.router.url === '/programaciones/examenes'
+    //   ? this.addNewExam()
+    //   : null;
   }
 
   back() {
-    this.router.url === '/programaciones/sustentacion/recuperar'
-      ? this.router.navigateByUrl('/programaciones/sustentacion')
-      : this.router.url === '/programaciones/curso/recuperar'
-      ? this.router.navigateByUrl('/programaciones/curso')
-      : this.router.url === '/programaciones/examen/recuperar'
-      ? this.router.navigateByUrl('/programaciones/examen')
+    this.router.url === '/programaciones/sustentaciones/recuperar'
+      ? this.router.navigateByUrl('/programaciones/sustentaciones')
+      : this.router.url === '/programaciones/cursos/recuperar'
+      ? this.router.navigateByUrl('/programaciones/cursos')
+      : this.router.url === '/programaciones/examenes/recuperar'
+      ? this.router.navigateByUrl('/programaciones/examenes')
       : null;
   }
 
@@ -318,6 +335,11 @@ export class LiftMainAllContentComponent implements OnInit {
         error: true,
         msg: 'Ingrese fecha de inicio debe ser menor e igual a la fecha de fin.',
       };
+
+    return {
+      error: false,
+      msg: '',
+    };
   }
 
   buttonsShowErrors() {
@@ -328,51 +350,54 @@ export class LiftMainAllContentComponent implements OnInit {
 
   // TABLE
   getNameTable(): string {
-    return this.router.url === '/programaciones/sustentacion'
+    return this.router.url === '/programaciones/sustentaciones'
       ? 'Lista de programaciones de sustentaciones'
-      : this.router.url === '/programaciones/curso'
+      : this.router.url === '/programaciones/cursos'
       ? 'Lista de programaciones de cursos'
-      : this.router.url === '/programaciones/examen'
+      : this.router.url === '/programaciones/examenes'
       ? 'Lista de programaciones de examenes'
-      : this.router.url === '/programaciones/sustentacion/recuperar'
+      : this.router.url === '/programaciones/sustentaciones/recuperar'
       ? 'Lista de programaciones de sustentaciones eliminadas'
-      : this.router.url === '/programaciones/curso/recuperar'
+      : this.router.url === '/programaciones/cursos/recuperar'
       ? 'Lista de programaciones de cursos eliminados'
-      : this.router.url === '/programaciones/examen/recuperar'
+      : this.router.url === '/programaciones/examenes/recuperar'
       ? 'Lista de programaciones de examenes eliminadas'
       : '';
   }
 
   getColumnsTable(): any {
-    return this.router.url === '/programaciones/sustentacion' ||
-      this.router.url === '/programaciones/sustentacion/recuperar'
+    return this.router.url === '/programaciones/sustentaciones' ||
+      this.router.url === '/programaciones/sustentaciones/recuperar'
       ? [
+          'Programa',
           'Proyecto',
           '# Resolución',
           'Fecha',
           'Hora de Inicio',
           'Hora de Fin',
+          'Estado',
           'Acciones',
         ]
-      : this.router.url === '/programaciones/curso' ||
-        this.router.url === '/programaciones/curso/recuperar'
+      : this.router.url === '/programaciones/cursos' ||
+        this.router.url === '/programaciones/cursos/recuperar'
       ? [
+          'Programa',
+          'Curso',
           'Docente',
-          'Correo',
-          'Celular',
           'Fecha de Inicio',
           'Fecha de Fin',
           'Acciones',
         ]
-      : this.router.url === '/programaciones/examen' ||
-        this.router.url === '/programaciones/examen/recuperar'
+      : this.router.url === '/programaciones/examenes' ||
+        this.router.url === '/programaciones/examenes/recuperar'
       ? [
+          'Programa',
+          'Curso',
           'Docente',
-          'Correo',
-          'Celular',
           'Fecha',
           'Hora de Inicio',
           'Hora de Fin',
+          'Estado',
           'Acciones',
         ]
       : [];
@@ -380,32 +405,33 @@ export class LiftMainAllContentComponent implements OnInit {
 
   mngOptionsTable() {
     this.enabledOptionsTable =
-      this.router.url === '/programaciones/sustentacion'
+      this.router.url === '/programaciones/sustentaciones'
         ? true
-        : this.router.url === '/programaciones/curso'
+        : this.router.url === '/programaciones/cursos'
         ? true
-        : this.router.url === '/programaciones/examen'
+        : this.router.url === '/programaciones/examenes'
         ? true
-        : this.router.url === '/programaciones/sustentacion/recuperar'
+        : this.router.url === '/programaciones/sustentaciones/recuperar'
         ? false
-        : this.router.url === '/programaciones/curso/recuperar'
+        : this.router.url === '/programaciones/cursos/recuperar'
         ? false
-        : this.router.url === '/programaciones/examen/recuperar'
+        : this.router.url === '/programaciones/examenes/recuperar'
         ? false
         : false;
   }
 
   loadTable() {
     const url = this.getUrl();
-    this.dialogService.openModalDialog(modalsDialog.load);
+    this.dialogService.openModalDialog(modalsDialog.load, true);
     this.http.get(url).subscribe(
       (e: any) => {
         this.dialogService.closeLastOpenedModalDialog();
 
-        // this.sessionsHelp = sessionsAux;
+        console.log(e.data);
+        this.dataHelp = this.formatData(e.data);
 
-        // this.sessions = new MatTableDataSource(this.sessionsHelp);
-        // this.sessions.paginator = this.paginator;
+        this.data = new MatTableDataSource(this.dataHelp);
+        this.data.paginator = this.paginator;
       },
       (err: any) => {
         this.dialogService.closeLastOpenedModalDialog();
@@ -417,49 +443,86 @@ export class LiftMainAllContentComponent implements OnInit {
   }
 
   formatData(data: any) {
-    if (
-      this.router.url === '/programaciones/sustentacion' ||
-      this.router.url === '/programaciones/sustentacion/recuperar'
-    ) {
-    } else if (
-      this.router.url === '/programaciones/curso' ||
-      this.router.url === '/programaciones/curso/recuperar'
-    ) {
-    } else if (
-      this.router.url === '/programaciones/examen' ||
-      this.router.url === '/programaciones/examen/recuperar'
-    ) {
-    }
+    // just add acciones = 'true'
+    return data.map((e: any) => {
+      e.Acciones = 'true';
+      if (e.hasOwnProperty('NombreDocente')) {
+        e.Docente =
+          e.NombreDocente +
+          ' ' +
+          e.ApellidoPaternoDocente +
+          ' ' +
+          e.ApellidoMaternoDocente;
+      }
+      return e;
+    });
   }
   // this.sessionsHelp = sessionsAux;
 
   //   this.sessions = new MatTableDataSource(this.sessionsHelp);
   //   this.sessions.paginator = this.paginator;
 
+  setWidthColumnsTable(column: any, flag: string) {
+    if (flag === 'date-time-status') {
+      const widthColumnsDateTimeStatus = [
+        'Fecha',
+        'Hora de Inicio',
+        'Hora de Fin',
+        'Fecha de Inicio',
+        'Fecha de Fin',
+        'Estado',
+      ];
+
+      for (let i = 0; i < widthColumnsDateTimeStatus.length; i++)
+        if (column === widthColumnsDateTimeStatus[i]) return true;
+    }
+
+    if (flag === 'num-resolution') {
+      const widthColumnNumResolution = '# Resolución';
+      if (column === widthColumnNumResolution) return true;
+    }
+    return false;
+  }
+
   // BACK TOOLTIP AND BUTTON
   mngBackButton() {
     this.enableBackButton =
-      this.router.url === '/programaciones/sustentacion' ||
-      this.router.url === '/programaciones/curso' ||
-      this.router.url === '/programaciones/examen'
+      this.router.url === '/programaciones/sustentaciones' ||
+      this.router.url === '/programaciones/cursos' ||
+      this.router.url === '/programaciones/examenes'
         ? false
-        : this.router.url === '/programaciones/sustentacion/recuperar' ||
-          this.router.url === '/programaciones/curso/recuperar' ||
-          this.router.url === '/programaciones/examen/recuperar'
+        : this.router.url === '/programaciones/sustentaciones/recuperar' ||
+          this.router.url === '/programaciones/cursos/recuperar' ||
+          this.router.url === '/programaciones/examenes/recuperar'
         ? true
         : false;
   }
 
   loadContentBackToolTip() {
     this.contentBackToolTip =
-      this.router.url === '/programaciones/sustentacion/recuperar'
+      this.router.url === '/programaciones/sustentaciones/recuperar'
         ? 'Ir a programaciones de sustentaciones'
-        : this.router.url === '/programaciones/curso/recuperar'
+        : this.router.url === '/programaciones/cursos/recuperar'
         ? 'Ir a programaciones de cursos'
-        : this.router.url === '/programaciones/examen/recuperar'
+        : this.router.url === '/programaciones/examenes/recuperar'
         ? 'Ir a programaciones de examenes'
         : '';
   }
+
+  // FUNCTIONALITY OF BUTTONS
+  addNewLift() {
+    this.dialogService.openModalDialog(
+      null,
+      false,
+      LiftRegisterComponent,
+      '50%',
+      '70%'
+    );
+  }
+
+  addNewCourse() {}
+
+  addNewExam() {}
 
   // LOCAL STORAGE
   initSelects() {
@@ -493,17 +556,17 @@ export class LiftMainAllContentComponent implements OnInit {
   }
 
   serializePage() {
-    this.router.url === '/programaciones/sustentacion'
+    this.router.url === '/programaciones/sustentaciones'
       ? localStorage.setItem('namePage', 'sustentacion')
-      : this.router.url === '/programaciones/curso'
+      : this.router.url === '/programaciones/cursos'
       ? localStorage.setItem('namePage', 'curso')
-      : this.router.url === '/programaciones/examen'
+      : this.router.url === '/programaciones/examenes'
       ? localStorage.setItem('namePage', 'examen')
-      : this.router.url === '/programaciones/sustentacion/recuperar'
+      : this.router.url === '/programaciones/sustentaciones/recuperar'
       ? localStorage.setItem('namePage', 'sustentacionRecuperar')
-      : this.router.url === '/programaciones/curso/recuperar'
+      : this.router.url === '/programaciones/cursos/recuperar'
       ? localStorage.setItem('namePage', 'cursoRecuperar')
-      : this.router.url === '/programaciones/examen/recuperar'
+      : this.router.url === '/programaciones/examenes/recuperar'
       ? localStorage.setItem('namePage', 'examenRecuperar')
       : null;
   }
@@ -513,19 +576,25 @@ export class LiftMainAllContentComponent implements OnInit {
     return namePage;
   }
 
-  save() {
-    const xd = new UwuService();
-    xd.save(1);
-  }
+  // INDEXED DB
+  // save() {
+  //   const xd = new UwuService();
+  //   xd.save(1);
+  // }
 
-  subscribe() {}
+  // subscribe() {}
 
-  test() {
-    const xd = new UwuService();
-    xd.show();
-  }
+  // test() {
+  //   const xd = new UwuService();
+  //   xd.show();
+  // }
 
-  mng() {}
+  // mng() {}
+
+  // uwu() {
+  //   const myDB = db;
+  //   myDB.destinos.add({ nombre: {h:'hola'}, imgUrl: 'asdf' });
+  // }
 }
 
 // PICKER AND HORIZONTAL BAR

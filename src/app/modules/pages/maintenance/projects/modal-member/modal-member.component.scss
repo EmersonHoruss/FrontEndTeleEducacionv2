@@ -1,0 +1,100 @@
+// TEMPLATE STYLE
+.wrapper {
+  display: grid;
+  grid-template-areas:
+    "title title"
+    "rol member"
+    "program program"
+    "buttons buttons";
+  grid-template-columns: 30% 70%;
+
+  .title {
+    grid-area: title;
+    background-color: #ddddf3;
+    color: #3f51b5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .rol {
+    grid-area: rol;
+  }
+
+  .member {
+    grid-area: member;
+  }
+
+  .program {
+    grid-area: program;
+  }
+
+  .buttons {
+    grid-area: buttons;
+    display: flex;
+    justify-content: center;
+  }
+
+  //   section {
+  //     width: 100%;
+  //   }
+}
+
+.error {
+  grid-area: error;
+  height: 1rem;
+  position: relative;
+  top: -20px;
+  width: 100%;
+  // background-color: red;
+
+  .input-error {
+    height: 1rem;
+    background-color: transparent;
+    border: none;
+    color: red !important;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+}
+
+// GENERAL STYLES
+mat-form-field {
+  width: 100%;
+}
+
+.one-rem-padding-right {
+  padding-right: 1rem;
+}
+
+.one-rem-margin-right {
+  margin-right: 1rem;
+}
+
+.one-rem-margin-right {
+  margin-left: 1rem;
+}
+
+.button {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.primary {
+  background-color: #3f51b5;
+}
+
+.warning {
+  background-color: #f44336;
+}
+
+.secondary {
+  background-color: #ff4081;
+}

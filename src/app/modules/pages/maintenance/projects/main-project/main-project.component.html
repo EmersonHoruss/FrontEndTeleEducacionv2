@@ -1,0 +1,97 @@
+<!-- TITLE -->
+<section class="title-page">
+  <p>Mantenimiento de Proyectos</p>
+</section>
+
+<!-- CONTENT MAIN PROJECT -->
+<section class="wrapper-main">
+  <!-- <mat-form-field appearance="fill" class="kind-program">
+  <mat-label>Tipo</mat-label>
+  <mat-select
+    disableOptionCentering="true"
+  >
+    <mat-option
+      *ngFor="let filter of filters"
+      [value]="filter.Codigo"
+    >
+      {{ filter.Nombre }}
+    </mat-option>
+  </mat-select>
+</mat-form-field> -->
+  <!-- ALL FILTERS -->
+  <!-- by name and authors -->
+
+  <!-- TABLE -->
+  <section class="table">
+    <section class="headers-section-table">
+      <p class="title">Lista de proyectos</p>
+      <section class="options">
+        <!-- ADD NEW -->
+        <section
+          class="button-out-table primary"
+          (click)="addNew()"
+          matTooltip="Ir a agregar proyecto"
+          [routerLink]="'nuevo'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="white"
+            class="bi bi-plus-lg"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+            />
+          </svg>
+        </section>
+      </section>
+    </section>
+
+    <table mat-table [dataSource]="data">
+      <ng-container *ngFor="let column of columns" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+        <td mat-cell *matCellDef="let object">
+          <section *ngIf="object[column] !== 'true'">
+            {{ object[column] }}
+          </section>
+          <section *ngIf="object[column] === 'true'">
+            <section class="buttons-container">
+              <!-- <app-button-shared
+              *ngFor="let button of constantsBu.buttons; let i = index"
+              [button]="button"
+            ></app-button-shared> -->
+              <!-- (clicked)="innerButtonTableClicked(i, object)" -->
+            </section>
+          </section>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr>
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">
+          {{ noData }}
+        </td>
+      </tr>
+    </table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </section>
+
+  <!-- <section class="members">
+  <mat-form-field appearance="fill" class="programa">
+    <mat-label>Integrante</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let member of foods" [value]="member.value">
+        {{ member.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</section> -->
+</section>

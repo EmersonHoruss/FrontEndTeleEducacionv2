@@ -1,0 +1,289 @@
+<!-- TITLE -->
+<section class="title">
+  <p>{{ titlePage }}</p>
+</section>
+
+<!-- CONTENT MAIN -->
+<section class="wrapper-main">
+  <form autocomplete="off" [formGroup]="form" autocapitalize="'characters'">
+    <!-- TITLE -->
+    <section class="title">
+      <p>Formulario estudiante</p>
+    </section>
+
+    <!-- NAME -->
+    <section class="name">
+      <mat-form-field class="time" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input
+          class="input"
+          matInput
+          placeholder="Ingrese nombre."
+          type="text"
+          formControlName="Nombre"
+        />
+      </mat-form-field>
+
+      <section class="error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('Nombre').error"
+          [value]="getError('Nombre').msg"
+        />
+      </section>
+    </section>
+
+    <!-- FIRST LAST NAME -->
+    <section class="first-last-name">
+      <mat-form-field class="time" appearance="fill">
+        <mat-label>Apellido paterno</mat-label>
+        <input
+          matInput
+          class="input"
+          placeholder="Ingrese apellido paterno."
+          type="text"
+          formControlName="ApellidoPaterno"
+        />
+      </mat-form-field>
+
+      <section class="error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('ApellidoPaterno').error"
+          [value]="getError('ApellidoPaterno').msg"
+        />
+      </section>
+    </section>
+
+    <!-- SECOND LAST NAME -->
+    <section class="second-last-name">
+      <mat-form-field class="time" appearance="fill">
+        <mat-label>Apellido materno</mat-label>
+        <input
+          matInput
+          placeholder="Ingrese apellido materno."
+          type="number"
+          formControlName="ApellidoMaterno"
+        />
+      </mat-form-field>
+
+      <section class="error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('ApellidoMaterno').error"
+          [value]="getError('ApellidoMaterno').msg"
+        />
+      </section>
+    </section>
+
+    <!-- PERSONAL EMAIL -->
+    <section class="personal-email">
+      <mat-form-field class="time" appearance="fill">
+        <mat-label>Correo personal</mat-label>
+        <input
+          matInput
+          placeholder="Ingrese correo personal."
+          type="text"
+          formControlName="CorreoPersonal"
+        />
+      </mat-form-field>
+
+      <section class="error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('CorreoPersonal').error"
+          [value]="getError('CorreoPersonal').msg"
+        />
+      </section>
+    </section>
+
+    <!-- INSTITUTION EMAIL -->
+    <section class="institution-email">
+      <mat-form-field class="time" appearance="fill">
+        <mat-label>Correo institucional</mat-label>
+        <input
+          matInput
+          placeholder="Ingrese correo institucional."
+          type="text"
+          formControlName="CorreoInstitucional"
+        />
+      </mat-form-field>
+
+      <section class="error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('CorreoInstitucional').error"
+          [value]="getError('CorreoInstitucional').msg"
+        />
+      </section>
+    </section>
+
+    <!-- CELL -->
+    <section class="cell">
+      <mat-form-field class="time" appearance="fill">
+        <mat-label>Celular</mat-label>
+        <input
+          matInput
+          placeholder="Ingrese celular."
+          type="text"
+          formControlName="Celular"
+        />
+      </mat-form-field>
+
+      <section class="error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('Celular').error"
+          [value]="getError('Celular').msg"
+        />
+      </section>
+    </section>
+
+    <!-- DOCUMENT TYPE -->
+    <section class="document-type">
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo de documento</mat-label>
+        <mat-select
+          formControlName="TipoDocumento"
+          [disableOptionCentering]="true"
+        >
+          <mat-option
+            *ngFor="let documentType of documentTypes"
+            [value]="documentType.Codigo"
+          >
+            {{ documentType.Nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <section class="error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('TipoDocumento').error"
+          [value]="getError('TipoDocumento').msg"
+        />
+      </section>
+    </section>
+
+    <!-- DOCUMENT NUMBER -->
+    <section class="document-number">
+      <mat-form-field class="time" appearance="fill">
+        <mat-label>Número del documento</mat-label>
+        <input
+          matInput
+          placeholder="Ingrese número del documento."
+          type="text"
+          formControlName="NumeroDocumento"
+        />
+      </mat-form-field>
+
+      <section class="error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('NumeroDocumento').error"
+          [value]="getError('NumeroDocumento').msg"
+        />
+      </section>
+    </section>
+
+    <section class="form-buttons">
+      <!-- SAVE -->
+      <section class="button primary" (click)="save()" matTooltip="Guardar">
+        <svg
+          version="1.1"
+          id="Layer_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 460.002 460.002"
+          style="enable-background: new 0 0 460.002 460.002"
+          xml:space="preserve"
+          width="25"
+          height="25"
+          fill="white"
+        >
+          <path
+            d="M427.137,0C408.93,0,51.379,0,32.865,0C14.743,0,0,14.743,0,32.865v394.272c0,18.122,14.743,32.865,32.865,32.865
+     c0,0,374.895,0,394.272,0c18.122,0,32.865-14.743,32.865-32.865V32.865C460.001,14.743,445.258,0,427.137,0z M245.812,30h50.995
+     v54.466h-50.995V30z M107.198,30h108.615v69.466c0,8.284,6.716,15,15,15h80.995c8.284,0,15-6.716,15-15V30h26.377v119.636H107.198
+     V30z M107.007,430.001V308.673h245.986v121.328H107.007z M430.002,427.137L430.002,427.137c-0.001,1.58-1.286,2.865-2.866,2.865
+     h-44.143V293.673c0-8.284-6.716-15-15-15H92.007c-8.284,0-15,6.716-15,15v136.328H32.865c-1.58,0-2.865-1.285-2.865-2.865V32.865
+     C30,31.285,31.285,30,32.865,30h44.333v134.636c0,8.284,6.716,15,15,15h275.986c8.284,0,15-6.716,15-15V30h43.953
+     c1.58,0,2.865,1.285,2.865,2.865V427.137z"
+          />
+        </svg>
+      </section>
+
+      <!-- ENTRANT -->
+      <section class="entrant">
+        <section
+          class="button primary"
+          (click)="showMaintenanceEntrants()"
+          [matTooltip]="'Mostrar mantenimiento de ingresos'"
+        >
+          <svg
+            version="1.1"
+            id="Capa_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            width="25"
+            height="25"
+            fill="white"
+            viewBox="0 0 32.014 32.014"
+            xml:space="preserve"
+          >
+            <path
+              d="M23.981,18.383H8.07c-2.943,0-5.346,2.354-5.346,5.297v8.334h10.484l1.575-8.578c0.059-0.321,0.34-0.558,0.668-0.558
+l-1.46-2.485c-0.064-0.109-0.065-0.246-0.002-0.355c0.064-0.109,0.181-0.178,0.308-0.178h4.012c0.129,0,0.247,0.068,0.312,0.181
+c0.062,0.112,0.061,0.249-0.007,0.356l-1.512,2.484h0.006c0.323,0,0.604,0.229,0.666,0.547l1.713,8.586h9.802v-8.332
+C29.283,20.734,26.924,18.383,23.981,18.383z"
+            />
+            <circle cx="16.025" cy="7.635" r="7.635" />
+          </svg>
+        </section>
+      </section>
+
+      <!-- BACK -->
+      <section class="back">
+        <section
+          class="button secondary"
+          (click)="back()"
+          [matTooltip]="'Ir a matenimientos de estudiantes'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            fill="white"
+            class="bi bi-card-list"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
+            />
+          </svg>
+        </section>
+      </section>
+    </section>
+  </form>
+</section>

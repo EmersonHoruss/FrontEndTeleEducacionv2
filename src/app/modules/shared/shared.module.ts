@@ -58,12 +58,18 @@ import { ExamMainSelectComponent } from './redifining-set-components/exam-main-s
 import { ExamMainTableComponent } from './redifining-set-components/exam-main-table/exam-main-table.component';
 import { ExamRegisterFormComponent } from './redifining-set-components/exam-register-form/exam-register-form.component';
 import { ExamRegisterPostulantComponent } from './redifining-set-components/exam-register-postulant/exam-register-postulant.component';
-import { LiftMainSelectComponent } from './redifining-set-components/lift-main-select/lift-main-select.component';
-import { LiftMainTableComponent } from './redifining-set-components/lift-main-table/lift-main-table.component';
 import { LiftMainAllContentComponent } from './redifining-set-components/lift-main-all-content/lift-main-all-content.component';
+import { ColumTableProgramationsPipe } from 'src/app/pipes/colum-table-programations.pipe';
+import { LiftRegisterComponent } from './modals/lift-register/lift-register.component';
+import { RegisterUpdateProyectsComponent } from './modals/register-update-proyects/register-update-proyects.component';
+
+import { LiftNewUpdateContentComponent } from './redifining-set-components/lift-new-update-content/lift-new-update-content.component';
+import { ProjectMainContentComponent } from './redifining-set-components/maintaneance/project-main-content/project-main-content.component';
 
 @NgModule({
   declarations: [
+    ColumTableProgramationsPipe,
+
     SharedxdComponent,
     TitlePageComponent,
     TableSelectComponent,
@@ -101,9 +107,12 @@ import { LiftMainAllContentComponent } from './redifining-set-components/lift-ma
     ExamMainTableComponent,
     ExamRegisterFormComponent,
     ExamRegisterPostulantComponent,
-    LiftMainSelectComponent,
-    LiftMainTableComponent,
     LiftMainAllContentComponent,
+    LiftRegisterComponent,
+    RegisterUpdateProyectsComponent,
+
+    LiftNewUpdateContentComponent,
+    ProjectMainContentComponent,
   ],
   imports: [
     CommonModule,
@@ -125,6 +134,7 @@ import { LiftMainAllContentComponent } from './redifining-set-components/lift-ma
     MatCheckboxModule,
   ],
   exports: [
+    ModalsDialogComponent,
     PruebaComponent,
     SharedxdComponent,
     TitlePageComponent,
@@ -160,9 +170,12 @@ import { LiftMainAllContentComponent } from './redifining-set-components/lift-ma
     ExamRegisterFormComponent,
     ExamRegisterPostulantComponent,
 
-    LiftMainSelectComponent,
-    LiftMainTableComponent,
     LiftMainAllContentComponent,
+    LiftNewUpdateContentComponent,
+
+    ProjectMainContentComponent,
+
+    
   ],
   providers: [
     ModalsDialogService,
