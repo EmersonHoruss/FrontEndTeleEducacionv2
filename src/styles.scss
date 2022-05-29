@@ -158,3 +158,252 @@ p {
   word-wrap: break-word !important;
   white-space: pre-wrap !important;
 }
+
+// TRACKING POST GRADE
+.tracking-postgrade-title-page {
+  background-color: #cacaea85;
+  color: #3f51b5;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.tracking-postgrade-wrapper-main {
+  width: 100%;
+  padding: 2rem;
+
+  .tracking-postgrade-filters-section {
+    margin-bottom: 0.8rem;
+    display: flex;
+  }
+
+  .tracking-postgrade-table-section {
+    .tracking-postgrade-headers {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 0.8rem;
+
+      .tracking-postgrade-title-table {
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .tracking-postgrade-options {
+        display: flex;
+      }
+    }
+  }
+
+  .tracking-postgrade-options-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.tracking-postgrade-title-form {
+  background-color: #cacaea85;
+  color: #3f51b5;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.tracking-postgrade-small-button {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tracking-postgrade-bigger-button {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tracking-postgrade-primary {
+  background-color: #3f51b5;
+}
+
+.tracking-postgrade-primary-disabled {
+  background-color: #3f51b57d;
+}
+
+.tracking-postgrade-secondary {
+  background-color: #ff4081;
+}
+
+.tracking-postgrade-dangerous {
+  background-color: #f44336;
+}
+
+.tracking-postgrade-one-margin-width {
+  margin: 0 1rem;
+}
+
+.tracking-postgrade-one-margin-long {
+  margin: 1rem 0;
+}
+
+.tracking-postgrade-one-margin-right {
+  margin-right: 1rem;
+}
+
+.tracking-postgrade-one-margin-left {
+  margin-left: 1rem;
+}
+
+.tracking-postgrade-one-margin-bottom {
+  margin-bottom: 1rem;
+}
+
+.tracking-postgrade-one-margin-top {
+  margin-top: 1rem;
+}
+
+.tracking-postgrade-one-padding-right {
+  padding-right: 1rem;
+}
+
+.tracking-postgrade-one-padding-width {
+  padding: 0 1rem;
+}
+
+.tracking-postgrade-one-padding-long {
+  padding: 1rem 0;
+}
+
+.tracking-postgrade-one-padding-left {
+  padding-left: 1rem;
+}
+
+.tracking-postgrade-no-margin {
+  margin: 0;
+}
+
+.tracking-postgrade-no-padding {
+  padding: 0;
+}
+
+.tracking-postgrade-width-fifteen-rem {
+  width: 15rem;
+}
+
+.tracking-postgrade-display-flex {
+  display: flex;
+}
+
+.tracking-postgrade-display-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tracking-postgrade-display-flex-direction-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.tracking-postgrade-all-width {
+  width: 100%;
+}
+
+.tracking-postgrade-table {
+  width: 100%;
+  background-color: #e8e8f2;
+}
+
+.tracking-postgrade-table > :not(:first-child) {
+  border-top: 2px solid #939394;
+  border-bottom: 2px solid #939394;
+}
+
+.tracking-postgrade-th {
+  font-size: 0.9rem;
+  border-top: 2px solid #939394;
+  border-bottom: 2px solid #939394;
+}
+
+.tracking-postgrade-mat-paginator {
+  background-color: #ededf7;
+  border: 0;
+}
+// .mat-cell {
+//   padding-right: 0.5rem;
+//   padding-left: 0.5rem;
+// }
+
+.tracking-postgrade-center-button-mat-form-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 21.5px;
+}
+
+.tracking-postgrade-title-filter {
+  margin-bottom: 0.8rem;
+}
+
+.tracking-postgrade-table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  .mat-table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    display: table;
+    border-collapse: collapse;
+    margin: 0px;
+  }
+  .mat-row,
+  .mat-header-row {
+    display: table-row;
+  }
+  .mat-cell,
+  .mat-header-cell {
+    word-wrap: initial;
+    display: table-cell;
+    padding: 0px 5px;
+    line-break: unset;
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+  }
+}
+
+.tracking-postgrade-error {
+  grid-area: error;
+  height: 1rem;
+  position: relative;
+  top: -20px;
+  width: 100%;
+  //   background-color: red;
+
+  .input-error {
+    height: 1rem;
+    background-color: transparent;
+    border: none;
+    color: red !important;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+}

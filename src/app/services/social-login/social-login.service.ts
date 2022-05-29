@@ -4,6 +4,7 @@ import { SesionInterface } from '../../interfaces/sesion-interface';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { GlobalStatusServiceService } from '../global-status/global-status-service.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,11 @@ export class SocialLoginService {
     this.isLoggedIsSaveInLS()
   );
 
-  constructor(private authService: SocialAuthService, private router: Router) {}
+  constructor(
+    private authService: SocialAuthService,
+    private router: Router,
+    private globalStatusS: GlobalStatusServiceService
+  ) {}
 
   // MANAGING LOG
 
@@ -23,20 +28,53 @@ export class SocialLoginService {
 
   signOut(): void {
     this.authService.signOut();
-    this.deleteSesion();
+    localStorage.clear();
+    // this.deleteSesion();
     this.router.navigate(['/iniciar-sesion']);
   }
 
   // MANAGIN EXPIRATION
+  hasExpired(): boolean {
+    return false;
+  }
+
   expiration() {
-    const timeout: number = this.getTimeout();
-    of(null)
-      .pipe(delay(timeout))
-      .subscribe((expired) => {
-        // console.log('EXPIRED!!');
+    // const timeout: number = this.getTimeout();
+    const renewTimeExpiration = 5000; // each 5 seconds page renew expiration
+    const now = Date.now();
+    // console.log('2');
+    const sesion = this.getSesion();
+    // console.log(sesion, '1');
+
+    if (sesion) {
+      let expires_at = sesion.expires_at;
+      // console.log(sesion, '2');
+
+      // if () {
+      // if now is less than expires time so renew expires time, else
+      // logout
+      if (now <= expires_at) {
+        of(null)
+          .pipe(delay(renewTimeExpiration))
+          .subscribe((expired) => {
+            expires_at = expires_at + renewTimeExpiration;
+            sesion.expires_at = expires_at;
+            // console.log(this.getValueIsLogged());
+            if (this.getValueIsLogged()) {
+              this.updateSesion(sesion);
+              // console.log(this.getSesion());
+              this.expiration();
+            } else {
+              // this.signOut();
+              this.setIsLogged(false);
+            }
+          });
+      } else {
         this.signOut();
         this.setIsLogged(false);
-      });
+      }
+      // }
+    }
   }
 
   getTimeout(): number {
@@ -60,6 +98,7 @@ export class SocialLoginService {
   // MANAGIN ISLOGGED
   isLoggedIsSaveInLS(): boolean {
     const sesion: any = localStorage.getItem('sesion');
+
     return sesion !== null;
   }
 
@@ -91,15 +130,22 @@ export class SocialLoginService {
   }
 
   saveSession(sesion: SesionInterface) {
+    this.globalStatusS.boot();
     localStorage.setItem('sesion', JSON.stringify(sesion));
   }
 
   getSesion() {
     const sesion: any = localStorage.getItem('sesion');
-    return JSON.parse(sesion);
+    return sesion ? JSON.parse(sesion) : null;
+  }
+
+  updateSesion(sesion: any) {
+    localStorage.setItem('sesion', JSON.stringify(sesion));
   }
 
   deleteSesion() {
+    this.globalStatusS.clean();
+
     localStorage.removeItem('sesion');
   }
 

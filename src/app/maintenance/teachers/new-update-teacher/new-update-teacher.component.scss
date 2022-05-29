@@ -1,0 +1,84 @@
+.responsive-form {
+  display: grid;
+  grid-template-areas:
+    "title title"
+    "name cell"
+    "first_last_name appointed"
+    "second_last_name grade"
+    "personal_email document_type"
+    "institutional_email document_number"
+    "buttons buttons";
+
+  grid-template-columns: 55% 45%;
+
+  .title {
+    grid-area: title;
+    margin-bottom: 1rem;
+  }
+
+  .name {
+    grid-area: name;
+    margin-right: 0.5rem;
+  }
+
+  .first-last-name {
+    grid-area: first_last_name;
+    margin-right: 0.5rem;
+  }
+
+  .second-last-name {
+    grid-area: second_last_name;
+    margin-right: 0.5rem;
+  }
+
+  .personal-email {
+    grid-area: personal_email;
+    margin-right: 0.5rem;
+  }
+
+  .institution-email {
+    grid-area: institutional_email;
+    margin-right: 0.5rem;
+  }
+
+  .cell {
+    grid-area: cell;
+    margin-left: 0.5rem;
+  }
+
+  .appointed {
+    grid-area: appointed;
+    margin-left: 0.5rem;
+  }
+
+  .grade {
+    grid-area: grade;
+    margin-left: 0.5rem;
+  }
+
+  .document-type {
+    grid-area: document_type;
+    margin-left: 0.5rem;
+  }
+
+  .document-number {
+    grid-area: document_number;
+    margin-left: 0.5rem;
+  }
+
+  .buttons {
+    grid-area: buttons;
+  }
+}
+
+.padding-for-tablet-responsive-form {
+    padding: 0 5%;
+}
+
+.padding-for-desktop1-form {
+    padding: 0 10%;
+}
+
+.padding-for-desktop2-form {
+    padding: 0 20%;
+}

@@ -1,0 +1,27 @@
+// .main-container {
+//   width: 100%;
+//   height: 100%;
+//   background-color: black;
+//   display: grid;
+//   grid-template-columns: 100%;
+//   grid-template-rows: 3rem auto 2rem;
+// }
+
+.example-container {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(230, 230, 250, 0.5);
+
+  .example-sidenav {
+    background-color: #5252b3;
+  }
+
+  .example-sidenav-content {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 3rem auto 2rem;
+  }
+}
+

@@ -1,8 +1,0 @@
-<mat-form-field appearance="fill" class="programa">
-  <mat-label>Seleccione rol</mat-label>
-  <mat-select name="rol" (selectionChange)="selectedRol($event.value)">
-    <mat-option *ngFor="let rol of roles" [value]="rol.Codigo">
-      {{ rol.Nombre }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>

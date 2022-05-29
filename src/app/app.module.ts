@@ -11,7 +11,6 @@ import {
 } from 'angularx-social-login';
 
 // module to start aplication
-import { BootModule } from './modules/boot/boot.module';
 
 // bootstraped component
 import { AppComponent } from './app.component';
@@ -21,7 +20,8 @@ import { AuthInterceptorServiceService } from './interceptors/auth/auth-intercep
 import Dexie from 'dexie';
 
 import { dbService } from './services/db/db.service';
-
+import { BootModule } from './boot/boot.module';
+import { CanDeactivateGuardService } from './services/can-deactivate-guard/can-deactivate-guard.service';
 
 export const db = new dbService();
 
@@ -55,6 +55,7 @@ export const db = new dbService();
       multi: true,
     },
     dbService,
+    CanDeactivateGuardService,
   ],
   bootstrap: [AppComponent],
 })

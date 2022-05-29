@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { ModalsDialogComponent } from 'src/app/modules/shared/components/modals-dialog/modals-dialog.component';
-import { ModalsDialogInterface } from '../../modules/shared/interfaces/modals-dialog-interface';
+import { ModalsDialogComponent } from 'src/app/shared/components/modals-dialog/modals-dialog.component';
+import { ModalsDialogInterface } from '../../shared/interfaces/modals-dialog-interface';
 import { Observable } from 'rxjs';
 
 @Injectable({

@@ -1,0 +1,170 @@
+<!-- TITLE -->
+<section class="tracking-postgrade-title-page">
+  <p>{{ titlePage }}</p>
+</section>
+
+<!-- CONTENT MAIN -->
+<section class="tracking-postgrade-wrapper-main">
+  <section class="tracking-postgrade-title-filter">
+    <p>Búsqueda</p>
+  </section>
+
+  <section class="tracking-postgrade-filters-section">
+    <form
+      class="tracking-postgrade-display-flex"
+      [ngClass]="{
+        'tracking-postgrade-display-flex-direction-column': mobileQuery.matches
+      }"
+      autocomplete="off"
+      [formGroup]="form"
+    >
+      <!-- SELECT TYPE FILTER -->
+      <mat-form-field
+        appearance="fill"
+        class="tracking-postgrade-width-fifteen-rem"
+      >
+        <mat-label>Opciones de búsqueda:</mat-label>
+        <mat-select disableOptionCentering="true" formControlName="TipoFiltro">
+          <mat-option *ngFor="let filter of filters" [value]="filter.Codigo">
+            {{ filter.Nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- INPUT VALUE FILTER AND LIST BUTTON-->
+      <section class="tracking-postgrade-display-flex">
+        <!-- INPUT VALUE FILTER-->
+        <mat-form-field
+          class="tracking-postgrade-width-fifteen-rem"
+          [ngClass]="{
+            'tracking-postgrade-one-margin-left': !mobileQuery.matches
+          }"
+          appearance="fill"
+        >
+          <mat-label>{{ getLabelValorFiltro() }}</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="ValorFiltro"
+            [placeholder]="'Ingrese ' + getLabelValorFiltro(true)"
+          />
+        </mat-form-field>
+
+        <!-- LIST BUTTON -->
+        <section
+          class="tracking-postgrade-center-button-mat-form-field tracking-postgrade-one-margin-left"
+        >
+          <app-tracking-postgrade-button
+            [button]="buttons.list_bigger"
+            (clicked)="list()"
+          ></app-tracking-postgrade-button>
+        </section>
+      </section>
+    </form>
+  </section>
+
+  <!-- TABLE -->
+  <section class="tracking-postgrade-table-section">
+    <section class="tracking-postgrade-headers">
+      <section class="tracking-postgrade-title-table">
+        <p class="title">{{ settingTitleTable() }}</p>
+      </section>
+
+      <section class="tracking-postgrade-options">
+        <!-- GET IT BACK -->
+        <app-tracking-postgrade-button
+          *ngIf="isInMaintenance"
+          [button]="buttons.get_back_small"
+          (clicked)="goToGetItBack()"
+          class="tracking-postgrade-one-margin-right"
+        ></app-tracking-postgrade-button>
+
+        <!-- ADD NEW -->
+        <app-tracking-postgrade-button
+          *ngIf="isInMaintenance"
+          [button]="buttons.add_small"
+          (clicked)="goToAddNew()"
+        ></app-tracking-postgrade-button>
+      </section>
+    </section>
+
+    <section class="tracking-postgrade-table-responsive">
+      <table mat-table [dataSource]="data" class="tracking-postgrade-table">
+        <ng-container
+          *ngFor="let column of columns"
+          [matColumnDef]="column"
+          [stickyEnd]="column === 'Acciones'"
+        >
+          <th mat-header-cell *matHeaderCellDef class="tracking-postgrade-th">
+            {{ column }}
+          </th>
+          <td mat-cell *matCellDef="let object">
+            <section *ngIf="object[column] !== 'true'">
+              {{ object[column] }}
+            </section>
+            <section *ngIf="object[column] === 'true'">
+              <section class="buttons-container">
+                <!-- UPDATE -->
+                <section
+                  (click)="goToUpdate(object)"
+                  class="tracking-postgrade-one-margin-right"
+                >
+                  <app-tracking-postgrade-button
+                    *ngIf="isInMaintenance"
+                    [button]="buttons.update_small"
+                  ></app-tracking-postgrade-button>
+                </section>
+
+                <!-- DELETE -->
+                <section (click)="delete(object)">
+                  <app-tracking-postgrade-button
+                    *ngIf="isInMaintenance"
+                    [button]="buttons.delete_small"
+                  ></app-tracking-postgrade-button>
+                </section>
+
+                <!-- GET BACK -->
+                <section (click)="getBack(object)">
+                  <app-tracking-postgrade-button
+                    *ngIf="!isInMaintenance"
+                    [button]="buttons.get_back_small_in_table"
+                  ></app-tracking-postgrade-button>
+                </section>
+              </section>
+            </section>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns"></tr>
+        <!-- Row shown when there is no matching data and loading. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4" *ngIf="isLoadingData">
+            Está cargando...
+          </td>
+
+          <td
+            class="mat-cell"
+            colspan="4"
+            *ngIf="!isLoadingData && dataHelp.length === 0"
+          >
+            {{ noData }}
+          </td>
+        </tr>
+      </table>
+    </section>
+    <mat-paginator
+      class="tracking-postgrade-mat-paginator"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      aria-label="Select page of users"
+    ></mat-paginator>
+  </section>
+
+  <!-- BACK BUTTON -->
+  <section class="tracking-postgrade-options-section" *ngIf="!isInMaintenance">
+    <app-tracking-postgrade-button
+      [button]="buttons.back_bigger"
+      (clicked)="gotToBack()"
+    ></app-tracking-postgrade-button>
+  </section>
+</section>

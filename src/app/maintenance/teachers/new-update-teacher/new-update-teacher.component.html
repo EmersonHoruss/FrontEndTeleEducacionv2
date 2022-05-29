@@ -1,0 +1,296 @@
+<!-- TITLE -->
+<section class="tracking-postgrade-title-page">
+  <p>{{ titlePage }}</p>
+</section>
+
+<!-- CONTENT MAIN -->
+<section class="tracking-postgrade-wrapper-main">
+  <form
+    autocomplete="off"
+    [formGroup]="form"
+    [ngClass]="{
+      'responsive-form': !mobileQuery.matches,
+      'padding-for-tablet-responsive-form': !tabletQuery.matches,
+      'padding-for-desktop1-form': !desktop1Query.matches,
+      'padding-for-desktop2-form': !desktop2Query.matches
+    }"
+  >
+    <!-- TITLE -->
+    <section
+      class="title tracking-postgrade-title-form tracking-postgrade-one-margin-bottom"
+    >
+      <p>Formulario docente</p>
+    </section>
+
+    <!-- NAME -->
+    <section class="name">
+      <mat-form-field class="tracking-postgrade-all-width" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          placeholder="Ingrese nombre."
+          type="text"
+          formControlName="Nombre"
+        />
+      </mat-form-field>
+
+      <section class="tracking-postgrade-error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('Nombre').error"
+          [value]="getError('Nombre').msg"
+        />
+      </section>
+    </section>
+
+    <!-- FIRST LAST NAME -->
+    <section class="first-last-name">
+      <mat-form-field class="tracking-postgrade-all-width" appearance="fill">
+        <mat-label>Apellido paterno</mat-label>
+        <input
+          matInput
+          placeholder="Ingrese apellido paterno."
+          type="text"
+          formControlName="ApellidoPaterno"
+        />
+      </mat-form-field>
+
+      <section class="tracking-postgrade-error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('ApellidoPaterno').error"
+          [value]="getError('ApellidoPaterno').msg"
+        />
+      </section>
+    </section>
+
+    <!-- SECOND LAST NAME -->
+    <section class="second-last-name">
+      <mat-form-field class="tracking-postgrade-all-width" appearance="fill">
+        <mat-label>Apellido materno</mat-label>
+        <input
+          matInput
+          placeholder="Ingrese apellido materno."
+          type="text"
+          formControlName="ApellidoMaterno"
+        />
+      </mat-form-field>
+
+      <section class="tracking-postgrade-error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('ApellidoMaterno').error"
+          [value]="getError('ApellidoMaterno').msg"
+        />
+      </section>
+    </section>
+
+    <!-- PERSONAL EMAIL -->
+    <section class="personal-email">
+      <mat-form-field class="tracking-postgrade-all-width" appearance="fill">
+        <mat-label>Correo personal</mat-label>
+        <input
+          matInput
+          placeholder="Ingrese correo personal."
+          type="text"
+          formControlName="CorreoPersonal"
+        />
+      </mat-form-field>
+
+      <section class="tracking-postgrade-error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('CorreoPersonal').error"
+          [value]="getError('CorreoPersonal').msg"
+        />
+      </section>
+    </section>
+
+    <!-- INSTITUTION EMAIL -->
+    <section class="institution-email">
+      <mat-form-field class="tracking-postgrade-all-width" appearance="fill">
+        <mat-label>Correo institucional</mat-label>
+        <input
+          matInput
+          placeholder="Ingrese correo institucional."
+          type="text"
+          formControlName="CorreoInstitucional"
+        />
+      </mat-form-field>
+
+      <section class="tracking-postgrade-error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('CorreoInstitucional').error"
+          [value]="getError('CorreoInstitucional').msg"
+        />
+      </section>
+    </section>
+
+    <!-- CELL -->
+    <section class="cell">
+      <mat-form-field class="tracking-postgrade-all-width" appearance="fill">
+        <mat-label>Celular</mat-label>
+        <input
+          matInput
+          placeholder="Ingrese celular."
+          type="text"
+          formControlName="Celular"
+        />
+      </mat-form-field>
+
+      <section class="tracking-postgrade-error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('Celular').error"
+          [value]="getError('Celular').msg"
+        />
+      </section>
+    </section>
+
+    <!-- APPOINTED -->
+    <section class="appointed">
+      <mat-form-field class="tracking-postgrade-all-width" appearance="fill">
+        <mat-label>Nombrado</mat-label>
+        <mat-select formControlName="Nombrado" [disableOptionCentering]="true">
+          <mat-option
+            *ngFor="let nombrated of nombrateds"
+            [value]="nombrated.Codigo"
+          >
+            {{ nombrated.Nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <section class="tracking-postgrade-error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('Nombrado').error"
+          [value]="getError('Nombrado').msg"
+        />
+      </section>
+    </section>
+
+    <!-- GRADE -->
+    <section class="grade">
+      <mat-form-field class="tracking-postgrade-all-width" appearance="fill">
+        <mat-label>Grado</mat-label>
+        <mat-select formControlName="Grado" [disableOptionCentering]="true">
+          <mat-option *ngFor="let grade of grades" [value]="grade.Codigo">
+            {{ grade.Nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <section class="tracking-postgrade-error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('Grado').error"
+          [value]="getError('Grado').msg"
+        />
+      </section>
+    </section>
+
+    <!-- DOCUMENT TYPE -->
+    <section class="document-type">
+      <mat-form-field class="tracking-postgrade-all-width" appearance="fill">
+        <mat-label>Tipo de documento</mat-label>
+        <mat-select
+          formControlName="TipoDocumento"
+          [disableOptionCentering]="true"
+        >
+          <mat-option
+            *ngFor="let documentType of documentTypes"
+            [value]="documentType.Codigo"
+          >
+            {{ documentType.Nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <section class="tracking-postgrade-error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('TipoDocumento').error"
+          [value]="getError('TipoDocumento').msg"
+        />
+      </section>
+    </section>
+
+    <!-- DOCUMENT NUMBER -->
+    <section class="document-number">
+      <mat-form-field class="tracking-postgrade-all-width" appearance="fill">
+        <mat-label>Número del documento</mat-label>
+        <input
+          matInput
+          placeholder="Ingrese número del documento."
+          type="text"
+          formControlName="NumeroDocumento"
+        />
+      </mat-form-field>
+
+      <section class="tracking-postgrade-error">
+        <input
+          type="text"
+          disabled
+          class="input-error"
+          *ngIf="getError('NumeroDocumento').error"
+          [value]="getError('NumeroDocumento').msg"
+        />
+      </section>
+    </section>
+
+    <!-- BUTTONS -->
+    <section
+      class="buttons tracking-postgrade-display-flex-center tracking-postgrade-one-margin-bottom"
+    >
+      <!-- DELETE
+      <app-tracking-postgrade-button
+        *ngIf="!isInAddPage"
+        [button]="buttons.delete_bigger"
+        (clicked)="delete()"
+        class="tracking-postgrade-one-margin-width"
+      ></app-tracking-postgrade-button> -->
+
+      <!-- GO TO ADD  -->
+      <app-tracking-postgrade-button
+        *ngIf="!isInAddPage"
+        [button]="buttons.add_bigger"
+        (clicked)="goToAdd()"
+        class="tracking-postgrade-one-margin-width"
+      ></app-tracking-postgrade-button>
+
+      <!-- SAVE -->
+      <app-tracking-postgrade-button
+        [button]="buttons.save_bigger"
+        (clicked)="save()"
+        class="tracking-postgrade-one-margin-width"
+      ></app-tracking-postgrade-button>
+
+      <!-- GO TO BACK -->
+      <app-tracking-postgrade-button
+        [button]="buttons.back_bigger"
+        (clicked)="goToBack()"
+        class="tracking-postgrade-one-margin-width"
+      ></app-tracking-postgrade-button>
+    </section>
+  </form>
+</section>
